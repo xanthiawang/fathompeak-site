@@ -50,7 +50,7 @@ h1,h2,h3,h4{margin:0;line-height:1.15;text-wrap:balance;font-weight:500;color:va
 .hdr{position:fixed;top:calc(28px + env(safe-area-inset-top,0px));left:10px;right:10px;z-index:30;display:flex;justify-content:center;pointer-events:none}
 .pill{pointer-events:auto;display:flex;align-items:center;gap:30px;height:52px;padding:0 24px 0 6px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r16);box-shadow:var(--shadow);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:16px;color:var(--ink)}
 .pill .logo{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;color:var(--ink)} .pill .logo svg{width:22px;height:22px} .pill .logo .wm{display:none;font-family:var(--serif);font-size:20px;letter-spacing:-.01em;margin-left:4px;white-space:nowrap}
-.pill nav{display:flex;gap:34px} .pill nav a{color:var(--ink);opacity:.3;transition:opacity .2s var(--ease),color .2s var(--ease)} .pill nav a:hover,.pill nav a.on{opacity:1} .pill nav a.login{position:relative;margin-left:-8px;padding-left:26px} .pill nav a.login:before{content:"";position:absolute;left:0;top:50%;width:1px;height:14px;background:var(--line);transform:translateY(-50%)} .pill nav a.lang{font:500 13px var(--mono);letter-spacing:.04em;margin-left:-14px} .menu nav a.lang{font-size:22px;font-family:var(--mono);letter-spacing:.06em;color:var(--ink-50)}
+.pill nav{display:flex;gap:34px} .pill nav a{color:var(--ink);opacity:.3;transition:opacity .2s var(--ease),color .2s var(--ease)} .pill nav a:hover,.pill nav a.on{opacity:1} .pill nav a.login{position:relative;margin-left:-8px;padding-left:26px} .pill nav a.login:before{content:"";position:absolute;left:0;top:50%;width:1px;height:14px;background:var(--line);transform:translateY(-50%)} .pill nav a.lang{font:500 13px var(--mono);letter-spacing:.04em;margin-left:-14px} .menu nav a.lang{font-size:18px;font-family:var(--mono);letter-spacing:.06em;color:var(--ink-50);margin-left:0;padding-left:0}
 html[lang="en"] .article:before,html[lang="en"] .docs .pane:before,html[lang="en"] .log>div:before,html[lang="en"] section[data-route="newsletter"] .wrap:before{content:"English translation of this long-form text is in progress; structure and figures are final (examples).";display:block;font:400 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-50);margin-bottom:14px} .pill nav a.on{color:var(--ink);text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--ink-30)}
 .pill .plus{display:none;appearance:none;border:0;background:transparent;width:40px;height:40px;border-radius:12px;cursor:pointer;align-items:center;justify-content:center} .pill .plus svg{width:20px;height:20px;transition:transform .3s var(--ease)}
 .menu{display:none}
@@ -59,7 +59,7 @@ html[lang="en"] .article:before,html[lang="en"] .docs .pane:before,html[lang="en
   .pill .top{display:flex;align-items:center;justify-content:space-between;height:52px;width:100%;flex:none} .pill .logo{width:auto;padding:0 8px 0 6px} .pill .logo .wm{display:inline} .pill nav{display:none} .pill .plus{display:inline-flex}
   .pill.open{height:calc(100svh - 20px - env(safe-area-inset-top,0px));height:calc(100vh - 20px);} .pill.open .plus svg{transform:rotate(45deg)}
   .menu{display:none;flex-direction:column;justify-content:space-between;position:absolute;inset:52px 0 0 0;padding:40px 22px 22px} .pill.open .menu{display:flex}
-  .menu nav{display:grid;gap:26px} .menu nav a{opacity:1;font-size:56px;font-weight:300;letter-spacing:-.04em;line-height:1;color:var(--ink-30)} .menu nav a.on,.menu nav a:hover{color:var(--ink)}
+  .menu nav{display:grid;gap:18px} .menu nav a{opacity:1;font-size:34px;font-weight:300;letter-spacing:-.04em;line-height:1;color:var(--ink-30)} .menu nav a.on,.menu nav a:hover{color:var(--ink)}
   .menu .btns{display:grid;gap:12px}
 }
 @media (min-width:801px){.pill .top{display:contents}}
@@ -278,6 +278,8 @@ footer .k .more{display:inline;padding:0;margin-left:10px;font:400 11px var(--mo
 
 @media (max-width:800px){
   :root:not([data-scheme="C"]) .hero .ctas .row .btn{padding:0 20px}
+  .hero .curve,:root:not([data-scheme="C"]) .hero .curve{height:230px;margin:0 -45%}
+  .hero .ctas .row{flex-direction:column;align-items:stretch;width:min(300px,calc(100% - 64px));gap:10px} :root:not([data-scheme="C"]) .hero .ctas .row .btn,.hero .ctas .row .btn{width:100%;height:50px;font-size:16px}
   .feat,.detail,.two,.coop,.console,.news{grid-template-columns:1fr} .stepper{grid-template-columns:1fr} .feat .stick{position:static}
   .idx{position:static} .console .side{border-right:0;border-bottom:1px solid var(--line-2);display:flex;flex-wrap:wrap}
   .hero{padding-top:100px} .hero .product .in2{grid-template-columns:1fr} .hero .product .side{display:none}
