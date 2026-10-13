@@ -384,15 +384,8 @@ footer .k .more{display:inline;padding:0;margin-left:10px;font:400 11px var(--mo
 
 /* 产品与服务：更新日志式版式（油画横幅 + 左侧圆点目录 + 发布条目），配色只用本站色卡 */
 .pbanner{position:relative;height:500px;overflow:hidden;background:var(--hz-3);color:#fff}
-.pb-art{position:absolute;inset:0;background:
-  radial-gradient(34% 52% at 80% 16%, rgba(207,217,228,.85), transparent 70%),
-  radial-gradient(48% 42% at 64% 72%, rgba(233,220,216,.9), transparent 72%),
-  radial-gradient(36% 40% at 92% 82%, rgba(217,192,185,.75), transparent 70%),
-  radial-gradient(44% 46% at 36% 74%, rgba(122,96,113,.7), transparent 72%),
-  radial-gradient(58% 78% at 6% 92%, rgba(33,32,33,.9), transparent 74%),
-  linear-gradient(180deg,#5284D7 0%,#6F9CE0 24%,#9DBBE4 42%,#D9C0B9 58%,#7A6071 76%,#3D314F 90%,#212021 100%)}
-.pb-art:after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='.08'/></svg>");mix-blend-mode:overlay;opacity:.9}
-.pbanner:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(33,32,33,0) 40%,rgba(33,32,33,.45) 100%);pointer-events:none}
+.pb-art{position:absolute;inset:0;background:var(--hz-3) url("art/backgrounds/products-energy-compute_2026-10-13.webp") center/cover no-repeat}
+.pbanner:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(33,32,33,.16),transparent 65%);pointer-events:none}
 .pb-in{position:absolute;z-index:1;left:max(20px,calc(50% - 540px));right:20px;bottom:56px}
 .pb-meta{display:block;font:400 13px var(--mono);letter-spacing:.02em;color:rgba(255,255,255,.85);margin-bottom:18px}
 .pb-in .display{font-size:72px;line-height:1.05;letter-spacing:-.035em;color:#fff;margin:0}
@@ -427,7 +420,9 @@ footer .k .more{display:inline;padding:0;margin-left:10px;font:400 11px var(--mo
 .pe-it p{margin:6px 0 0;font-size:14px;line-height:1.7;color:var(--ink-50)}
 .pe-it p a{margin-left:4px;color:var(--ink-70)}
 .pe-by{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:13px;color:var(--ink-70)}
-.pe-by i{width:18px;height:18px;border-radius:50%;flex:none;background:linear-gradient(160deg,var(--hz-1) 0%,#B7A8A3 55%,var(--hz-2b) 100%)}
+.pe-by i{width:20px;height:20px;border-radius:5px 8px 4px 7px;flex:none;background:var(--accent-soft) url("art/backgrounds/products-energy-compute_2026-10-13.webp") 78% 45%/140px auto no-repeat}
+.pe-it:nth-child(2n) .pe-by i{background-position:90% 30%;border-radius:8px 4px 7px 5px}
+.pe-it:nth-child(3n) .pe-by i{background-position:62% 70%}
 .pe-sub{margin-top:44px}
 .pe-sub h3{font:500 15px var(--sans);margin:0 0 12px;color:var(--ink)}
 .pe .chips{display:flex;gap:8px;justify-content:flex-start;margin:26px 0 22px}
@@ -439,6 +434,8 @@ footer .k .more{display:inline;padding:0;margin-left:10px;font:400 11px var(--mo
 @media (max-width:1100px){.pl{grid-template-columns:170px minmax(0,1fr);column-gap:40px}.pe-grid{gap:36px 36px}}
 @media (max-width:800px){
   .pbanner{height:420px}
+  .pb-art{background-position:68% center}
+  .pbanner:after{background:rgba(33,32,33,.48)}
   .pb-in{left:20px;right:20px;bottom:36px}
   .pb-in .display{font-size:42px}
   .pl{grid-template-columns:1fr;padding-top:40px}
