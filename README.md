@@ -19,3 +19,13 @@
 - 核查桌面 1440 × 900 和手机 390 × 844 的主路由、全部模型详情与九篇指南；新版无横向页面溢出。JavaScript 语法检查和 git diff --check 通过。
 - 中文为完整主文案。关键英文提示已同步；未完成翻译的正文保留中文，避免逐词替换造成混杂或恢复旧承诺。
 - 浏览器内复制按钮回调与代码内容已核查；内置浏览器的剪贴板读取未返回内容，本次未确认系统剪贴板实际写入。
+
+## 编辑与同步（2026-10-13 起）
+
+- 这个仓库是官网的唯一源文件。查看：https://xanthiawang.github.io/fathompeak-site/ ；编辑：https://github.com/xanthiawang/fathompeak-site 。
+- 改哪里：整站都在 `index.html`；logo 在 `art/logos/`，字体在 `fonts/`。推送到 main 约 1 分钟后线上自动更新，大家看到的永远是最新版。
+- 网页上直接改：打开 `index.html` → 右上角铅笔 → 修改 → Commit changes。本地改：`git pull` → 改 → `git commit` → `git push`。改之前先 pull，避免覆盖别人的修改。
+- 编辑权限：仓库 Settings → Collaborators → Add people，输入对方的 GitHub 用户名。
+- `design/`：设计交付文档（`handoff-deck.pdf` / `.pptx`）和色卡与字体页（线上 `design/palette-type.html`）。
+- `tools/`：重拍交付文档截图、重建交付文档的脚本（路径按 Zixin 本机写）。
+- 境内稳定访问：把仓库内容放到公司已备案域名的网站根目录。
