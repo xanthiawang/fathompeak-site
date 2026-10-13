@@ -7,7 +7,7 @@
 <style id="hand-en">
 /* 英文版手写首字母（学 Every）：只在 EN 模式生效，中文不变。Pinyon Script，OFL，见 fonts/hand-fonts-OFL.txt */
 @font-face{font-family:"HandLatin";src:url("fonts/hand-pinyonscript-subset.woff2") format("woff2");font-display:swap}
-html[lang="en"] :is(.hero .h,.page-head .display,.sec .hd h3.serif,.h2,.faq h2,.cta-end .display,.feat .it b,.prod b,.card h3,.case b,.detail .display,.article h1,.coop h2.display)::first-letter{font-family:"HandLatin",var(--serif);font-weight:400;font-size:1.3em;line-height:1;letter-spacing:0;padding-right:.02em}
+html[lang="en"] :is(.hero .h,.page-head .display,.sec .hd h3.serif,.h2,.faq h2,.cta-end .display,.feat .it b,.prod b,.card h3,.case b,.detail .display,.article h1,.coop h2.display).hand1::first-letter{font-family:"HandLatin",var(--serif);font-weight:400;font-size:1.3em;line-height:1;letter-spacing:0;padding-right:.02em}
 </style>
 </head>
 <body>
@@ -1325,7 +1325,9 @@ footer .k .more{display:inline;padding:0;margin-left:10px;font:400 11px var(--mo
     var n, list=[]; while((n=w.nextNode())) list.push(n); list.forEach(tx);
     $$('[placeholder]').forEach(function(el){ var src=el.__zh!=null?el.__zh:el.getAttribute('placeholder'); if(lang==='zh'){ if(el.__zh!=null){el.setAttribute('placeholder',el.__zh); el.__zh=null} return } var k=src.trim(); if(I18N[k]!=null){ el.__zh=src; el.setAttribute('placeholder',I18N[k]) } });
     var hl=lang==='en'?'en':'zh-CN'; if(document.documentElement.lang!==hl) document.documentElement.lang=hl;
-    $$('.lang').forEach(function(b){ var want=lang==='en'?'中文':'EN'; if(b.textContent!==want) b.textContent=want }) }
+    $$('.lang').forEach(function(b){ var want=lang==='en'?'中文':'EN'; if(b.textContent!==want) b.textContent=want });
+    /* 英文手写首字母只给以拉丁字母开头的标题（未翻译的中文标题不放大） */
+    $$('.hero .h,.page-head .display,.sec .hd h3.serif,.h2,.faq h2,.cta-end .display,.feat .it b,.prod b,.card h3,.case b,.detail .display,.article h1,.coop h2.display').forEach(function(el){ var on=lang==='en'&&/^[A-Za-z]/.test(el.textContent.trim()); if(el.classList.contains('hand1')!==on) el.classList.toggle('hand1',on) }) }
   function setLang(l){ lang=l; try{localStorage.setItem('fp-lang',l)}catch(e){} applyLang() }
   $$('.lang').forEach(function(b){ b.addEventListener('click',function(e){ e.preventDefault(); setLang(lang==='en'?'zh':'en') }) });
   var __lt=null; new MutationObserver(function(){ if(lang==='en'){ clearTimeout(__lt); __lt=setTimeout(applyLang,16) } }).observe(document.body,{childList:true,subtree:true});
