@@ -255,8 +255,8 @@ section[data-route="home"] .home-sec .hh{text-align:center}
 .cs-p h1{font-size:44px;line-height:1.05;margin-bottom:22px}
 .cs-flag{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--accent-tint);border-radius:var(--r12);padding:12px 16px;font-size:14px;color:var(--ink);margin-bottom:18px}
 .cs-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.cs-tiles>div,.cs-topup>div:first-child{background:var(--card);border:1px solid var(--line);border-radius:var(--r16);padding:16px 18px;display:grid;gap:6px}
-.cs-tiles b,.cs-topup b{font:500 24px var(--mono);color:var(--ink)}
+.cs-tiles>div{background:var(--card);border:1px solid var(--line);border-radius:var(--r16);padding:16px 18px;display:grid;gap:6px}
+.cs-tiles b{font:500 24px var(--mono);color:var(--ink)}
 .cs-check{list-style:none;margin:30px 0 0;padding:0;display:grid}
 .cs-check li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:14px;align-items:start;padding:20px 0;border-top:1px solid var(--line)}
 .cs-check li>i{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--ink-30);margin-top:1px;position:relative}
@@ -270,11 +270,10 @@ section[data-route="home"] .home-sec .hh{text-align:center}
 .cs-reveal p{margin:0;font-size:14px;color:var(--ink)}
 .cs-keyrow{display:flex;gap:10px;align-items:center;width:100%;flex-wrap:wrap}
 .cs-keyrow code{flex:1;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r10);padding:10px 12px;font-size:13px;word-break:break-all;color:var(--ink)}
-.cs-tbl td{height:52px} .cs-tbl td:nth-child(2),.cs-tbl td:nth-child(3){font:400 13px var(--mono);color:var(--ink-70)} .cs-tbl td:last-child{text-align:right}
-.cs-tbl:has(tbody:empty){display:none}
+.cs-tbl td{height:52px} .cs-tbl td.mono{font:400 13px var(--mono);color:var(--ink-70)} .cs-tbl :is(th,td).r{text-align:right}
+.tbl:has(.cs-tbl)+.cs-empty{margin-top:12px}
 .cs-empty{border:1px dashed var(--ink-30);border-radius:var(--r16);padding:34px 20px;text-align:center;color:var(--ink-50);font-size:14px;display:grid;gap:6px;justify-items:center}
 .cs-empty b{font:500 16px var(--sans);color:var(--ink)} .cs-empty[hidden]{display:none}
-.cs-topup{display:grid;grid-template-columns:200px minmax(0,1fr) auto;gap:16px;align-items:center}
 .cs-amt{display:flex;gap:8px;flex-wrap:wrap;align-items:center} .cs-amt .in{width:130px;padding:7px 12px;font-size:14px}
 .cs-h3{font:500 16px var(--sans);color:var(--ink);margin:34px 0 12px}
 .cs-fine{margin:16px 0 0;font-size:13px;color:var(--ink-50)}
@@ -285,6 +284,42 @@ section[data-route="home"] .home-sec .hh{text-align:center}
 .cs-st{display:flex;align-items:center;gap:8px} .cs-st:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-30)} .cs-st.ok:before{background:#2E7D4F} .cs-st.wait:before{background:#C48A1C}
 .cs-up{cursor:pointer}
 .cs-subs{list-style:none;margin:0;padding:0;display:grid} .cs-subs li{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px} .cs-subs li span:last-child{color:var(--ink-50);font-size:13px}
+/* 控制台按原平台模块补齐（2026-10-14）：分组导航、Key 筛选与创建对话框、使用日志、钱包、通知、安全与访问 */
+.cs-grp{font:400 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-50);padding:20px 12px 6px} .cs-grp:first-child{padding-top:0}
+.cs-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin:0 0 12px}
+.cs-kt :is(th,td){padding-inline:8px} .cs-kt td{font-size:14px} .cs-kt td:is(:nth-child(2),:nth-child(5)),.cs-tbl td.mono,.cs-sub{white-space:nowrap} .cs-kn{font-weight:500;color:var(--ink);word-break:break-word} .cs-sub{display:block;margin-top:2px;font-size:12px;color:var(--ink-50)}
+.cs-kt .cs-st,.cs-sl .cs-st{font-size:13px;color:var(--ink-70);white-space:nowrap}
+.cs-l{display:none} .cs-ops{text-align:right;white-space:nowrap} .cs-ops .ac-link+.ac-link{margin-left:14px}
+.cs-dlg{width:min(560px,calc(100% - 32px));max-width:none;max-height:calc(100svh - 48px);padding:0;border:1px solid var(--line);border-radius:var(--r20);background:var(--card);color:var(--ink);box-shadow:0 30px 80px -30px rgba(0,0,0,.35);overflow:hidden}
+.cs-dlg::backdrop{background:rgba(0,0,0,.28)}
+.cs-dlg form{display:flex;flex-direction:column;max-height:calc(100svh - 50px)}
+.cs-dlg-hd{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 22px 0}
+.cs-dlg-hd h3{font:400 26px/1.15 var(--serif);letter-spacing:-.01em;margin:0}
+.cs-x{appearance:none;flex:none;border:0;background:var(--gray-btn);width:32px;height:32px;border-radius:50%;font:400 18px/1 var(--sans);color:var(--ink-70);cursor:pointer} .cs-x:hover{color:var(--ink)}
+.cs-fs{display:grid;gap:16px;padding:18px 22px 6px;overflow:auto;min-height:0}
+.cs-f{display:grid;gap:6px;min-width:0;align-content:start} .cs-f>label,.cs-lb{font:500 14px var(--sans);color:var(--ink)}
+.cs-f>.in{padding:10px 12px;font-size:15px} .cs-f>input.in{height:44px} .cs-f>textarea.in{resize:vertical;min-height:76px;font:400 13px/1.5 var(--mono)} .cs-f>textarea.in::placeholder{font-family:var(--sans)}
+.cs-help{margin:0;font-size:13px;line-height:1.5;color:var(--ink-50)}
+.cs-f2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.cs-ms{display:flex;flex-wrap:wrap;gap:6px}
+.cs-dlg-ft{display:flex;justify-content:flex-end;gap:8px;padding:16px 22px 20px;border-top:1px solid var(--line);margin-top:12px}
+.cs-dlg :is(a,button,input,textarea):focus-visible,.cs-p :is(button,input,textarea,select):focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cs-pay{display:grid;gap:18px;justify-items:start}
+.cs-pm{display:grid;grid-template-columns:repeat(2,minmax(0,170px));gap:8px}
+.cs-pm button{appearance:none;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--r12);padding:12px 14px;font:500 15px var(--sans);color:var(--ink);cursor:pointer;transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.cs-pm button:hover{border-color:var(--ink-30)} .cs-pm button[aria-checked="true"]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.cs-ref{margin-top:40px;background:var(--card);border:1px solid var(--line);border-radius:var(--r16);padding:20px 22px;display:grid;gap:18px}
+.cs-ref .cs-h3{margin:0 0 4px} .cs-ref p{margin:0;font-size:14px;color:var(--ink-70)}
+.cs-ref-n{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px} .cs-ref-n>div{display:grid;gap:4px} .cs-ref-n b{font:500 20px var(--mono);color:var(--ink)}
+.cs-ref .cs-keyrow code{background:var(--paper)}
+.cs-ntf{display:grid;gap:16px;max-width:520px;margin-top:0} .cs-ntf .cs-h3{margin-bottom:0} .cs-ntf [hidden]{display:none}
+.cs-sl{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.cs-sl>li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;align-items:start;padding:20px 0;border-bottom:1px solid var(--line)}
+.cs-sl b{font:500 16px var(--sans);color:var(--ink)} .cs-sl>li>div>p{margin:4px 0 8px;font-size:14px;color:var(--ink-70);max-width:44em}
+.cs-sx{grid-column:1/-1;display:grid;gap:14px;max-width:420px;margin:6px 0 0} .cs-sx[hidden]{display:none} .cs-reveal.cs-sx{max-width:none;margin:6px 0 0}
+.cs-acts{display:flex;gap:8px;flex-wrap:wrap}
+.cs-p [aria-invalid="true"],.cs-dlg [aria-invalid="true"]{border-color:#B3261E}
+.cs-steps{margin:0;padding-left:20px;font-size:14px;line-height:1.6;color:var(--ink-70);display:grid;gap:2px}
 
 @media (max-width:1000px){.pr-plans{grid-template-columns:1fr;max-width:520px;margin-inline:auto}.ed-top{grid-template-columns:1fr;gap:36px;padding-top:130px}.ed-offer p{margin-bottom:60px}}
 @media (max-width:800px){
@@ -293,12 +328,22 @@ section[data-route="home"] .home-sec .hh{text-align:center}
   .ed-lab{grid-template-columns:1fr} .ed-offer b{font-size:52px}
   .ac{grid-template-columns:1fr;padding:0} .ac-art{display:none} .ac-main{padding:104px 20px 48px;align-items:flex-start}
   .ac-types{grid-template-columns:1fr} .ac-types button{grid-template-columns:minmax(6em,max-content) minmax(0,1fr);column-gap:12px;align-items:baseline}
-  .cs{grid-template-columns:1fr;gap:24px;padding-top:104px} .cs-side{position:static} .cs-nav{display:flex;overflow-x:auto;gap:4px;margin:0 -20px;padding:0 20px} .cs-nav button{white-space:nowrap;flex:none}
+  .cs{grid-template-columns:minmax(0,1fr);gap:24px;padding-top:104px} .cs-side{position:static} .cs-nav{display:flex;overflow-x:auto;gap:4px;margin:0 -20px;padding:0 20px} .cs-nav button{white-space:nowrap;flex:none}
   .cs-me{grid-auto-flow:column;justify-content:start;align-items:center;padding:12px 0 0}
   .cs-tiles{grid-template-columns:1fr 1fr} .cs-tiles>div:first-child{grid-column:1/-1} .cs-p h1{font-size:34px}
   .cs-check li{grid-template-columns:28px minmax(0,1fr)} .cs-check li>.btn{grid-column:2;justify-self:start}
-  .cs-hd{flex-direction:column;align-items:flex-start} .cs-topup{grid-template-columns:1fr} .cs-newf{flex-wrap:wrap} .cs-newf .in{max-width:none;flex:1 1 100%}
-  .cs-tbl th:nth-child(3),.cs-tbl td:nth-child(3){display:none} .cs-dl{grid-template-columns:96px minmax(0,1fr)}
+  .cs-hd{flex-direction:column;align-items:flex-start} .cs-newf{flex-wrap:wrap} .cs-newf .in{max-width:none;flex:1 1 100%}
+  .cs-dl{grid-template-columns:96px minmax(0,1fr)}
+  .cs-grp,.cs-grp:first-child{padding:9px 2px 9px 8px;flex:none;align-self:center} .cs-grp:first-child{padding-left:0}
+  .cs-wide{min-width:720px} .cs-tbl{min-width:520px}
+  .cs-kt{min-width:0} .cs-kt thead{display:none} .cs-kt tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .cs-kt td{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;gap:16px;height:auto;padding:0;border:0;text-align:right;white-space:normal}
+  .cs-kt td:first-child{grid-column:1;display:block;text-align:left;margin-bottom:4px} .cs-kt td.cs-ops{grid-column:2;grid-row:1;display:block}
+  .cs-l{display:inline;flex:none;font:400 13px var(--sans);color:var(--ink-50);text-align:left}
+  .cs-f2{grid-template-columns:1fr} .cs-pm{grid-template-columns:repeat(2,minmax(0,1fr));width:100%} .cs-pay{justify-items:stretch} .cs-pay>.btn{justify-self:start}
+  .cs-ref{padding:18px} .cs-ref-n b{font-size:18px}
+  .cs-sl>li{grid-template-columns:minmax(0,1fr)} .cs-sl>li>.btn{justify-self:start}
+  .cs-dlg-hd{padding:18px 18px 0} .cs-fs{padding:16px 18px 6px} .cs-dlg-ft{padding:14px 18px 18px}
 }
 </style>
 </head>
@@ -1326,7 +1371,8 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
 <section data-route="console">
   <div class="wrap cs">
     <aside class="cs-side">
-      <div class="cs-nav" role="tablist"><button class="on" type="button" data-p="home">概览</button><button type="button" data-p="keys">API Key</button><button type="button" data-p="usage">用量</button><button type="button" data-p="orders">订单</button><button type="button" data-p="bill">充值与账单</button><button type="button" data-p="acct">账户</button></div>
+      <nav class="cs-nav" aria-label="控制台"><span class="cs-grp">使用</span><button class="on" type="button" data-p="home" aria-current="page">概览</button><button type="button" data-p="keys">API Key</button><button type="button" data-p="usage">使用日志</button><button type="button" data-p="orders">订单</button>
+        <span class="cs-grp">账户</span><button type="button" data-p="bill">钱包</button><button type="button" data-p="acct">个人资料</button><button type="button" data-p="sec">安全与访问</button></nav>
       <div class="cs-me"><span class="cs-mail mono" id="csMail"></span><span class="badge" id="csType"></span><button class="ac-link" type="button" id="csOut">退出登录</button></div>
     </aside>
     <div class="cs-main">
@@ -1343,14 +1389,40 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
       </div>
       <div class="cs-p" data-p="keys">
         <div class="cs-hd"><div><h2>API Key</h2><p>按项目创建 Key，存进安全的配置里。完整 Key 只在创建时显示一次。</p></div><button class="btn black sm" type="button" id="csNew">创建 API Key</button></div>
-        <form class="cs-newf" id="csNewF" hidden><input class="in" name="kname" placeholder="Key 名称，例如：毕业设计" maxlength="40"><button class="btn black sm" type="submit">创建</button><button class="btn gray sm" type="button" id="csCancel">取消</button></form>
         <div class="cs-reveal" id="csReveal" hidden><span class="k">新的 API Key</span><p>复制并保存这个 Key，关闭后无法再次查看。</p><div class="cs-keyrow"><code class="mono" id="csKey"></code><button class="btn black sm" type="button" id="csCopy">复制</button></div><button class="ac-link" type="button" id="csSaved">我已保存</button></div>
-        <div class="tbl"><table class="cs-tbl"><thead><tr><th>名称</th><th>Key</th><th>创建时间</th><th></th></tr></thead><tbody id="csKeys"></tbody></table></div>
-        <div class="cs-empty" id="csKeysEmpty">还没有 API Key</div>
+        <div class="cs-bar"><label class="mk-q"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><input type="search" id="csKq" placeholder="按名称搜索" aria-label="按名称搜索 API Key" autocomplete="off" spellcheck="false"></label>
+          <select class="mk-sel" id="csKs" aria-label="按状态筛选"><option value="">全部状态</option><option value="on">已启用</option><option value="off">已停用</option></select></div>
+        <div class="tbl"><table class="cs-tbl cs-kt"><thead><tr><th>名称</th><th>状态</th><th>Key</th><th>额度</th><th>分组</th><th>可用模型</th><th>创建时间</th><th class="r">操作</th></tr></thead><tbody id="csKeys"></tbody></table></div>
+        <div class="cs-empty" id="csKeysEmpty"><b>还没有 API Key</b><span>创建第一个 Key 后即可调用模型。</span></div>
+        <div class="cs-empty" id="csKeysNone" hidden><b>没有符合筛选条件的 Key</b><button class="ac-link" type="button" id="csKclr">清除筛选</button></div>
+        <dialog class="cs-dlg" id="csDlg" aria-labelledby="csDlgT">
+          <form id="csNewF" novalidate>
+            <div class="cs-dlg-hd"><h3 id="csDlgT">创建 API Key</h3><button class="cs-x" type="button" id="csCancelX" aria-label="关闭">×</button></div>
+            <div class="cs-fs">
+              <div class="cs-f"><label for="csKn">名称</label><input class="in" id="csKn" name="kname" placeholder="Key 名称，例如：毕业设计" maxlength="40" autocomplete="off"></div>
+              <div class="cs-f2">
+                <div class="cs-f"><label for="csKquota">额度上限（¥）</label><input class="in mono" id="csKquota" name="quota" inputmode="decimal" autocomplete="off"><p class="cs-help">选填。留空表示不限额度。</p></div>
+                <div class="cs-f"><label for="csKexp">过期时间</label><input class="in mono" id="csKexp" name="exp" type="date"><p class="cs-help">选填。留空表示永不过期。</p></div>
+              </div>
+              <div class="cs-f"><span class="cs-lb" id="csKmL">可用模型</span><div class="cs-ms" id="csKm" role="group" aria-labelledby="csKmL"></div><p class="cs-help">选填。不选表示可调用全部模型。</p></div>
+              <div class="cs-f"><label for="csKip">IP 白名单</label><textarea class="in" id="csKip" name="ips" rows="3" placeholder="每行一个 IP 或 CIDR 网段" spellcheck="false"></textarea><p class="cs-help">选填。留空表示不限制来源 IP。</p></div>
+              <p class="ac-msg" id="csNewMsg" role="alert"></p>
+            </div>
+            <div class="cs-dlg-ft"><button class="btn gray sm" type="button" id="csCancel">取消</button><button class="btn black sm" type="submit">创建</button></div>
+          </form>
+        </dialog>
       </div>
       <div class="cs-p" data-p="usage">
-        <div class="cs-hd"><div><h2>用量</h2><p>按模型显示 Token 和费用。</p></div></div>
-        <div class="cs-empty"><b>还没有调用记录</b><span>发出第一个请求后，这里按模型显示用量。</span><a class="ul" href="#docs">查看接入文档 →</a></div>
+        <div class="cs-hd"><div><h2>使用日志</h2><p>上方按模型汇总，下方逐条列出每次请求。</p></div></div>
+        <h3 class="cs-h3">按模型汇总</h3>
+        <div class="tbl" id="csSumT" hidden><table class="cs-tbl"><thead><tr><th>模型</th><th class="r">请求次数</th><th class="r">输入 Token</th><th class="r">输出 Token</th><th class="r">费用</th></tr></thead><tbody id="csSum"></tbody></table></div>
+        <div class="cs-empty" id="csSumE"><b>还没有调用记录</b><span>发出第一个请求后，这里按模型显示用量。</span><a class="ul" href="#docs">查看接入文档 →</a></div>
+        <h3 class="cs-h3">请求明细</h3>
+        <div class="cs-bar"><select class="mk-sel" id="csLt" aria-label="时间范围"><option value="1">今天</option><option value="7" selected>近 7 天</option><option value="30">近 30 天</option><option value="90">近 90 天</option></select>
+          <select class="mk-sel" id="csLm" aria-label="按模型筛选"></select><select class="mk-sel" id="csLk" aria-label="按 Key 筛选"></select></div>
+        <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>时间</th><th>Key</th><th>模型</th><th class="r">输入 Token</th><th class="r">输出 Token</th><th class="r">费用</th><th>算力节点</th><th class="r">绿电折扣</th></tr></thead><tbody id="csLogs"></tbody></table></div>
+        <div class="cs-empty" id="csLogsEmpty"><b>还没有请求记录</b><span>每次调用的时间、Key、模型、Token、费用、节点和绿电折扣会显示在这里。</span></div>
+        <p class="cs-fine">算力节点是处理该请求的节点；绿电折扣是该请求结算时适用的绿电折扣。</p>
       </div>
       <div class="cs-p" data-p="orders">
         <div class="cs-hd"><div><h2>订单</h2><p>每笔订单附一张产地卡：哪座电站、哪个时段、用了多少电、产出多少词元。做绿色采购、ESG 披露或跨境业务时，手里有一份可追溯的数据。</p></div></div>
@@ -1361,22 +1433,73 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
           <dl class="od-fields"><div><dt>电站</dt><dd></dd></div><div><dt>时段</dt><dd></dd></div><div><dt>用电量 kWh</dt><dd></dd></div><div><dt>词元数</dt><dd></dd></div><div><dt>单价</dt><dd></dd></div><div><dt>减排</dt><dd></dd></div></dl></div>
       </div>
       <div class="cs-p" data-p="bill">
-        <div class="cs-hd"><div><h2>充值与账单</h2><p>余额以人民币显示，按实际用量扣费。</p></div></div>
-        <div class="cs-topup"><div><span class="k">余额</span><b class="mono">¥0.00</b></div>
-          <div class="cs-amt" role="radiogroup" aria-label="充值金额"><button class="chip" type="button" data-amt="50">¥50</button><button class="chip on" type="button" data-amt="100">¥100</button><button class="chip" type="button" data-amt="500">¥500</button><input class="in" id="csAmt" inputmode="decimal" placeholder="其他金额"></div>
-          <button class="btn black" type="button" id="csPay">充值</button></div>
+        <div class="cs-hd"><div><h2>钱包</h2><p>余额以人民币显示，按实际用量扣费。</p></div></div>
+        <div class="cs-tiles"><div><span class="k">余额</span><b class="mono">¥0.00</b></div><div><span class="k">累计消费</span><b class="mono">¥0.00</b></div><div><span class="k">请求次数</span><b class="mono">0</b></div></div>
+        <h3 class="cs-h3">充值</h3>
+        <div class="cs-pay">
+          <div class="cs-f"><span class="cs-lb">金额</span><div class="cs-amt" role="radiogroup" aria-label="充值金额"><button class="chip" type="button" data-amt="50">¥50</button><button class="chip on" type="button" data-amt="100">¥100</button><button class="chip" type="button" data-amt="500">¥500</button><input class="in" id="csAmt" inputmode="decimal" placeholder="其他金额"></div></div>
+          <div class="cs-f"><span class="cs-lb" id="csPmL">支付方式</span><div class="cs-pm" role="radiogroup" aria-labelledby="csPmL"><button type="button" role="radio" aria-checked="true" data-v="alipay">支付宝</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-v="wechat">微信</button></div></div>
+          <button class="btn black" type="button" id="csPay">充值</button>
+        </div>
+        <h3 class="cs-h3">兑换码</h3>
+        <form class="cs-newf" id="csRedeem" novalidate><input class="in mono" name="code" placeholder="输入兑换码" aria-label="兑换码" autocomplete="off" spellcheck="false"><button class="btn black sm" type="submit">兑换</button></form>
+        <h3 class="cs-h3">充值记录</h3>
+        <div class="tbl"><table class="cs-tbl"><thead><tr><th>时间</th><th>订单号</th><th>支付方式</th><th class="r">金额</th><th>状态</th></tr></thead><tbody id="csTopups"></tbody></table></div>
+        <div class="cs-empty"><b>还没有充值记录</b><span>充值完成后，每笔订单显示在这里。</span></div>
         <h3 class="cs-h3">账单</h3>
         <div class="cs-empty">还没有账单</div>
         <p class="cs-fine">企业客户可以对公转账或按月结算，邮件 <a class="ul" href="mailto:fathompeak@163.com">fathompeak@163.com</a>。</p>
+        <div class="cs-ref">
+          <div><h3 class="cs-h3">推荐计划</h3><p>其他用户通过你的邀请链接注册后，你可以获得邀请奖励。</p></div>
+          <div class="cs-ref-n"><div><span class="k">待确认</span><b class="mono">¥0.00</b></div><div><span class="k">总收入</span><b class="mono">¥0.00</b></div><div><span class="k">邀请人数</span><b class="mono">0</b></div></div>
+          <div class="cs-keyrow"><code class="mono" id="csAff"></code><button class="btn gray sm" type="button" id="csAffCp">复制链接</button></div>
+        </div>
       </div>
       <div class="cs-p" data-p="acct">
-        <div class="cs-hd"><div><h2>账户</h2><p>账户类型在注册时选择，同一个控制台。</p></div></div>
-        <dl class="cs-dl"><dt>邮箱</dt><dd class="mono" id="csMail2"></dd><dt>账户类型</dt><dd id="csType2"></dd><dt>注册时间</dt><dd class="mono" id="csSince"></dd><dt data-for="company" hidden>企业名称</dt><dd data-for="company" hidden id="csOrg"></dd><dt data-for="edu" hidden>学校</dt><dd data-for="edu" hidden id="csSchool"></dd></dl>
+        <div class="cs-hd"><div><h2>个人资料</h2><p>账户类型在注册时选择，同一个控制台。</p></div></div>
+        <dl class="cs-dl"><dt>用户 ID</dt><dd class="mono" id="csUid"></dd><dt>邮箱</dt><dd class="mono" id="csMail2"></dd><dt>账户类型</dt><dd id="csType2"></dd><dt>注册时间</dt><dd class="mono" id="csSince"></dd><dt data-for="company" hidden>企业名称</dt><dd data-for="company" hidden id="csOrg"></dd><dt data-for="edu" hidden>学校</dt><dd data-for="edu" hidden id="csSchool"></dd></dl>
         <div class="cs-box" data-for="edu" hidden><h3 class="cs-h3">教育认证</h3><p class="cs-st" id="csEduSt"></p>
           <label class="btn gray sm cs-up" id="csUp"><input type="file" accept="image/*,.pdf" hidden id="csFile">上传学生证或在读证明</label></div>
         <div class="cs-box" data-for="company" hidden><h3 class="cs-h3">子账号</h3><p>邀请同事加入，额度和账单由主账号统一管理。</p>
           <form class="cs-newf" id="csInv"><input class="in" type="email" name="email" placeholder="同事邮箱"><button class="btn black sm" type="submit">邀请</button></form>
           <ul class="cs-subs" id="csSubs"></ul></div>
+        <form class="cs-ntf" id="csNtf" novalidate><h3 class="cs-h3">通知设置</h3>
+          <div class="cs-f"><span class="cs-lb" id="csNmL">通知方式</span><div class="cs-pm" role="radiogroup" aria-labelledby="csNmL"><button type="button" role="radio" aria-checked="true" data-v="email">邮箱</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-v="webhook">Webhook</button></div></div>
+          <div class="cs-f"><label for="csNth">余额预警阈值（¥）</label><input class="in mono" id="csNth" name="th" inputmode="decimal" autocomplete="off"><p class="cs-help">余额低于此金额时发送通知。留空则不提醒。</p></div>
+          <div class="cs-f" data-nm="email"><label for="csNmail">通知邮箱</label><input class="in" id="csNmail" name="mail" type="email" placeholder="留空则使用账户邮箱" autocomplete="off"></div>
+          <div class="cs-f" data-nm="webhook" hidden><label for="csNhook">Webhook 地址</label><input class="in mono" id="csNhook" name="hook" type="url" placeholder="https://" autocomplete="off" spellcheck="false"><p class="cs-help">余额预警会发送到这个地址。</p></div>
+          <p class="ac-msg" id="csNtfMsg" role="alert"></p>
+          <div><button class="btn black sm" type="submit">保存设置</button></div>
+        </form>
+      </div>
+      <div class="cs-p" data-p="sec">
+        <div class="cs-hd"><div><h2>安全与访问</h2><p>登录密码、两步验证、通行密钥和访问令牌。</p></div></div>
+        <ul class="cs-sl">
+          <li><div><b>修改密码</b><p>建议定期更换，不要与其他网站共用。</p></div><button class="btn gray sm" type="button" data-sx aria-controls="csPwF" aria-expanded="false">修改</button>
+            <form class="cs-sx" id="csPwF" hidden novalidate>
+              <div class="cs-f"><label for="csPw0">当前密码</label><input class="in" id="csPw0" name="pw0" type="password" autocomplete="off"></div>
+              <div class="cs-f"><label for="csPw1">新密码</label><input class="in" id="csPw1" name="pw1" type="password" autocomplete="off"><p class="cs-help">至少 8 位。</p></div>
+              <div class="cs-f"><label for="csPw2">确认新密码</label><input class="in" id="csPw2" name="pw2" type="password" autocomplete="off"></div>
+              <p class="ac-msg" id="csPwMsg" role="alert"></p>
+              <div class="cs-acts"><button class="btn black sm" type="submit">保存新密码</button><button class="btn gray sm" type="button" data-sx-close>取消</button></div>
+            </form></li>
+          <li><div><b>两步验证（TOTP）</b><p>登录时除密码外，还要输入身份验证器应用生成的 6 位动态码。</p><span class="cs-st">未开启</span></div><button class="btn gray sm" type="button" data-sx aria-controls="csTotpF" aria-expanded="false">开启</button>
+            <form class="cs-sx" id="csTotpF" hidden novalidate>
+              <ol class="cs-steps"><li>在手机上安装支持 TOTP 的身份验证器应用。</li><li>用应用扫描平台生成的二维码，或手动输入密钥。</li><li>输入应用显示的 6 位验证码，完成开启。</li></ol>
+              <div class="cs-f"><label for="csTotp">验证码</label><input class="in mono" id="csTotp" name="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></div>
+              <p class="ac-msg" id="csTotpMsg" role="alert"></p>
+              <div class="cs-acts"><button class="btn black sm" type="submit">验证并开启</button><button class="btn gray sm" type="button" data-sx-close>取消</button></div>
+            </form></li>
+          <li><div><b>通行密钥（Passkey）</b><p>用设备的指纹、面容或屏幕锁登录，不用输入密码。</p><span class="cs-st">未添加</span></div><button class="btn gray sm" type="button" id="csPk">添加通行密钥</button></li>
+          <li><div><b>访问令牌</b><p>用于以程序方式管理账户，与调用模型的 API Key 不同。完整令牌只在生成时显示一次。</p><span class="cs-st" id="csTokSt"></span></div><button class="btn gray sm" type="button" id="csTok"></button>
+            <div class="cs-reveal cs-sx" id="csTokR" hidden><span class="k">新的访问令牌</span><p>复制并保存这个令牌，关闭后无法再次查看。生成新令牌后，旧令牌失效。</p><div class="cs-keyrow"><code class="mono" id="csTokV"></code><button class="btn black sm" type="button" id="csTokCp">复制</button></div><button class="ac-link" type="button" id="csTokOk">我已保存</button></div></li>
+        </ul>
+        <h3 class="cs-h3">登录记录</h3>
+        <div class="tbl"><table class="cs-tbl"><thead><tr><th>时间</th><th>IP</th><th>设备</th><th>登录方式</th><th>结果</th></tr></thead><tbody id="csLogins"></tbody></table></div>
+        <div class="cs-empty"><b>暂无登录记录</b><span>每次登录的时间、IP 和设备显示在这里。</span></div>
+        <h3 class="cs-h3">审计日志</h3>
+        <div class="tbl"><table class="cs-tbl"><thead><tr><th>时间</th><th>操作</th><th>对象</th><th>IP</th></tr></thead><tbody id="csAudit"></tbody></table></div>
+        <div class="cs-empty"><b>暂无审计记录</b><span>创建或删除 Key、修改安全设置等操作会记录在这里。</span></div>
       </div>
     </div>
   </div>
@@ -1950,35 +2073,132 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
     clearAccountError(lf);signIn(accounts[m]);lf.reset();csTab('home');location.hash='#console'});
   $('#acForgot').addEventListener('click',function(){var panel=$('#acRecovery');panel.hidden=!panel.hidden;this.setAttribute('aria-expanded',String(!panel.hidden))});
 
-  /* 控制台 */
-  function csTab(p){$$('.cs-nav button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-p')===p)});$$('.cs-p').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-p')===p)})}
+  /* 控制台（2026-10-14 按原平台模块补齐：使用 = 概览 / API Key / 使用日志 / 订单；账户 = 钱包 / 个人资料 / 安全与访问）
+     资料只存在当前浏览器。请求记录由平台接口填充 LOGS；充值、登录、审计记录写入 #csTopups / #csLogins / #csAudit。预览不生成任何记录 */
+  var LOGS=[];
+  function csTab(p){$$('.cs-nav button').forEach(function(b){var on=b.getAttribute('data-p')===p;b.classList.toggle('on',on);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});$$('.cs-p').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-p')===p)})}
   $$('.cs-nav button').forEach(function(b){b.addEventListener('click',function(){csTab(b.getAttribute('data-p'))})});
   $$('[data-go]').forEach(function(b){b.addEventListener('click',function(){csTab(b.getAttribute('data-go'));window.scrollTo(0,0)})});
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function cny(n){return '¥'+(+n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+  function rnd(chars,n){var a=new Uint32Array(n),s='';window.crypto.getRandomValues(a);for(var i=0;i<n;i++){s+=chars[a[i]%chars.length]}return s}
+  var ALNUM='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  function genKey(){return 'sk-'+rnd(ALNUM,48)}
+  /* 单选卡片组（支付方式、通知方式）：点击或方向键切换 */
+  function radios(g,cb){var bs=$$('[role="radio"]',g);function set(v){bs.forEach(function(b){var on=b.getAttribute('data-v')===v;b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1});if(cb)cb(v)}
+    bs.forEach(function(b){b.addEventListener('click',function(){set(b.getAttribute('data-v'))})});
+    g.addEventListener('keydown',function(e){var i=bs.indexOf(document.activeElement);if(i<0||['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].indexOf(e.key)<0)return;e.preventDefault();i=(i+(e.key==='ArrowLeft'||e.key==='ArrowUp'?-1:1)+bs.length)%bs.length;set(bs[i].getAttribute('data-v'));bs[i].focus()});
+    return set}
+  function val(g){var b=$('[aria-checked="true"]',g);return b?b.getAttribute('data-v'):''}
+
+  /* API Key：搜索、状态筛选、启用 / 停用、删除 */
+  function kState(k){return k.on===false?'off':(k.exp&&k.exp<today()?'exp':'on')}
+  var KST={on:['ok','已启用'],off:['','已停用'],exp:['','已过期']};
+  function keyRow(k,i,s){var ms=(k.models||[]).map(function(id){return byId[id]?byId[id].name:id}),
+      mc=ms.length?'<span title="'+esc(ms.join(', '))+'">'+esc(ms.slice(0,2).join(', '))+(ms.length>2?' +'+(ms.length-2):'')+'</span>':'全部模型';
+    return '<tr><td><span class="cs-kn">'+esc(k.name)+'</span>'+(k.exp?'<span class="cs-sub"><span>到期</span> <span class="mono">'+esc(k.exp)+'</span></span>':'')+((k.ips||[]).length?'<span class="cs-sub" title="'+esc(k.ips.join(', '))+'">已设 IP 白名单</span>':'')+'</td>'+
+      '<td><span class="cs-l">状态</span><span class="cs-st '+KST[s][0]+'">'+KST[s][1]+'</span></td><td class="mono"><span class="cs-l">Key</span>sk-…'+esc(k.tail)+'</td>'+
+      '<td'+(k.quota?' class="mono"><span class="cs-l">额度</span>'+cny(k.quota):'><span class="cs-l">额度</span>不限')+'</td><td><span class="cs-l">分组</span>默认</td><td><span class="cs-l">可用模型</span>'+mc+'</td><td class="mono"><span class="cs-l">创建时间</span>'+esc(k.at)+'</td>'+
+      '<td class="cs-ops"><button class="ac-link" type="button" data-tog="'+i+'">'+(k.on===false?'启用':'停用')+'</button><button class="ac-link" type="button" data-del="'+i+'">删除</button></td></tr>'}
+  function renderKeys(){if(!me)return;var q=$('#csKq').value.trim().toLowerCase(),f=$('#csKs').value,rows=[];
+    me.keys.forEach(function(k,i){var s=kState(k);if(q&&k.name.toLowerCase().indexOf(q)<0)return;if(f==='on'&&s!=='on')return;if(f==='off'&&s==='on')return;rows.push(keyRow(k,i,s))});
+    $('#csKeys').innerHTML=rows.join('');
+    $('#csKeysEmpty').hidden=me.keys.length>0; $('#csKeysNone').hidden=!(me.keys.length&&!rows.length);
+    $('#csKs').classList.toggle('on',!!f);
+    $$('#csKeys [data-tog]').forEach(function(b){b.addEventListener('click',function(){var k=me.keys[+b.getAttribute('data-tog')];k.on=k.on===false;persist();renderConsole();toast(k.on?'已启用 API Key。':'已停用 API Key。')})});
+    $$('#csKeys [data-del]').forEach(function(b){b.addEventListener('click',function(){if(!b._armed){b._armed=1;b.textContent='确认删除';return}me.keys.splice(+b.getAttribute('data-del'),1);persist();renderConsole();toast('已删除 API Key。')})});
+  }
+  $('#csKq').addEventListener('input',renderKeys); $('#csKs').addEventListener('change',renderKeys);
+  $('#csKclr').addEventListener('click',function(){$('#csKq').value='';$('#csKs').value='';renderKeys()});
+
+  /* 使用日志：上方按模型汇总，下方逐条请求；按时间范围、模型、Key 筛选 */
+  function opts(sel,all,list){var v=sel.value;sel.innerHTML='<option value="">'+all+'</option>'+list.map(function(x){return '<option value="'+esc(x)+'">'+esc(x)+'</option>'}).join('');sel.value=list.indexOf(v)>=0?v:''}
+  function stamp(t){var d=new Date(t),p=function(n){return ('0'+n).slice(-2)};return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds())}
+  function renderLogs(){var days=+$('#csLt').value,m=$('#csLm').value,k=$('#csLk').value,from=days===1?new Date(new Date().toDateString()).getTime():Date.now()-days*864e5;
+    var sum={};LOGS.forEach(function(r){var s=sum[r.model]||(sum[r.model]={n:0,i:0,o:0,c:0});s.n++;s.i+=r.input;s.o+=r.output;s.c+=r.cost});
+    var ms=Object.keys(sum); $('#csSum').innerHTML=ms.map(function(x){var s=sum[x];return '<tr><td>'+esc(x)+'</td><td class="mono r">'+s.n.toLocaleString('en-US')+'</td><td class="mono r">'+s.i.toLocaleString('en-US')+'</td><td class="mono r">'+s.o.toLocaleString('en-US')+'</td><td class="mono r">'+cny(s.c)+'</td></tr>'}).join('');
+    $('#csSumT').hidden=!ms.length; $('#csSumE').hidden=!!ms.length;
+    var rows=LOGS.filter(function(r){return r.t>=from&&(!m||r.model===m)&&(!k||r.key===k)});
+    $('#csLogs').innerHTML=rows.map(function(r){return '<tr><td class="mono">'+stamp(r.t)+'</td><td>'+esc(r.key)+'</td><td>'+esc(r.model)+'</td><td class="mono r">'+r.input.toLocaleString('en-US')+'</td><td class="mono r">'+r.output.toLocaleString('en-US')+'</td><td class="mono r">'+cny(r.cost)+'</td><td>'+esc(r.node||'')+'</td><td class="mono r">'+esc(r.green||'')+'</td></tr>'}).join('');
+    $('#csLogsEmpty').hidden=rows.length>0;
+    ['#csLt','#csLm','#csLk'].forEach(function(id){$(id).classList.toggle('on',id==='#csLt'?$(id).value!=='7':!!$(id).value)});
+  }
+  ['#csLt','#csLm','#csLk'].forEach(function(id){$(id).addEventListener('change',renderLogs)});
+
   function renderConsole(){ if(!me) return;
+    if(!me.uid){me.uid=rnd('0123456789',6).replace(/^0/,'1');persist()}
+    if(!me.aff){me.aff=rnd(ALNUM,6);persist()}
     $('#csMail').textContent=me.email; $('#csMail2').textContent=me.email; $('#csType').textContent=TYPE[me.type]; $('#csType2').textContent=TYPE[me.type];
-    $('#csSince').textContent=me.since; $('#csOrg').textContent=me.org||''; $('#csSchool').textContent=me.school||'';
+    $('#csUid').textContent=me.uid; $('#csSince').textContent=me.since; $('#csOrg').textContent=me.org||''; $('#csSchool').textContent=me.school||'';
     $$('[data-route="console"] [data-for]').forEach(function(el){el.hidden=el.getAttribute('data-for')!==me.type});
     $('#csEduFlag').hidden=!(me.type==='edu'&&me.edu!=='ok');
     var st=$('#csEduSt'); st.className='cs-st'+(me.edu==='ok'?' ok':me.edu==='wait'?' wait':''); st.textContent=me.edu==='ok'?'已通过（学校邮箱）':me.edu==='wait'?'已提交，审核中':'待认证'; $('#csUp').hidden=me.edu!=='none';
-    $('#csKeys').innerHTML=me.keys.map(function(k,i){return '<tr><td>'+esc(k.name)+'</td><td>sk-…'+esc(k.tail)+'</td><td>'+k.at+'</td><td><button class="btn gray sm" type="button" data-del="'+i+'">删除</button></td></tr>'}).join('');
-    $('#csKeysEmpty').hidden=me.keys.length>0; $('#csStep1').classList.toggle('done',me.keys.length>0);
-    $$('#csKeys [data-del]').forEach(function(b){b.addEventListener('click',function(){if(!b._armed){b._armed=1;b.textContent='确认删除';return}me.keys.splice(+b.getAttribute('data-del'),1);persist();renderConsole();toast('已删除 API Key。')})});
+    renderKeys(); $('#csStep1').classList.toggle('done',me.keys.length>0);
+    opts($('#csLm'),'全部模型',M.map(function(m){return m.name})); opts($('#csLk'),'全部 Key',me.keys.map(function(k){return k.name}).filter(function(n,i,a){return a.indexOf(n)===i})); renderLogs();
     $('#csSubs').innerHTML=(me.subs||[]).map(function(s){return '<li><span>'+esc(s.email)+'</span><span>已邀请</span></li>'}).join('');
+    $('#csAff').textContent=location.origin+location.pathname+'?aff='+me.aff+'#start';
+    if(ntf._for!==me.email){ntf._for=me.email;var n=me.notify||{};setNm(n.via||'email');ntf.th.value=n.th||'';ntf.mail.value=n.mail||'';ntf.hook.value=n.hook||'';clearAccountError(ntf)}
+    $('#csTokSt').innerHTML=me.tok?'<span>已生成</span> <span class="mono">'+esc(me.tok.at)+'</span>':'未生成'; $('#csTokSt').className='cs-st'+(me.tok?' ok':'');
+    var tb=$('#csTok'); tb._armed=0; tb.textContent=me.tok?'重新生成':'生成令牌';
   }
-  function genKey(){var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',a=new Uint32Array(48),s='sk-';window.crypto.getRandomValues(a);for(var i=0;i<a.length;i++){s+=c[a[i]%62]}return s}
-  var nf=$('#csNewF');
-  $('#csNew').addEventListener('click',function(){nf.hidden=false;nf.kname.focus()});
-  $('#csCancel').addEventListener('click',function(){nf.hidden=true;nf.reset()});
-  nf.addEventListener('submit',function(e){e.preventDefault();var k=genKey(),n=nf.kname.value.trim()||('Key '+(me.keys.length+1));me.keys.unshift({name:n,tail:k.slice(-4),at:today()});persist();nf.reset();nf.hidden=true;$('#csKey').textContent=k;$('#csReveal').hidden=false;renderConsole()});
+
+  /* 创建 API Key 对话框：名称、额度上限、过期时间、可用模型、IP 白名单 */
+  var dlg=$('#csDlg'), nf=$('#csNewF'), IPRX=/^(?:(?:25[0-5]|2[0-4]\d|1?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}(?:\/(?:3[0-2]|[12]?\d))?|[0-9a-f]{0,4}(?::[0-9a-f]{0,4}){2,7}(?:\/(?:12[0-8]|1[01]\d|\d?\d))?)$/i;
+  $('#csKm').innerHTML=M.map(function(m){return '<button class="chip" type="button" aria-pressed="false" data-m="'+m.id+'">'+m.name+'</button>'}).join('');
+  $$('#csKm .chip').forEach(function(c){c.addEventListener('click',function(){var on=c.getAttribute('aria-pressed')!=='true';c.setAttribute('aria-pressed',String(on));c.classList.toggle('on',on)})});
+  function openDlg(){nf.reset();clearAccountError(nf);$$('#csKm .chip').forEach(function(c){c.setAttribute('aria-pressed','false');c.classList.remove('on')});nf.exp.min=today();if(dlg.showModal){if(!dlg.open)dlg.showModal()}else{dlg.setAttribute('open','')}nf.kname.focus()}
+  function closeDlg(){if(dlg.close){if(dlg.open)dlg.close()}else{dlg.removeAttribute('open')}}
+  $('#csNew').addEventListener('click',openDlg); $('#csCancel').addEventListener('click',closeDlg); $('#csCancelX').addEventListener('click',closeDlg);
+  dlg.addEventListener('click',function(e){if(e.target===dlg)closeDlg()});
+  nf.addEventListener('input',function(){clearAccountError(nf)});
+  nf.addEventListener('submit',function(e){e.preventDefault();var q=nf.quota.value.trim(),ex=nf.exp.value,ips=nf.ips.value.split(/[\s,，]+/).filter(Boolean);
+    if(q&&!(/^\d+(\.\d{1,2})?$/.test(q)&&parseFloat(q)>0)) return accountError(nf,nf.quota,'额度上限请填写大于 0 的金额，最多两位小数。');
+    if(ex&&ex<today()) return accountError(nf,nf.exp,'过期时间不能早于今天。');
+    if(ips.some(function(x){return !IPRX.test(x)})) return accountError(nf,nf.ips,'IP 白名单格式不正确，请每行填写一个 IP 或网段。');
+    var k=genKey(),n=nf.kname.value.trim()||('Key '+(me.keys.length+1));
+    me.keys.unshift({name:n,tail:k.slice(-4),at:today(),on:true,quota:q?parseFloat(q):null,exp:ex,models:$$('#csKm .chip.on').map(function(c){return c.getAttribute('data-m')}),ips:ips});
+    persist();closeDlg();$('#csKq').value='';$('#csKs').value='';$('#csKey').textContent=k;$('#csReveal').hidden=false;renderConsole()});
   $('#csCopy').addEventListener('click',function(){copyText($('#csKey').textContent,function(){toast('已复制')})});
   $('#csSaved').addEventListener('click',function(){$('#csReveal').hidden=true;$('#csKey').textContent=''});
+
+  /* 钱包：金额、支付方式、兑换码、推荐计划 */
   $$('.cs-amt .chip').forEach(function(c){c.addEventListener('click',function(){$$('.cs-amt .chip').forEach(function(x){x.classList.toggle('on',x===c)});$('#csAmt').value=''})});
   $('#csAmt').addEventListener('input',function(){$$('.cs-amt .chip').forEach(function(x){x.classList.remove('on')})});
+  radios($('.cs-pay .cs-pm'));
   $('#csPay').addEventListener('click',function(){toast('在线支付接入后即可充值。企业客户可以邮件 fathompeak@163.com 申请对公转账。')});
+  $('#csRedeem').addEventListener('submit',function(e){e.preventDefault();var c=this.code;if(!c.value.trim()){toast('请输入兑换码。');c.focus();return}toast('兑换码接入后即可兑换。')});
+  $('#csAffCp').addEventListener('click',function(){copyText($('#csAff').textContent,function(){toast('已复制')})});
+
+  /* 个人资料：教育认证、子账号、通知设置 */
   $('#csFile').addEventListener('change',function(){if(!this.files.length)return;me.edu='wait';persist();renderConsole();toast('已提交，审核结果会发到你的邮箱。')});
   $('#csInv').addEventListener('submit',function(e){e.preventDefault();var m=this.email.value.trim().toLowerCase();if(!MAIL.test(m)){toast('请输入有效的邮箱地址。');return}me.subs=me.subs||[];me.subs.push({email:m,at:today()});persist();this.reset();renderConsole()});
-  $('#csOut').addEventListener('click',function(){signOut();toast('已退出登录。');location.hash='#login'});
+  var ntf=$('#csNtf'), setNm=radios($('.cs-pm',ntf),function(v){$$('[data-nm]',ntf).forEach(function(el){el.hidden=el.getAttribute('data-nm')!==v});clearAccountError(ntf)});
+  ntf.addEventListener('input',function(){clearAccountError(ntf)});
+  ntf.addEventListener('submit',function(e){e.preventDefault();var via=val(ntf),th=ntf.th.value.trim(),mail=ntf.mail.value.trim().toLowerCase(),hook=ntf.hook.value.trim();
+    if(th&&!(/^\d+(\.\d{1,2})?$/.test(th))) return accountError(ntf,ntf.th,'余额预警阈值请填写金额，最多两位小数。');
+    if(via==='email'&&mail&&!MAIL.test(mail)) return accountError(ntf,ntf.mail,'请输入有效的邮箱地址。');
+    if(via==='webhook'&&!/^https?:\/\/[^\s/$.?#][^\s]*$/i.test(hook)) return accountError(ntf,ntf.hook,'请填写以 http:// 或 https:// 开头的 Webhook 地址。');
+    clearAccountError(ntf);me.notify={via:via,th:th,mail:mail,hook:hook};persist();toast('已保存通知设置。')});
+
+  /* 安全与访问：修改密码、两步验证、通行密钥、访问令牌（密码与验证码不保存） */
+  function sxClose(p){p.hidden=true;if(p.reset)p.reset();if($('.ac-msg',p))clearAccountError(p);var b=$('[aria-controls="'+p.id+'"]');if(b)b.setAttribute('aria-expanded','false')}
+  $$('[data-sx]').forEach(function(b){b.addEventListener('click',function(){var p=$('#'+b.getAttribute('aria-controls'));if(!p.hidden)return sxClose(p);p.hidden=false;b.setAttribute('aria-expanded','true');var f=$('input',p);if(f)f.focus()})});
+  $$('[data-sx-close]').forEach(function(b){b.addEventListener('click',function(){sxClose(b.closest('.cs-sx'))})});
+  $$('.cs-sl form').forEach(function(f){f.addEventListener('input',function(){clearAccountError(f)})});
+  $('#csPwF').addEventListener('submit',function(e){e.preventDefault();var f=this;
+    if(!f.pw0.value) return accountError(f,f.pw0,'请输入当前密码。');
+    if(f.pw1.value.length<8) return accountError(f,f.pw1,'新密码至少 8 位。');
+    if(f.pw1.value!==f.pw2.value) return accountError(f,f.pw2,'两次输入的新密码不一致。');
+    sxClose(f);toast('修改密码接入后即可使用。')});
+  $('#csTotpF').addEventListener('submit',function(e){e.preventDefault();var f=this;
+    if(!/^\d{6}$/.test(f.code.value.trim())) return accountError(f,f.code,'请输入 6 位数字验证码。');
+    sxClose(f);toast('两步验证接入后即可开启。')});
+  $('#csPk').addEventListener('click',function(){toast(window.PublicKeyCredential?'通行密钥接入后即可添加。':'当前浏览器不支持通行密钥。')});
+  $('#csTok').addEventListener('click',function(){var b=this;if(me.tok&&!b._armed){b._armed=1;b.textContent='确认重新生成';return}
+    var t=rnd(ALNUM,32);me.tok={tail:t.slice(-4),at:today()};persist();renderConsole();$('#csTokV').textContent=t;$('#csTokR').hidden=false});
+  $('#csTokCp').addEventListener('click',function(){copyText($('#csTokV').textContent,function(){toast('已复制')})});
+  $('#csTokOk').addEventListener('click',function(){$('#csTokR').hidden=true;$('#csTokV').textContent=''});
+  $('#csOut').addEventListener('click',function(){signOut();ntf._for=null;closeDlg();$('#csReveal').hidden=true;$('#csKey').textContent='';$('#csTokR').hidden=true;$('#csTokV').textContent='';$$('.cs-sl form').forEach(sxClose);toast('已退出登录。');location.hash='#login'});
 
   /* 定价页：模型价格来自同一份模型目录 */
   (function(){var min=Math.min.apply(null,M.map(function(m){return m.mkt})),ex=M.filter(function(m){return m.id==='glm-5-3-flash'})[0];
@@ -2063,6 +2283,8 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   });
   /* 2026-10-14 模型目录搜索筛选排序、导航注册、企业走销售 */
   Object.assign(I18N,{"注册": "Sign up", "搜索模型名称或厂商": "Search by model or vendor", "按厂商筛选": "Filter by vendor", "全部厂商": "All vendors", "排序方式": "Sort order", "默认排序": "Default order", "输出参考价从低到高": "Reference price: low to high", "输出参考价从高到低": "Reference price: high to low", "按输出参考价排序": "Sort by reference output price", "暂无符合筛选条件的模型。": "No models match these filters.", "清除筛选": "Clear filters", "企业账户暂不开放自助注册，请联系销售。": "Enterprise accounts are not open for self sign-up. Please talk to sales."});
+  /* 2026-10-14 控制台按原平台模块补齐（使用日志、钱包、个人资料、安全与访问） */
+  Object.assign(I18N,{"使用": "Usage", "使用日志": "Usage logs", "钱包": "Wallet", "个人资料": "Profile", "安全与访问": "Security & access", "全部状态": "All statuses", "已启用": "Enabled", "已停用": "Disabled", "已过期": "Expired", "启用": "Enable", "停用": "Disable", "状态": "Status", "额度": "Limit", "分组": "Group", "可用模型": "Allowed models", "操作": "Actions", "创建第一个 Key 后即可调用模型。": "Create your first key to start calling models.", "没有符合筛选条件的 Key": "No keys match these filters.", "额度上限（¥）": "Spend limit (¥)", "选填。留空表示不限额度。": "Optional. Leave blank for no limit.", "过期时间": "Expires", "选填。留空表示永不过期。": "Optional. Leave blank to never expire.", "选填。不选表示可调用全部模型。": "Optional. Select none to allow all models.", "IP 白名单": "IP allowlist", "选填。留空表示不限制来源 IP。": "Optional. Leave blank to allow any source IP.", "上方按模型汇总，下方逐条列出每次请求。": "A summary by model, followed by every request.", "按模型汇总": "By model", "请求次数": "Requests", "输入 Token": "Input tokens", "输出 Token": "Output tokens", "请求明细": "Request details", "今天": "Today", "近 7 天": "Last 7 days", "近 30 天": "Last 30 days", "近 90 天": "Last 90 days", "时间": "Time", "算力节点": "Node", "绿电折扣": "Green power discount", "还没有请求记录": "No requests yet", "每次调用的时间、Key、模型、Token、费用、节点和绿电折扣会显示在这里。": "The time, key, model, tokens, cost, node and green power discount of each call will appear here.", "算力节点是处理该请求的节点；绿电折扣是该请求结算时适用的绿电折扣。": "Node is the compute node that served the request; green power discount is the discount applied when the request was billed.", "累计消费": "Total spent", "金额": "Amount", "支付方式": "Payment method", "支付宝": "Alipay", "微信": "WeChat Pay", "兑换码": "Redemption code", "兑换": "Redeem", "充值记录": "Top-up history", "还没有充值记录": "No top-ups yet", "充值完成后，每笔订单显示在这里。": "Each completed top-up order will appear here.", "推荐计划": "Referral program", "其他用户通过你的邀请链接注册后，你可以获得邀请奖励。": "When someone signs up through your invite link, you can earn a referral reward.", "待确认": "Pending", "总收入": "Total earned", "邀请人数": "Invited", "复制链接": "Copy link", "用户 ID": "User ID", "通知设置": "Notifications", "通知方式": "Notify by", "余额预警阈值（¥）": "Low-balance alert (¥)", "余额低于此金额时发送通知。留空则不提醒。": "Notify me when the balance falls below this amount. Leave blank to turn alerts off.", "通知邮箱": "Notification email", "Webhook 地址": "Webhook URL", "余额预警会发送到这个地址。": "Low-balance alerts are sent to this URL.", "保存设置": "Save settings", "登录密码、两步验证、通行密钥和访问令牌。": "Password, two-step verification, passkeys and access tokens.", "修改密码": "Change password", "建议定期更换，不要与其他网站共用。": "Change it regularly and don't reuse it on other sites.", "修改": "Change", "当前密码": "Current password", "新密码": "New password", "至少 8 位。": "At least 8 characters.", "确认新密码": "Confirm new password", "保存新密码": "Save new password", "两步验证（TOTP）": "Two-step verification (TOTP)", "登录时除密码外，还要输入身份验证器应用生成的 6 位动态码。": "When you sign in, enter the 6-digit code from your authenticator app as well as your password.", "未开启": "Off", "开启": "Turn on", "在手机上安装支持 TOTP 的身份验证器应用。": "Install an authenticator app that supports TOTP on your phone.", "用应用扫描平台生成的二维码，或手动输入密钥。": "Scan the QR code from the platform with the app, or enter the secret key manually.", "输入应用显示的 6 位验证码，完成开启。": "Enter the 6-digit code shown in the app to finish.", "验证码": "Verification code", "验证并开启": "Verify and turn on", "通行密钥（Passkey）": "Passkeys", "用设备的指纹、面容或屏幕锁登录，不用输入密码。": "Sign in with your device's fingerprint, face or screen lock instead of a password.", "未添加": "None added", "添加通行密钥": "Add a passkey", "访问令牌": "Access token", "用于以程序方式管理账户，与调用模型的 API Key 不同。完整令牌只在生成时显示一次。": "For managing your account programmatically; it is not the API key you use to call models. The full token is shown only once, when it is generated.", "新的访问令牌": "New access token", "复制并保存这个令牌，关闭后无法再次查看。生成新令牌后，旧令牌失效。": "Copy and store this token. You won't be able to view it again after closing. Generating a new token revokes the old one.", "登录记录": "Sign-in history", "设备": "Device", "登录方式": "Method", "结果": "Result", "暂无登录记录": "No sign-ins recorded", "每次登录的时间、IP 和设备显示在这里。": "The time, IP and device of each sign-in will appear here.", "审计日志": "Audit log", "对象": "Target", "暂无审计记录": "No audit entries", "创建或删除 Key、修改安全设置等操作会记录在这里。": "Actions such as creating or deleting keys and changing security settings are recorded here.", "按名称搜索": "Search by name", "按名称搜索 API Key": "Search API keys by name", "按状态筛选": "Filter by status", "关闭": "Close", "每行一个 IP 或 CIDR 网段": "One IP or CIDR range per line", "时间范围": "Time range", "按模型筛选": "Filter by model", "按 Key 筛选": "Filter by key", "输入兑换码": "Enter a redemption code", "留空则使用账户邮箱": "Leave blank to use your account email", "到期": "Expires", "已设 IP 白名单": "IP allowlist set", "不限": "No limit", "默认": "Default", "全部 Key": "All keys", "已生成": "Generated", "未生成": "Not generated", "生成令牌": "Generate token", "重新生成": "Regenerate", "确认重新生成": "Confirm regenerate", "额度上限请填写大于 0 的金额，最多两位小数。": "Enter a spend limit above 0, with up to two decimal places.", "过期时间不能早于今天。": "The expiry date can't be earlier than today.", "IP 白名单格式不正确，请每行填写一个 IP 或网段。": "The IP allowlist isn't valid. Enter one IP or range per line.", "请输入兑换码。": "Enter a redemption code.", "兑换码接入后即可兑换。": "Redemption will be available once connected.", "余额预警阈值请填写金额，最多两位小数。": "Enter the alert amount with up to two decimal places.", "请填写以 http:// 或 https:// 开头的 Webhook 地址。": "Enter a webhook URL starting with http:// or https://.", "已保存通知设置。": "Notification settings saved.", "请输入当前密码。": "Enter your current password.", "新密码至少 8 位。": "The new password must be at least 8 characters.", "两次输入的新密码不一致。": "The new passwords don't match.", "修改密码接入后即可使用。": "Password changes will be available once connected.", "请输入 6 位数字验证码。": "Enter the 6-digit code.", "两步验证接入后即可开启。": "Two-step verification will be available once connected.", "通行密钥接入后即可添加。": "Passkeys will be available once connected.", "当前浏览器不支持通行密钥。": "This browser doesn't support passkeys.", "已启用 API Key。": "API key enabled.", "已停用 API Key。": "API key disabled."});
   var lang='zh'; try{lang=localStorage.getItem('fp-lang')||'zh'}catch(e){}
   var CJK=/[一-鿿。；]/;
   /* 先查字典与短语；查不到时把「A · B」「A → B」拆开逐段查，价格与示例请求按规则换 */
