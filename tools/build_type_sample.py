@@ -2,26 +2,23 @@
 design/type-compare.html (current vs sample, desktop and phone, side by side).
 Run from the repo root after `git pull`, so the sample always starts from the latest site:
     python3 tools/build_type_sample.py
-The pixel font subset lives in fonts/fusion-pixel-12px-subset.woff2 (Fusion Pixel, OFL, see fonts/fusion-pixel-OFL.txt).
+Handwritten first letters: fonts/hand-*-subset.woff2 (Zhi Mang Xing, Long Cang, Pinyon Script; OFL, see fonts/hand-fonts-OFL.txt).
 """
 import os
 
 s = open('index.html', encoding='utf-8').read()
 s = s.replace('href="fonts/', 'href="../fonts/').replace("'art/logos/", "'../art/logos/").replace('"art/logos/', '"../art/logos/')
-a = '<p class="h" role="heading" aria-level="1">主流模型 <span class="x">×</span> 异构算力，'
-assert s.count(a) == 1, 'hero headline changed; update the marker'
-s = s.replace(a, '<p class="h" role="heading" aria-level="1">主流模型 <span class="x">×</span> <span class="px">异构算力</span>，')
 css = '''<style id="type-sample">
-@font-face{font-family:"FusionPixel";src:url("../fonts/fusion-pixel-12px-subset.woff2") format("woff2");font-display:swap}
-/* 1 点阵：首屏只有「异构算力」用 12px 点阵字的整数倍（桌面 36px = 3 倍，手机 24px = 2 倍），像素边缘才清楚 */
-.hero .h .px{font-family:"FusionPixel",var(--serif);font-size:36px;letter-spacing:.04em;font-weight:400;color:rgba(255,255,255,.9);-webkit-font-smoothing:none;text-rendering:optimizeSpeed}
-@media (max-width:800px){.hero .h .px{font-size:24px}}
-/* 2 标题收紧：行高约 1.0，字距 -0.04em */
-.hero .h,.page-head .display,.cta-end .display,.h2,.faq h2,.sec .hd h3.serif,.pdet .hd h3,.prod b{line-height:1.02;letter-spacing:-.04em}
-@media (max-width:800px){.hero .h{line-height:1.1}}
-/* 3 新闻与公司页：旧式数字 */
-.ev,.events,.news,section[data-route="about"]{font-variant-numeric:oldstyle-nums proportional-nums}
+/* 手写首字：每个大标题的第一个字换成手写体（学 Every 的 hand 首字母）。中文用行书，英文模式用花体大写。
+   用 ::first-letter，不改 DOM，就地翻译照常工作；新写的标题自动套用。字体均为 OFL，按站内用字子集化。 */
+@font-face{font-family:"HandZh";src:url("../fonts/hand-zhimangxing-subset.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"HandZh2";src:url("../fonts/hand-longcang-subset.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"HandLatin";src:url("../fonts/hand-pinyonscript-subset.woff2") format("woff2");font-display:swap}
+:root{--hand:"HandLatin","HandZh",var(--serif)} html.hand-longcang{--hand:"HandLatin","HandZh2",var(--serif)}
+:is(.hero .h,.page-head .display,.sec .hd h3.serif,.h2,.faq h2,.cta-end .display,.feat .it b,.prod b,.card h3,.case b,.detail .display,.article h1,.coop h2.display)::first-letter{font-family:var(--hand);font-weight:400;font-size:1.3em;line-height:1;letter-spacing:0;padding-right:.05em}
+html[lang="en"] :is(.hero .h,.page-head .display,.sec .hd h3.serif,.h2,.faq h2,.cta-end .display,.feat .it b,.prod b,.card h3,.case b,.detail .display,.article h1,.coop h2.display)::first-letter{font-size:1.3em;padding-right:.02em}
 </style>
+<script>if(/hand=longcang/.test(location.search))document.documentElement.classList.add('hand-longcang')</script>
 '''
 i = s.find('</head>'); assert i > 0
 s = s[:i] + css + s[i:]
@@ -52,12 +49,10 @@ ul{margin:6px 0 18px;padding-left:18px;color:rgba(0,0,0,.7)} li{margin:2px 0}
 @media (max-width:820px){.row{grid-template-columns:1fr}}
 </style></head><body><div class="wrap">
 <div class="k">样张 · 2026-10-13</div>
-<h1>字体样张：点阵字与收紧标题</h1>
-<p class="lead">左边是线上现版，右边是样张。样张只改三处，其余不变：</p>
-<ul><li>首屏「异构算力」换成开源点阵字 Fusion Pixel（OFL），桌面 36px、手机 24px，都是 12px 点阵的整数倍。</li>
-<li>首屏、区块和页面大标题行高收到约 1.0，字距 −0.04em。</li>
-<li>新闻与关于页用旧式数字。</li></ul>
-<div class="tabs" id="tabs"><button class="on" data-r="home">首页</button><button data-r="models">产品与服务</button><button data-r="news">新闻动态</button><button data-r="about">关于</button></div>
+<h1>字体样张：手写首字</h1>
+<p class="lead">左边是线上现版，右边是样张。样张只改一处：每个大标题的第一个字换成手写体，中文用行书，切到 EN 时用花体大写。其余不变。</p>
+<div class="tabs" id="hand"><button class="on" data-h="">志莽行书</button><button data-h="?hand=longcang">龙藏体</button></div>
+<div class="tabs" id="tabs" style="margin-top:8px"><button class="on" data-r="home">首页</button><button data-r="models">产品与服务</button><button data-r="news">新闻动态</button><button data-r="about">关于</button></div>
 <div class="row">
  <div><div class="k">现版</div><div class="frame desk"><iframe id="a" src="../index.html#home"></iframe></div></div>
  <div><div class="k">样张</div><div class="frame desk"><iframe id="b" src="type-sample.html#home"></iframe></div></div>
@@ -70,8 +65,10 @@ ul{margin:6px 0 18px;padding-left:18px;color:rgba(0,0,0,.7)} li{margin:2px 0}
 <script>
 function fit(){document.querySelectorAll('.desk').forEach(function(d){d.querySelector('iframe').style.transform='scale('+(d.clientWidth/1440)+')'})}
 addEventListener('resize',fit);fit();
-document.querySelectorAll('#tabs button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#tabs button').forEach(function(x){x.classList.toggle('on',x===b)});var r=b.dataset.r;
- ['a','c'].forEach(function(id){document.getElementById(id).src='../index.html#'+r});['b','d'].forEach(function(id){document.getElementById(id).src='type-sample.html#'+r})})});
+var R='home',Q='';
+function load(){['a','c'].forEach(function(id){document.getElementById(id).src='../index.html#'+R});['b','d'].forEach(function(id){document.getElementById(id).src='type-sample.html'+Q+'#'+R})}
+document.querySelectorAll('#tabs button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#tabs button').forEach(function(x){x.classList.toggle('on',x===b)});R=b.dataset.r;load()})});
+document.querySelectorAll('#hand button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#hand button').forEach(function(x){x.classList.toggle('on',x===b)});Q=b.dataset.h;load()})});
 </script></body></html>
 '''
 open('design/type-compare.html', 'w', encoding='utf-8').write(cmp)

@@ -22,12 +22,10 @@ ul{margin:6px 0 18px;padding-left:18px;color:rgba(0,0,0,.7)} li{margin:2px 0}
 @media (max-width:820px){.row{grid-template-columns:1fr}}
 </style></head><body><div class="wrap">
 <div class="k">样张 · 2026-10-13</div>
-<h1>字体样张：点阵字与收紧标题</h1>
-<p class="lead">左边是线上现版，右边是样张。样张只改三处，其余不变：</p>
-<ul><li>首屏「异构算力」换成开源点阵字 Fusion Pixel（OFL），桌面 36px、手机 24px，都是 12px 点阵的整数倍。</li>
-<li>首屏、区块和页面大标题行高收到约 1.0，字距 −0.04em。</li>
-<li>新闻与关于页用旧式数字。</li></ul>
-<div class="tabs" id="tabs"><button class="on" data-r="home">首页</button><button data-r="models">产品与服务</button><button data-r="news">新闻动态</button><button data-r="about">关于</button></div>
+<h1>字体样张：手写首字</h1>
+<p class="lead">左边是线上现版，右边是样张。样张只改一处：每个大标题的第一个字换成手写体，中文用行书，切到 EN 时用花体大写。其余不变。</p>
+<div class="tabs" id="hand"><button class="on" data-h="">志莽行书</button><button data-h="?hand=longcang">龙藏体</button></div>
+<div class="tabs" id="tabs" style="margin-top:8px"><button class="on" data-r="home">首页</button><button data-r="models">产品与服务</button><button data-r="news">新闻动态</button><button data-r="about">关于</button></div>
 <div class="row">
  <div><div class="k">现版</div><div class="frame desk"><iframe id="a" src="../index.html#home"></iframe></div></div>
  <div><div class="k">样张</div><div class="frame desk"><iframe id="b" src="type-sample.html#home"></iframe></div></div>
@@ -40,6 +38,8 @@ ul{margin:6px 0 18px;padding-left:18px;color:rgba(0,0,0,.7)} li{margin:2px 0}
 <script>
 function fit(){document.querySelectorAll('.desk').forEach(function(d){d.querySelector('iframe').style.transform='scale('+(d.clientWidth/1440)+')'})}
 addEventListener('resize',fit);fit();
-document.querySelectorAll('#tabs button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#tabs button').forEach(function(x){x.classList.toggle('on',x===b)});var r=b.dataset.r;
- ['a','c'].forEach(function(id){document.getElementById(id).src='../index.html#'+r});['b','d'].forEach(function(id){document.getElementById(id).src='type-sample.html#'+r})})});
+var R='home',Q='';
+function load(){['a','c'].forEach(function(id){document.getElementById(id).src='../index.html#'+R});['b','d'].forEach(function(id){document.getElementById(id).src='type-sample.html'+Q+'#'+R})}
+document.querySelectorAll('#tabs button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#tabs button').forEach(function(x){x.classList.toggle('on',x===b)});R=b.dataset.r;load()})});
+document.querySelectorAll('#hand button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#hand button').forEach(function(x){x.classList.toggle('on',x===b)});Q=b.dataset.h;load()})});
 </script></body></html>

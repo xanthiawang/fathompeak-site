@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>沐仞 FathomPeak</title>
 <style id="type-sample">
-@font-face{font-family:"FusionPixel";src:url("../fonts/fusion-pixel-12px-subset.woff2") format("woff2");font-display:swap}
-/* 1 点阵：首屏只有「异构算力」用 12px 点阵字的整数倍（桌面 36px = 3 倍，手机 24px = 2 倍），像素边缘才清楚 */
-.hero .h .px{font-family:"FusionPixel",var(--serif);font-size:36px;letter-spacing:.04em;font-weight:400;color:rgba(255,255,255,.9);-webkit-font-smoothing:none;text-rendering:optimizeSpeed}
-@media (max-width:800px){.hero .h .px{font-size:24px}}
-/* 2 标题收紧：行高约 1.0，字距 -0.04em */
-.hero .h,.page-head .display,.cta-end .display,.h2,.faq h2,.sec .hd h3.serif,.pdet .hd h3,.prod b{line-height:1.02;letter-spacing:-.04em}
-@media (max-width:800px){.hero .h{line-height:1.1}}
-/* 3 新闻与公司页：旧式数字 */
-.ev,.events,.news,section[data-route="about"]{font-variant-numeric:oldstyle-nums proportional-nums}
+/* 手写首字：每个大标题的第一个字换成手写体（学 Every 的 hand 首字母）。中文用行书，英文模式用花体大写。
+   用 ::first-letter，不改 DOM，就地翻译照常工作；新写的标题自动套用。字体均为 OFL，按站内用字子集化。 */
+@font-face{font-family:"HandZh";src:url("../fonts/hand-zhimangxing-subset.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"HandZh2";src:url("../fonts/hand-longcang-subset.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"HandLatin";src:url("../fonts/hand-pinyonscript-subset.woff2") format("woff2");font-display:swap}
+:root{--hand:"HandLatin","HandZh",var(--serif)} html.hand-longcang{--hand:"HandLatin","HandZh2",var(--serif)}
+:is(.hero .h,.page-head .display,.sec .hd h3.serif,.h2,.faq h2,.cta-end .display,.feat .it b,.prod b,.card h3,.case b,.detail .display,.article h1,.coop h2.display)::first-letter{font-family:var(--hand);font-weight:400;font-size:1.3em;line-height:1;letter-spacing:0;padding-right:.05em}
+html[lang="en"] :is(.hero .h,.page-head .display,.sec .hd h3.serif,.h2,.faq h2,.cta-end .display,.feat .it b,.prod b,.card h3,.case b,.detail .display,.article h1,.coop h2.display)::first-letter{font-size:1.3em;padding-right:.02em}
 </style>
+<script>if(/hand=longcang/.test(location.search))document.documentElement.classList.add('hand-longcang')</script>
 </head>
 <body>
 
@@ -362,7 +362,7 @@ footer .k .more{display:inline;padding:0;margin-left:10px;font:400 11px var(--mo
 <!-- 首页 -->
 <section data-route="home">
   <div class="hero"><div class="field"></div><div class="grain"></div><div class="paint" data-paint="day"></div>
-    <p class="h" role="heading" aria-level="1">主流模型 <span class="x">×</span> <span class="px">异构算力</span>，一站式大模型 API 平台。</p>
+    <p class="h" role="heading" aria-level="1">主流模型 <span class="x">×</span> 异构算力，一站式大模型 API 平台。</p>
     <p class="tag">低成本、高可用、全兼容。</p>
     <p class="h-sub">GLM、DeepSeek、Qwen、MiniMax 一个端点接入，兼容 OpenAI 与 Gemini 原生格式。一体机部署在电站旁，用富余绿电生产词元，为 AI 企业提供低成本、可追溯的推理服务。</p>
     <div class="word" aria-hidden="true">沐仞</div>
