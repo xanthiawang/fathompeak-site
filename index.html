@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>沐仞 FathomPeak</title>
+<style id="hand-en">
+/* 英文版手写首字母（学 Every）：只在 EN 模式生效，中文不变。Pinyon Script，OFL，见 fonts/hand-fonts-OFL.txt */
+@font-face{font-family:"HandLatin";src:url("fonts/hand-pinyonscript-subset.woff2") format("woff2");font-display:swap}
+html[lang="en"] :is(.hero .h,.page-head .display,.sec .hd h3.serif,.h2,.faq h2,.cta-end .display,.feat .it b,.prod b,.card h3,.case b,.detail .display,.article h1,.coop h2.display)::first-letter{font-family:"HandLatin",var(--serif);font-weight:400;font-size:1.3em;line-height:1;letter-spacing:0;padding-right:.02em}
+</style>
 </head>
 <body>
 
