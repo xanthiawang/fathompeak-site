@@ -1203,5 +1203,20 @@ footer .k .more{display:inline;padding:0;margin-left:10px;font:400 11px var(--mo
 })();
 </script>
 
+<script id="fp-fresh">
+/* 防缓存：打开时绕过缓存取最新页面，与本地缓存版本不同就带版本号重新打开（保留 #路由） */
+(function(){ if(!window.fetch||location.protocol==='file:') return;
+  function h(t){var x=5381,i=t.length;while(i)x=(x*33)^t.charCodeAt(--i);return (x>>>0).toString(36)}
+  var base=location.href.split('#')[0];
+  setTimeout(function(){
+    Promise.all([fetch(base,{cache:'force-cache'}).then(function(r){return r.text()}),fetch(base,{cache:'no-store'}).then(function(r){return r.text()})]).then(function(t){
+      var a=h(t[0]),b=h(t[1]); if(a===b) return;
+      var k='fp-fresh-'+b; try{ if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,'1') }catch(e){}
+      fetch(base,{cache:'reload'}).catch(function(){});
+      var u=location.pathname+'?v='+b+location.hash; location.replace(u);
+    }).catch(function(){});
+  },300);
+})();
+</script>
 </body>
 </html>
