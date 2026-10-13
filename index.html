@@ -822,6 +822,21 @@ section[data-route="home"] .home-sec .hh{text-align:center}
 html:has(section[data-route="home"].on) body{background:#FBFAF6;margin:0}
 section[data-route="home"]{padding:0;margin:0;max-width:none}
 </style>
+
+<style id="about-grid">
+/* 关于页三块信息改为横向 3 栏（2026-10-14）：每格顶线 + 小号标签 + 标题 + 说明 */
+.ab-rows.ab-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;border-top:0}
+.ab-rows.ab-grid3 li{display:block;padding:14px 0 18px;border-top:1px solid var(--line);border-bottom:0}
+.ab-rows.ab-grid3 li.w2{grid-column:span 2}
+.ab-rows.ab-grid3 .k{display:block;margin-bottom:6px;line-height:1.5}
+.ab-rows.ab-grid3 b{line-height:1.45}
+.ab-rows.ab-grid3 .s{margin-top:4px;line-height:1.6}
+@media (max-width:640px){
+  .ab-rows.ab-grid3{grid-template-columns:1fr}
+  .ab-rows.ab-grid3 li.w2{grid-column:auto}
+  .ab-rows.ab-grid3.g-honors{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px}
+}
+</style>
 </head>
 <body>
 
@@ -1581,7 +1596,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         </div>
 
         <div class="ab-sec" id="ab-support"><h2>机构支持</h2>
-          <ul class="ab-rows"><li><span class="k">高校</span><div><b>清华大学</b><span class="s">创始人与核心团队的科研来源，涵盖能源技术、计算机、交叉信息与工程物理。</span></div></li><li><span class="k">高校</span><div><b>北京大学</b><span class="s">计算机与人工智能方向技术骨干来源。</span></div></li><li><span class="k">联合研发</span><div><b>深圳清华大学研究院</b><span class="s">共建算电协同联合研发中心。</span></div></li><li><span class="k">首席顾问</span><div><b>张文宇教授</b><span class="s">前浙江大学二级教授、麻省理工学院博士后，"群智工业"理论提出者，连续 4 年入选全球前 2% 顶尖科学家。</span></div></li><li><span class="k">资质</span><div><b>中央网信办</b><span class="s">词元出海业务资质批复，出海运营主体位于广东汕头。</span></div></li></ul>
+          <ul class="ab-rows ab-grid3 g-support"><li><span class="k">高校</span><div><b>清华大学</b><span class="s">创始人与核心团队的科研来源，涵盖能源技术、计算机、交叉信息与工程物理。</span></div></li><li><span class="k">高校</span><div><b>北京大学</b><span class="s">计算机与人工智能方向技术骨干来源。</span></div></li><li><span class="k">联合研发</span><div><b>深圳清华大学研究院</b><span class="s">共建算电协同联合研发中心。</span></div></li><li class="w2"><span class="k">首席顾问</span><div><b>张文宇教授</b><span class="s">前浙江大学二级教授、麻省理工学院博士后，"群智工业"理论提出者，连续 4 年入选全球前 2% 顶尖科学家。</span></div></li><li><span class="k">资质</span><div><b>中央网信办</b><span class="s">词元出海业务资质批复，出海运营主体位于广东汕头。</span></div></li></ul>
         </div>
 
         <div class="ab-sec" id="ab-investors"><h2>投资方</h2>
@@ -1589,12 +1604,12 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         </div>
 
         <div class="ab-sec" id="ab-honors"><h2>奖项与荣誉</h2>
-          <ul class="ab-rows"><li><span class="k">第一名</span><div><b>北京卫视《转在北京》</b><span class="s">智算纵横赛道</span></div></li><li><span class="k">第一名</span><div><b>央视《赢在 AI+》</b><span class="s">智效跃迁赛道</span></div></li><li><span class="k">亚军</span><div><b>"挑战杯"</b><span class="s">清华大学校赛</span></div></li><li><span class="k">十佳团队</span><div><b>国创赛</b><span class="s">清华大学校赛</span></div></li><li><span class="k">国家金奖</span><div><b>中国国际"互联网+"大学生创新创业大赛</b><span class="s">第八届 · 创始人作为项目核心成员</span></div></li><li><span class="k">入选</span><div><b>中国 AI U25 创业者榜单</b><span class="s">创始人路畅</span></div></li></ul>
+          <ul class="ab-rows ab-grid3 g-honors"><li><span class="k">第一名</span><div><b>北京卫视《转在北京》</b><span class="s">智算纵横赛道</span></div></li><li><span class="k">第一名</span><div><b>央视《赢在 AI+》</b><span class="s">智效跃迁赛道</span></div></li><li><span class="k">亚军</span><div><b>"挑战杯"</b><span class="s">清华大学校赛</span></div></li><li><span class="k">十佳团队</span><div><b>国创赛</b><span class="s">清华大学校赛</span></div></li><li><span class="k">国家金奖</span><div><b>中国国际"互联网+"大学生创新创业大赛</b><span class="s">第八届 · 创始人作为项目核心成员</span></div></li><li><span class="k">入选</span><div><b>中国 AI U25 创业者榜单</b><span class="s">创始人路畅</span></div></li></ul>
           <p>团队累计获得各类荣誉 40 余项。</p>
         </div>
 
         <div class="ab-sec" id="ab-company"><h2>公司信息</h2>
-          <ul class="ab-rows"><li><span class="k">总部</span><div><b>北京市海淀区</b></div></li><li><span class="k">研发</span><div><b>北京海淀、深圳南山</b></div></li><li><span class="k">出海运营</span><div><b>广东汕头</b><span class="s">持中央网信办词元出海业务批复</span></div></li><li><span class="k">创始人</span><div><b>路畅，创始人兼 CEO</b><span class="s">清华大学工学直博生，研究方向为算电协同调度</span></div></li><li><span class="k">团队</span><div><b>20 余人</b><span class="s">来自清华大学、北京大学、南洋理工大学、武汉大学等高校，以及微软亚洲研究院、字节跳动、英伟达等企业</span></div></li><li><span class="k">业务</span><div><b>2026 年第三季度已签词元订单超 6000 万元</b><span class="s">其中海外订单占比超 83%</span></div></li><li><span class="k">研究成果</span><div><b>数十篇论文</b><span class="s">发表于 ASPLOS、ISCA、OSDI 等会议；软件著作权及专利 10 余项</span></div></li></ul>
+          <ul class="ab-rows ab-grid3 g-company"><li><span class="k">总部</span><div><b>北京市海淀区</b></div></li><li><span class="k">研发</span><div><b>北京海淀、深圳南山</b></div></li><li><span class="k">出海运营</span><div><b>广东汕头</b><span class="s">持中央网信办词元出海业务批复</span></div></li><li><span class="k">创始人</span><div><b>路畅，创始人兼 CEO</b><span class="s">清华大学工学直博生，研究方向为算电协同调度</span></div></li><li class="w2"><span class="k">团队</span><div><b>20 余人</b><span class="s">来自清华大学、北京大学、南洋理工大学、武汉大学等高校，以及微软亚洲研究院、字节跳动、英伟达等企业</span></div></li><li><span class="k">业务</span><div><b>2026 年第三季度已签词元订单超 6000 万元</b><span class="s">其中海外订单占比超 83%</span></div></li><li class="w2"><span class="k">研究成果</span><div><b>数十篇论文</b><span class="s">发表于 ASPLOS、ISCA、OSDI 等会议；软件著作权及专利 10 余项</span></div></li></ul>
         </div>
 
         <div class="ab-sec" id="careers"><h2>加入我们</h2>
