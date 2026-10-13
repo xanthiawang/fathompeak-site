@@ -1,5 +1,7 @@
 # 沐仞官网原型（可部署版）
 
+线上地址：https://xanthiawang.github.io/fathompeak-site/ （GitHub Pages，main 分支根目录；推送后约一分钟生效）
+
 - `index.html`：整站单文件（hash 路由：#home #models #enterprise #network #news #docs #about #login #console …）。
 - `art/logos/`：合作带的 logo 图片，`index.html` 以相对路径引用。
 - 改文案：直接编辑 `index.html`。页面文字在各 `<section data-route="…">` 里；模型、节点、看板行、评价在脚本区 `var M= / var T= / var N= / var R=`；英文在 `var I18N={…}`。
