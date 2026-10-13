@@ -187,11 +187,32 @@ section[data-route="home"] .home-sec .hh{text-align:center}
 .ed-lab{margin-top:120px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:44px 0}
 .ed-lab .k{display:block;margin-bottom:12px} .ed-lab p{margin:12px 0 0;color:var(--ink-70)} .ed-lab .ed-ctas{margin:0}
 
-.ac{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:100svh;padding:12px}
-.ac-art{position:relative;border-radius:var(--r24);overflow:hidden;background:radial-gradient(175% 82% at 50% 106%,var(--hz-3) 0 44%,var(--hz-2b) 53%,var(--hz-2) 61%,var(--hz-haze) 68%,var(--accent-soft) 77%,var(--field-1) 88%,var(--hz-1) 100%)}
-.ac-art-in{position:absolute;left:44px;right:44px;bottom:48px;color:#fff}
-.ac-art-in b{display:block;font-size:clamp(30px,3.2vw,44px);line-height:1.08;max-width:12em}
-.ac-art-in p{margin:14px 0 0;color:rgba(255,255,255,.75);max-width:26em}
+.ac{display:grid;grid-template-columns:minmax(0,min(48%,calc((100svh - 24px)*.666667))) minmax(0,1fr);min-height:100svh;padding:12px;max-width:1680px;margin:auto}
+.ac-art{position:relative;isolation:isolate;align-self:start;aspect-ratio:2/3;border-radius:var(--r24);overflow:hidden;background:#DCE7F7;color:#212021}
+.ac-engraving{display:block;width:100%;height:auto;aspect-ratio:2/3;user-select:none}
+.ac-engraving-effects{position:absolute;inset:0;pointer-events:none}
+.ac-wind{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
+.ac-wind-field{opacity:.36}
+.ac-ribbon,.ac-spark,.ac-ink-trace,.ac-tether{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ac-ribbon{stroke:var(--flow-color);stroke-width:1.7;stroke-dasharray:280 140}
+.ac-spark{stroke:#2F63B8;stroke-width:3.5;stroke-dasharray:320 1280;opacity:0}
+.ac-ink-trace{stroke:var(--flow-color);stroke-width:2.2}
+.ac-tether{stroke:#4E3F66;stroke-width:2}
+.ac-ink-light{position:absolute;left:29%;top:33%;width:74%;height:48%;opacity:0;background:radial-gradient(ellipse at 58% 47%,rgba(82,132,215,.24),rgba(232,212,204,.12) 32%,transparent 67%);mix-blend-mode:multiply;pointer-events:none}
+.ac-touch{position:absolute;left:43%;top:47%;width:34%;height:29%;border:0;background:transparent;border-radius:48%;color:#3D314F;cursor:grab;padding:0;touch-action:none;-webkit-user-select:none;user-select:none}
+.ac-touch span{position:absolute;left:95%;top:55%;width:76px;text-align:left;font:500 12px/1.55 var(--sans);opacity:0;transform:translateY(4px);transition:opacity .25s,transform .3s;pointer-events:none}
+.ac-touch:hover span,.ac-touch:focus-visible span,.ac-art[data-gripping="true"] .ac-touch span{opacity:1;transform:translateY(0)}
+.ac-art[data-gripping="true"],.ac-art[data-gripping="true"] .ac-touch{cursor:grabbing}
+.ac-touch:focus-visible{outline:1px dashed #4E3F66;outline-offset:5px}
+.ac-art[data-input="pointer"] .ac-touch:focus{outline:none}
+.ac-motion{position:absolute;z-index:2;right:16px;bottom:16px;display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid rgba(61,49,79,.25);border-radius:50%;color:#3D314F;background:rgba(220,231,247,.7);cursor:pointer;transition:background .2s}
+.ac-motion:hover{background:#F3F1EA}
+.ac-motion:focus-visible{outline:2px solid #4E3F66;outline-offset:4px}
+.ac-motion svg{width:12px;height:12px;fill:currentColor}
+.ac-motion .ac-play,.ac-motion[aria-pressed="true"] .ac-pause{display:none}
+.ac-motion[aria-pressed="true"] .ac-play{display:block}
+.ac-art [hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){.ac-engraving-effects,.ac-motion,.ac-touch{display:none!important}}
 .ac-main{display:flex;align-items:center;justify-content:center;padding:110px 24px 60px}
 .ac-form{width:100%;max-width:400px;display:grid;gap:16px}
 .ac-form h1{font-size:44px;line-height:1}
@@ -1197,7 +1218,12 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
 <!-- 登录 -->
 <section data-route="login">
   <div class="ac">
-    <div class="ac-art" aria-hidden="true"><div class="ac-art-in"><b class="display">一个账户，管理全部 API Key</b><p>用量、账单和每笔订单的能源记录，都在控制台里。</p></div></div>
+    <div class="ac-art" data-engraving data-running="false">
+      <img class="ac-engraving" loading="lazy" src="art/account/engraved-ascent_2026-10-14.webp" width="1024" height="1536" decoding="async" alt="沐仞科技 FathomPeak Tech。栉风沐雨，登高万仞。人手与机械手相握，身后是蓝紫色山峦与上行的风线。" draggable="false">
+      <div class="ac-engraving-effects" aria-hidden="true"></div>
+      <button class="ac-touch" type="button" aria-label="一起向上：触发登高线条" hidden><span aria-hidden="true">一起向上 ↗</span></button>
+      <button class="ac-motion" type="button" aria-label="暂停动画" title="暂停动画" aria-pressed="false" hidden><svg viewBox="0 0 12 12" aria-hidden="true"><path class="ac-pause" d="M2 1h3v10H2zm5 0h3v10H7z"/><path class="ac-play" d="M3 1l8 5-8 5z"/></svg></button>
+    </div>
     <div class="ac-main">
       <form class="ac-form" id="acLogin" novalidate>
         <h1 class="display">登录</h1><p class="ac-lead">个人、教育和企业账户都从这里登录。</p>
@@ -1214,7 +1240,12 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
 <!-- 注册 -->
 <section data-route="start">
   <div class="ac">
-    <div class="ac-art" aria-hidden="true"><div class="ac-art-in"><b class="display">几分钟后，发出第一个请求</b><p>创建账户，生成 API Key，把现有的 OpenAI 客户端指向沐仞。</p></div></div>
+    <div class="ac-art" data-engraving data-running="false">
+      <img class="ac-engraving" loading="lazy" src="art/account/engraved-ascent_2026-10-14.webp" width="1024" height="1536" decoding="async" alt="沐仞科技 FathomPeak Tech。栉风沐雨，登高万仞。人手与机械手相握，身后是蓝紫色山峦与上行的风线。" draggable="false">
+      <div class="ac-engraving-effects" aria-hidden="true"></div>
+      <button class="ac-touch" type="button" aria-label="一起向上：触发登高线条" hidden><span aria-hidden="true">一起向上 ↗</span></button>
+      <button class="ac-motion" type="button" aria-label="暂停动画" title="暂停动画" aria-pressed="false" hidden><svg viewBox="0 0 12 12" aria-hidden="true"><path class="ac-pause" d="M2 1h3v10H2zm5 0h3v10H7z"/><path class="ac-play" d="M3 1l8 5-8 5z"/></svg></button>
+    </div>
     <div class="ac-main">
       <form class="ac-form" id="acSignup" novalidate>
         <h1 class="display">创建账户</h1><p class="ac-lead">先选账户类型，之后可以在控制台补充信息。</p>
@@ -1995,6 +2026,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
 })();
 </script>
 
+<script type="module" id="account-art-motion" src="art/account/engraved-motion_2026-10-14.js"></script>
 <script id="ab-spy">
 /* 关于页目录：滚动时高亮当前小节 */
 (function(){var toc=document.querySelectorAll('.ab-toc a');if(!toc.length)return;
