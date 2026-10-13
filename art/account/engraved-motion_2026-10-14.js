@@ -4,8 +4,7 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const wide = matchMedia('(min-width: 801px)');
 const fine = matchMedia('(hover: hover) and (pointer: fine)');
 const states = [];
-let runtime, paused = false;
-try { paused = sessionStorage.getItem('fp-engraving-paused') === '1'; } catch (error) { /* Optional storage. */ }
+let runtime;
 const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
 
 function loadMotion() {
@@ -33,12 +32,7 @@ function hint(s) {
 
 function labels(s) {
   const en = document.documentElement.lang === 'en';
-  const label = en ? (paused ? 'Play animation' : 'Pause animation') : (paused ? '播放动画' : '暂停动画');
-  s.pause.setAttribute('aria-label', label);
-  s.pause.title = label;
-  s.pause.setAttribute('aria-pressed', String(paused));
-  s.pause.hidden = !s.ready || reduced.matches;
-  s.touch.hidden = !s.ready || reduced.matches || paused;
+  s.touch.hidden = !s.ready || reduced.matches;
   s.touch.setAttribute('aria-label', en ? 'Hold and drag the handshake, then release. Keyboard: hold Space or press Enter.' : '按住握手拖动，松手释放风。键盘：按住空格蓄力，回车轻触。');
   hint(s);
 }
@@ -56,7 +50,9 @@ function cancelGrip(s) {
 function rest(s) {
   cancelAnimationFrame(s.frame);
   s.frame = 0;
-  s.ambient.pause();
+  s.activeUntil = 0;
+  s.activity = 0;
+  s.card.dataset.running = 'false';
   s.burst?.kill();
   s.gsap.killTweensOf(s);
   cancelGrip(s);
@@ -72,20 +68,27 @@ function rest(s) {
   s.card.dataset.phase = 'idle';
 }
 
+// Each gesture owns a short animation window; the print rests between gestures.
+function wake(s, duration = 1600) {
+  if (!s.running) return;
+  const now = performance.now();
+  s.activeUntil = Math.max(s.activeUntil, now + duration);
+  if (!s.frame) {
+    s.card.dataset.running = 'true';
+    s.last = now;
+    s.frame = requestAnimationFrame(time => tick(s, time));
+  }
+}
+
 function sync() {
   states.forEach(s => {
     const inView = visible(s);
     if (inView && !s.started && !reduced.matches) init(s);
     const formFocused = Boolean(s.card.parentElement.querySelector('.ac-main:focus-within'));
-    const running = Boolean(inView && s.ready && !paused && !reduced.matches && !formFocused);
+    const running = Boolean(inView && s.ready && !reduced.matches && !formFocused);
     const wasRunning = s.running;
     s.running = running;
-    s.card.dataset.running = String(running);
-    if (s.ready && running && !wasRunning) {
-      s.ambient.play();
-      s.last = performance.now();
-      s.frame = requestAnimationFrame(time => tick(s, time));
-    } else if (s.ready && !running && wasRunning) rest(s);
+    if (s.ready && !running && wasRunning) rest(s);
     labels(s);
   });
 }
@@ -103,9 +106,9 @@ function bandPath(s, index, moving = true) {
     const base = 1228 - 374 * t * t + 37 * Math.sin(t * Math.PI * 3.5) + index * 12;
     const gripWeight = Math.exp(-Math.pow((t - .57) * 3.2, 2));
     const distance = Math.hypot(x - s.pointer.x, base - s.pointer.y);
-    const brush = moving && s.pointer.inside ? Math.exp(-distance * distance / 85000) * Math.sin(t * 10 + s.clock * 2) * 20 : 0;
+    const brush = moving && s.pointer.inside ? Math.exp(-distance * distance / 85000) * Math.sin(t * 10 + s.clock * 2) * 20 * s.activity : 0;
     const wave = moving ? Math.exp(-Math.pow((t - s.wave) * 7, 2)) * Math.sin((t - s.wave) * 19 - index * .13) * s.kick * 90 : 0;
-    const y = base + (moving ? s.spring.y * gripWeight + Math.sin(s.clock * .7 + t * 5 + index * .25) * 3 : 0) + brush + wave;
+    const y = base + (moving ? s.spring.y * gripWeight + Math.sin(s.clock * .7 + t * 5 + index * .25) * 3 * s.activity : 0) + brush + wave;
     points.push(`${(x + (moving ? s.spring.x * gripWeight : 0)).toFixed(1)},${y.toFixed(1)}`);
   }
   return 'M' + points.join(' L');
@@ -114,6 +117,8 @@ function bandPath(s, index, moving = true) {
 function tick(s, time) {
   s.frame = 0;
   if (!s.running) return;
+  if (!s.drag && time >= s.activeUntil) { rest(s); return; }
+  s.activity = s.drag ? 1 : clamp((s.activeUntil - time) / 750, 0, 1);
   const dt = Math.min((time - s.last) / 1000, .035);
   s.last = time; s.clock += dt;
   let targetX = 0, targetY = 0;
@@ -128,17 +133,20 @@ function tick(s, time) {
       path.setAttribute('opacity', String(.38 + s.charge * .35));
     });
   } else if (s.pointer.inside) {
-    targetX = (s.pointer.x - 512) * .045;
-    targetY = (s.pointer.y - 768) * .035;
+    targetX = (s.pointer.x - 512) * .045 * s.activity;
+    targetY = (s.pointer.y - 768) * .035 * s.activity;
   }
   const k = s.spring;
   k.vx += ((targetX - k.x) * 72 - k.vx * 10) * dt;
   k.vy += ((targetY - k.y) * 72 - k.vy * 10) * dt;
   k.x += k.vx * dt; k.y += k.vy * dt;
-  s.ribbons.forEach((path, i) => path.setAttribute('d', bandPath(s, i)));
+  s.ribbons.forEach((path, i) => {
+    path.setAttribute('d', bandPath(s, i));
+    path.style.strokeDashoffset = String(i * 44 - s.clock * 35);
+  });
   s.spark.forEach((path, i) => path.setAttribute('d', bandPath(s, i * 3)));
-  s.field.style.opacity = String(s.drag ? .5 + s.charge * .4 : .36 + s.kick * .3);
-  s.light.style.opacity = String(s.drag ? .2 + s.charge * .6 : (s.pointer.inside ? .14 : 0) + s.kick * .3);
+  s.field.style.opacity = String(s.drag ? .5 + s.charge * .4 : .24 + .12 * s.activity + s.kick * .3);
+  s.light.style.opacity = String(s.drag ? .2 + s.charge * .6 : (s.pointer.inside ? .14 * s.activity : 0) + s.kick * .3);
   s.trail = s.trail.filter(p => time - p.time < 950);
   const d = s.trail.length > 1 ? 'M' + s.trail.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' L') : '';
   const age = s.trail.length ? time - s.trail[s.trail.length - 1].time : 950;
@@ -151,6 +159,7 @@ function tick(s, time) {
 
 function burst(s, strength) {
   if (!s.running) return;
+  wake(s, 2800);
   s.burst?.kill();
   s.card.dataset.phase = 'release';
   s.card.dataset.interactions = String(Number(s.card.dataset.interactions || 0) + 1);
@@ -174,6 +183,7 @@ function beginGrip(s, p, id = null) {
   s.card.dataset.gripping = 'true';
   s.card.dataset.phase = 'hold';
   if (id != null) s.touch.setPointerCapture(id);
+  wake(s);
   hint(s);
 }
 
@@ -183,6 +193,7 @@ function releaseGrip(s) {
   const distance = Math.hypot(s.pointer.x - s.drag.x, s.pointer.y - s.drag.y) / 350;
   const strength = .35 + clamp(age + distance, 0, 1) * .9;
   cancelGrip(s);
+  s.pointer.inside = false;
   burst(s, strength);
 }
 
@@ -214,10 +225,9 @@ async function init(s) {
       traces: [...s.layer.querySelectorAll('.ac-ink-trace')],
       tethers: [...s.layer.querySelectorAll('.ac-tether')]
     });
-    s.ambient = gsap.timeline({ paused: true, repeat: -1 });
     s.ribbons.forEach((path, i) => {
       path.setAttribute('d', bandPath(s, i, false));
-      s.ambient.fromTo(path, { strokeDashoffset: i * 44 }, { strokeDashoffset: -420 + i * 44, duration: 12, ease: 'none' }, 0);
+      path.style.strokeDashoffset = String(i * 44);
     });
     s.ready = true; s.card.dataset.ready = 'true';
     sync();
@@ -230,17 +240,17 @@ async function init(s) {
 cards.forEach(card => {
   const s = {
     card, layer: card.querySelector('.ac-engraving-effects'),
-    pause: card.querySelector('.ac-motion'), touch: card.querySelector('.ac-touch'),
-    started: false, ready: false, visible: false, running: false, frame: 0, clock: 0,
+    touch: card.querySelector('.ac-touch'),
+    started: false, ready: false, visible: false, running: false, frame: 0, clock: 0, activeUntil: 0, activity: 0,
     pointer: { x: 600, y: 930, inside: false }, spring: { x: 0, y: 0, vx: 0, vy: 0 },
     trail: [], drag: null, wave: 0, kick: 0, charge: 0
   };
   states.push(s);
   new IntersectionObserver(entries => { s.visible = entries[0].isIntersecting; sync(); }, { threshold: .06 }).observe(card);
-  s.pause.addEventListener('click', () => {
-    paused = !paused;
-    try { sessionStorage.setItem('fp-engraving-paused', paused ? '1' : '0'); } catch (error) { /* Optional storage. */ }
-    sync();
+  card.addEventListener('pointerenter', event => {
+    if (!s.running || !fine.matches) return;
+    s.pointer = { ...point(s, event), inside: true };
+    wake(s);
   });
   card.addEventListener('pointermove', event => {
     if (!s.running || (!fine.matches && !s.drag)) return;
@@ -251,9 +261,10 @@ cards.forEach(card => {
       if (s.trail.length > 40) s.trail.shift();
     }
     s.pointer = { ...p, inside: true };
+    wake(s);
   }, { passive: true });
   card.addEventListener('pointerleave', () => {
-    if (!s.drag) s.pointer.inside = false;
+    if (!s.drag) { s.pointer.inside = false; wake(s); }
   });
   s.touch.addEventListener('pointerdown', event => {
     if (event.button !== 0 || !s.running) return;
