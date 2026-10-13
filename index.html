@@ -290,7 +290,7 @@ section[data-route]{position:relative} section[data-route]>.wrap{position:relati
 
 /* 功能区：左列表 + 粘性右图 */
 .feat{max-width:1040px;margin:0 auto;padding:70px 20px 10px;display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:start}
-.feat .list{position:relative;padding-left:22px} .feat .bar{position:absolute;left:0;top:0;width:3px;height:0;border-radius:var(--pill);background:var(--ink-85);transition:transform .3s var(--ease),height .3s var(--ease)}
+.feat .list{position:relative;padding-left:22px} .feat .bar{position:absolute;left:0;top:0;width:3px;height:0;border-radius:var(--pill);background:var(--ink-85);transition:transform .3s var(--ease-out),height .3s var(--ease-out)}
 .feat .it{padding:0 0 46px;transition:opacity .3s var(--ease)} .feat .it .k{display:block;margin-bottom:8px} .feat .it b{display:block;font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.015em;margin-bottom:8px;line-height:1.2;color:var(--ink)} .feat .it p{margin:0;color:var(--ink-70);font-size:16px;max-width:42ch} .feat .it a{display:inline-block;margin-top:12px;font-weight:500}
 .feat .it:not(.on){opacity:.45}
 .feat .stick{position:sticky;top:20vh}
@@ -572,58 +572,99 @@ footer .k .more{display:inline;padding:0;margin-left:10px;font:400 11px var(--mo
   .pe .two.pe-price{grid-template-columns:1fr}
 }
 
-/* 首页行业与场景示意图（Dia 视觉语言 + 沐仞色卡） */
-.sx-sec{margin-top:140px}
-.sx-lead{max-width:40em;margin:14px auto 0;font-size:15px;line-height:1.7;color:var(--ink-50)}
-.sx{max-width:1000px;margin:40px auto 0}
-.sx-r{display:grid;grid-template-columns:64px minmax(0,1fr);align-items:center;column-gap:16px;color:var(--ink);text-decoration:none}
-.sx-k{font:400 11px var(--mono);letter-spacing:.08em;color:var(--ink-30)}
-.sx-g3p{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px}
-.sxp{display:inline-flex;align-items:center;gap:10px;min-width:0;padding:7px 8px 7px 16px;border-radius:var(--pill);background:#EFEDEA;font:400 13px var(--mono);letter-spacing:.02em;color:var(--ink)}
-.sxp b{width:9px;height:9px;border-radius:50%;flex:none}
-.sxp .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sxp .v{flex:none;padding:3px 9px;border-radius:6px;background:#fff;font-size:12px;color:var(--ink-70)}
-.sx-w{display:block;width:100%;overflow:visible}
-.sx-w path{fill:none;vector-effect:non-scaling-stroke}
-.sx-w .base path{stroke:rgba(33,32,33,.10);stroke-width:1.5}
-.sx-w .flow path{stroke-width:3;stroke-linecap:round;stroke-dasharray:1 26;animation:sxflow 2.6s linear infinite}
-.sx-w .flow path:nth-child(6n+1){stroke:#2F63B8}.sx-w .flow path:nth-child(6n+2){stroke:#4E3F66}.sx-w .flow path:nth-child(6n+3){stroke:#5284D7}.sx-w .flow path:nth-child(6n+4){stroke:#D6CBDD}.sx-w .flow path:nth-child(6n+5){stroke:#A9C3E8}.sx-w .flow path:nth-child(6n+6){stroke:#EBCFC4}
-@keyframes sxflow{to{stroke-dashoffset:-54}}
-.sxw{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;max-width:560px;width:100%;margin:0 auto;padding:16px 46px 14px;border-radius:16px;text-align:center;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 30px -18px rgba(33,32,33,.35);transition:transform .3s var(--ease-out)}
-.sxw.mist{background:rgba(227,236,248,.85);border:1px solid rgba(169,195,232,.7)}
-.sxw.lav{background:rgba(234,228,240,.85);border:1px solid rgba(214,203,221,.9)}
-.sxw b{font-family:var(--serif);font-weight:400;font-size:21px;letter-spacing:-.01em;color:var(--ink)}
-.sxw-v{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
-.sxw-v i{font-style:normal;padding:3px 10px;border-radius:6px;background:rgba(255,255,255,.85);font:400 12px var(--mono);color:var(--ink-70)}
-.sx-r em{position:absolute;right:16px;top:50%;margin-top:-10px;font-style:normal;color:var(--ink-30);transition:transform .3s var(--ease),color .2s}
-.sx-models{position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:10px;max-width:560px;width:100%;margin:0 auto;padding:4px 40px}
-.sx-models .sxp{padding:7px 16px}
-.sx-g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.sx-plant{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 8px 14px;border-radius:16px;transition:transform .3s var(--ease-out)}
-.sx-plant.sun{background:rgba(235,207,196,.45);border:1px solid rgba(235,207,196,.9);color:#4E3F66}
-.sx-plant.wind{background:rgba(227,236,248,.85);border:1px solid rgba(169,195,232,.7);color:#2F63B8}
-.sx-plant.hydro{background:rgba(234,228,240,.85);border:1px solid rgba(214,203,221,.9);color:#3D314F}
-.sx-plant b{font-weight:500;font-size:14px;color:var(--ink)}
-.sx-plant i{font-style:normal;padding:3px 10px;border-radius:6px;background:rgba(255,255,255,.85);font:400 11px var(--mono);color:var(--ink-70)}
-a.sx-a:hover .sxw,a.sx-a:hover .sx-plant{transform:translateY(-2px)}
-a.sx-a:hover em{transform:translateX(4px);color:var(--ink)}
-/* 功能区右侧滑动面板：每块一种色调（学 Dia） */
-.feat .shot[data-s="0"]{background:#E3ECF8;border-color:rgba(169,195,232,.7)}
-.feat .shot[data-s="1"]{background:#F6EBE6;border-color:rgba(235,207,196,.9)}
-.feat .shot[data-s="2"]{background:#EAE4F0;border-color:rgba(214,203,221,.9)}
-@media (prefers-reduced-motion:reduce){.sx-w .flow{display:none}}
-@media (max-width:800px){
-  .sx-r{grid-template-columns:1fr}
-  .sx-k,.sx-r em{display:none}
-  .sx-wr span{display:none}
-  .sx-g3p{grid-template-columns:1fr 1fr;gap:8px}
-  .sxp{font-size:12px;padding:6px 6px 6px 12px;gap:8px}
-  .sxp .v{display:none}
-  .sxw{padding:14px 16px}
-  .sx-models{padding:4px 0}
-  .sx-g3{gap:8px}
-  .sx-plant b{font-size:13px}
+/* Dia surface / story system · 2026-10-14.
+   Brand colors only; lighter surfaces are explicit white/alpha mixtures.
+   Reference: diabrowser.com home/apps; keep existing content, typefaces and routes. */
+:root,:root[data-scheme="B"]{
+ --brand-blue:#5284D7;--brand-warm:#B7A8A3;--brand-violet:#3D314F;--brand-carbon:#212021;--brand-action:#2F63B8;
+ --ink:var(--brand-carbon);--ink-85:rgba(33,32,33,.85);--ink-70:rgba(33,32,33,.7);--ink-50:rgba(33,32,33,.5);--ink-30:rgba(33,32,33,.3);
+ --accent:var(--brand-action);--accent-fill:var(--brand-blue);--peak:var(--brand-violet);
+ --accent-soft:color-mix(in srgb,var(--brand-blue) 16%,white);--accent-tint:color-mix(in srgb,var(--brand-blue) 6%,white);
+ --peak-soft:color-mix(in srgb,var(--brand-violet) 10%,white);
+ --surface-edge:rgba(33,32,33,.08);--surface-white:rgba(255,255,255,.72);
+ --surface-shadow:0 2px 8px rgba(33,32,33,.06),0 0 2px rgba(33,32,33,.04);
 }
+.pill{background:rgba(248,248,248,.88);border-color:var(--surface-edge);box-shadow:var(--surface-shadow);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.pill nav a{opacity:.72}.pill nav a:hover,.pill nav a.on{opacity:1}
+.pill.open{background:rgba(248,248,248,.97)}
+.hero .product{background:rgba(255,255,255,.70);border:1px solid rgba(255,255,255,.56);box-shadow:0 2px 4px rgba(33,32,33,.12),0 18px 48px -20px rgba(33,32,33,.30);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.hero .product .tb{background:rgba(255,255,255,.18)}
+.hero .product .tb i:nth-child(1){background:var(--brand-warm)}.hero .product .tb i:nth-child(2){background:var(--brand-blue)}.hero .product .tb i:nth-child(3){background:var(--brand-violet)}
+.hero .product .side{background:rgba(255,255,255,.12)}.hero .product .main{background:rgba(255,255,255,.28)}
+.hero .product .mc{background:rgba(255,255,255,.54);border-color:rgba(255,255,255,.64)}
+.card,.gcard,.news,.auth,.mini,.board,.fab-p{border-color:var(--surface-edge);box-shadow:var(--surface-shadow)}
+.btn.gray,.dock .btn.gray{background:rgba(183,168,163,.14);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.tl .bar{background:rgba(183,168,163,.15);border:1px solid rgba(183,168,163,.12);border-radius:999px}
+.tl .bar span{border-radius:999px;box-shadow:inset 0 1px rgba(255,255,255,.22)}
+/* Small color is categorical decoration, never a new service status. */
+.pe-by i{display:grid;place-items:center;color:white;background:var(--brand-blue);border-radius:6px;box-shadow:inset 0 0 0 1px rgba(33,32,33,.06)}
+.pe-by i svg{width:14px;height:14px}.pe-it:nth-child(4n+2) .pe-by i{background:var(--brand-warm);color:var(--brand-carbon)}.pe-it:nth-child(4n+3) .pe-by i{background:var(--brand-violet)}.pe-it:nth-child(4n) .pe-by i{background:var(--brand-action)}
+.tg i,.pk b{background:var(--brand-action)}.tg:nth-child(3n+2) i{background:var(--brand-warm)}.tg:nth-child(3n) i{background:var(--brand-violet)}
+.fa-ic{background:var(--brand-blue)}.fa:nth-child(3n+2) .fa-ic{background:var(--brand-warm)}.fa:nth-child(3n) .fa-ic{background:var(--brand-violet)}
+.gcard{--card-tone:var(--brand-blue);background:rgba(255,255,255,.54)}.gcard:nth-child(3n+2){--card-tone:var(--brand-warm)}.gcard:nth-child(3n){--card-tone:var(--brand-violet)}
+.gcard .vis{background:linear-gradient(155deg,color-mix(in srgb,var(--card-tone) 20%,white),color-mix(in srgb,var(--card-tone) 5%,white));mask-image:none;-webkit-mask-image:none;border-bottom:1px solid var(--surface-edge)}
+.gcard .bd{padding:20px}.gcard .pv{background:rgba(255,255,255,.64);border-radius:8px;padding:10px;box-shadow:var(--surface-shadow)}
+.gcard .pv.chart{inset:12px}.gcard .pv.chart .lab{left:12px;top:10px}
+.code{background:var(--brand-carbon);color:var(--paper)}.code .c{color:var(--brand-blue)}.code .s{color:var(--brand-warm)}
+/* Like Dia's vertical browser story: three individually tinted windows. */
+.feat{max-width:1160px;grid-template-columns:minmax(250px,.8fr) minmax(0,1.4fr);gap:64px;padding-top:48px;padding-bottom:30px;align-items:start}
+.feat .list{position:sticky;top:150px;padding-left:22px;align-self:start}
+.feat .it{padding-bottom:40px;transition:opacity .25s ease}.feat .it:not(.on){opacity:.48}
+.feat .it .feat-trigger{display:block;appearance:none;border:0;background:none;padding:0;margin:0 0 10px;text-align:left;font:400 26px/1.25 var(--serif);letter-spacing:-.015em;color:inherit;cursor:pointer}
+.feat .it p{font-size:15px;line-height:1.65}.feat .it a{font-size:14px;margin-top:10px}
+.feat .bar{background:var(--brand-carbon);transition:transform .3s var(--ease-out),height .3s var(--ease-out)}
+.feat .stick{position:static;display:grid;gap:64px;min-width:0}
+.feat .shot{--story-tone:var(--brand-blue);display:block;position:relative;padding:0 8px 8px;border-radius:12px;border:1px solid color-mix(in srgb,var(--story-tone) 32%,white);background:color-mix(in srgb,var(--story-tone) 20%,white);box-shadow:0 2px 6px rgba(33,32,33,.10),0 18px 36px -24px rgba(33,32,33,.32);overflow:hidden;scroll-margin-top:110px;transition:box-shadow .3s,transform .3s;mask-image:none;-webkit-mask-image:none}
+.feat .shot[data-s="1"]{--story-tone:var(--brand-warm)}.feat .shot[data-s="2"]{--story-tone:var(--brand-violet)}
+.feat .shot.on{box-shadow:0 2px 6px rgba(33,32,33,.12),0 22px 42px -24px color-mix(in srgb,var(--story-tone) 55%,transparent)}
+.story-bar{display:flex;align-items:center;gap:6px;height:38px;padding:0 8px;font:400 10px var(--mono);color:var(--ink-50)}
+.story-bar i{display:block;width:7px;height:7px;border-radius:50%;background:var(--brand-warm)}.story-bar i:nth-child(2){background:var(--brand-blue)}.story-bar i:nth-child(3){background:var(--brand-violet)}
+.story-bar span{margin-left:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.story-sheet{min-height:350px;padding:32px 26px 30px;border:1px solid rgba(255,255,255,.58);border-radius:7px;background:rgba(255,255,255,.70);box-shadow:0 1px 4px rgba(33,32,33,.035)}
+.feat .shot .mk{font:400 30px/1.25 var(--serif);color:var(--ink);margin:0 0 28px;letter-spacing:-.02em}
+.feat .shot .trow{min-height:48px;padding:12px 0;gap:18px;border-color:rgba(33,32,33,.07);font-size:14px}
+.feat .shot .trow>span:first-child{min-width:0}.feat .shot .trow .k{display:block;font-size:10px;line-height:1.5;letter-spacing:.03em;color:var(--ink-50);margin-top:3px}
+.feat .shot .trow .mono{font-size:12px;text-align:right}.feat .shot .trow>.k{text-align:right}
+/* Layered diagram: translucent bars, inset white labels, precise brand dots. */
+.sx-sec{margin-top:120px}.sx-lead{max-width:40em;margin:14px auto 0;font-size:15px;line-height:1.7;color:var(--ink-50)}
+.sx{position:relative;isolation:isolate;max-width:1000px;margin:40px auto 0;padding:42px 32px;border:1px solid var(--surface-edge);border-radius:24px;background:linear-gradient(140deg,rgba(82,132,215,.10),rgba(183,168,163,.14) 50%,rgba(61,49,79,.09));box-shadow:inset 0 1px rgba(255,255,255,.8)}
+.sx:before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:radial-gradient(ellipse at 30% 15%,rgba(255,255,255,.86),transparent 65%),radial-gradient(ellipse at 85% 75%,rgba(255,255,255,.7),transparent 65%);pointer-events:none}
+.sx-r{display:grid;grid-template-columns:52px minmax(0,1fr);align-items:center;column-gap:16px;color:var(--ink);text-decoration:none}
+.sx-k{font:400 11px var(--mono);letter-spacing:.06em;color:var(--ink-50)}
+.sx-g3p{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sxp{display:inline-flex;align-items:center;gap:9px;min-width:0;padding:8px 7px 8px 13px;border:1px solid rgba(255,255,255,.4);border-radius:var(--pill);background:rgba(183,168,163,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font:400 12px var(--sans);color:var(--ink);box-shadow:inset 0 1px rgba(255,255,255,.5)}
+.sxp b{width:9px;height:9px;border-radius:50%;flex:none;background:var(--dot,var(--brand-blue));box-shadow:inset 0 0 0 1px rgba(33,32,33,.05)}
+.sxp .t{flex:1;min-width:0;white-space:nowrap}.sxp .v{flex:none;padding:3px 8px;border-radius:var(--pill);background:rgba(255,255,255,.86);font:400 10px var(--mono);color:var(--ink-70)}
+.sx-w{display:block;width:100%;overflow:visible}.sx-w path{fill:none;vector-effect:non-scaling-stroke}
+.sx-w .base path{stroke:rgba(33,32,33,.14);stroke-width:1}.sx-w .flow path{stroke-width:3;stroke-linecap:round;stroke-dasharray:1 52;animation:sxflow 5s linear infinite;opacity:.8}
+.sx-w .flow path:nth-child(3n+1){stroke:var(--brand-blue)}.sx-w .flow path:nth-child(3n+2){stroke:var(--brand-warm)}.sx-w .flow path:nth-child(3n){stroke:var(--brand-violet)}
+@keyframes sxflow{to{stroke-dashoffset:-106}}
+.sxw{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;max-width:550px;width:100%;margin:0 auto;padding:20px 42px 18px;border-radius:16px;text-align:center;border:1px solid rgba(255,255,255,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 2px 5px rgba(33,32,33,.05),0 12px 24px -18px rgba(33,32,33,.18),inset 0 1px rgba(255,255,255,.9);transition:background .25s,transform .25s}
+.sxw.mist{background:rgba(255,255,255,.48)}.sxw.lav{background:rgba(255,255,255,.42)}
+.sxw-title{display:flex;align-items:center;gap:10px}.sxw b{font:400 23px/1.3 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.sx-mark{width:28px;height:28px;flex:none;display:grid;place-items:center;border-radius:8px;background:var(--brand-blue);color:white;box-shadow:inset 0 1px rgba(255,255,255,.22)}.lav .sx-mark{background:var(--brand-violet)}.sx-mark svg{width:17px;height:17px;stroke-width:1.5}
+.sxw-v{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}.sxw-v i{font-style:normal;padding:4px 10px;border:1px solid rgba(255,255,255,.4);border-radius:6px;background:rgba(255,255,255,.72);font:400 11px var(--mono);color:var(--ink-70)}
+.sx-r em{position:absolute;right:16px;top:50%;margin-top:-10px;font-style:normal;color:var(--ink-50);transition:transform .25s,color .25s}
+.sx-models{position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;max-width:550px;width:100%;margin:0 auto;padding:4px 32px}.sx-models .sxp{padding:7px 12px}
+.sx-g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sx-plant{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 8px 18px;border:1px solid rgba(255,255,255,.70);border-radius:16px;background:rgba(255,255,255,.50);box-shadow:var(--surface-shadow);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:transform .25s,background .25s}
+.sx-plant.sun{--plant:var(--brand-warm)}.sx-plant.wind{--plant:var(--brand-blue)}.sx-plant.hydro{--plant:var(--brand-violet)}
+.sx-plant>svg{box-sizing:content-box;width:22px;height:22px;padding:10px;border-radius:12px;background:var(--plant);color:white;box-shadow:inset 0 1px rgba(255,255,255,.28)}
+.sx-plant.sun>svg{color:var(--brand-carbon)}.sx-plant b{font-weight:500;font-size:14px;color:var(--ink)}.sx-plant i{font-style:normal;padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.70);font:400 10px var(--mono);color:var(--ink-70)}
+a.sx-a:hover .sxw,a.sx-a:hover .sx-plant{transform:translateY(-2px);background:rgba(255,255,255,.76)}a.sx-a:hover em{transform:translateX(3px);color:var(--ink)}
+.feat-trigger:focus-visible,.sx-a:focus-visible{outline:2px solid var(--brand-action);outline-offset:5px;border-radius:6px}
+@supports not (backdrop-filter:blur(12px)){.pill{background:var(--paper)}.sxw,.sx-plant{background:rgba(255,255,255,.92)}}
+@media (max-width:1100px){.feat{gap:36px}.story-sheet{padding:24px 18px}.sx{padding:32px 20px}.sx-g3p{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:800px){
+ .feat{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;padding:30px 20px 0}
+ .feat .list,.feat .stick{display:contents}.feat .bar{display:none}.feat .it{padding:30px 0 0;opacity:1!important}.feat .it .feat-trigger{font-size:25px}
+ .feat .it[data-i="0"]{grid-row:1}.feat .shot[data-s="0"]{grid-row:2}.feat .it[data-i="1"]{grid-row:3}.feat .shot[data-s="1"]{grid-row:4}.feat .it[data-i="2"]{grid-row:5}.feat .shot[data-s="2"]{grid-row:6}
+ .feat .shot{margin:0 0 24px}.story-sheet{min-height:300px;padding:24px 18px}.feat .shot .mk{font-size:26px}.feat .shot .trow{font-size:12px;gap:8px}.feat .shot .trow .mono{font-size:11px}.story-bar{font-size:9px}
+ .sx-sec{margin-top:80px}.sx{padding:26px 14px;border-radius:18px;margin-top:28px}.sx-r{grid-template-columns:1fr}.sx-k,.sx-r em,.sx-wr>span{display:none}
+ .sx-g3p{gap:8px}.sxp{padding:8px 10px;gap:7px;font-size:11px}.sxp .v{display:none}.sxw{padding:18px 12px}.sxw b{font-size:19px}.sxw-v{gap:5px}.sxw-v i{font-size:9px;padding:4px 7px}
+ .sx-models{padding:4px 0;gap:6px}.sx-models .sxp{padding:7px 9px;font-size:10px}.sx-g3{gap:7px}.sx-plant{padding:16px 4px;gap:9px}.sx-plant b{font-size:12px}.sx-plant i{font-size:8px;padding:3px 5px}.sx-plant>svg{width:19px;height:19px;padding:8px}
+}
+@media (prefers-reduced-motion:reduce){.sx-w .flow path{animation:none;stroke-dasharray:none;stroke-width:1;opacity:.45}.feat .shot,.feat .it,.feat .bar,.sxw,.sx-plant{transition:none}}
 </style>
 
 <div hidden aria-hidden="true"><img src="art/share/icon-512.png" alt="" width="512" height="512"></div>
@@ -675,20 +716,20 @@ a.sx-a:hover em{transform:translateX(4px);color:var(--ink)}
   <div class="hh c rv"><span class="k">怎么用</span><h2>接入、计价与产地</h2></div>
   <div class="feat">
     <div class="list"><div class="bar" id="featBar"></div>
-      <div class="it on" data-i="0"><span class="k">01</span><b>改一行地址，就接上了</b><p>改接入地址和 API Key，跑通一条真实任务，再切业务流量。</p><a class="ul" href="#models">浏览模型市场 →</a></div>
-      <div class="it" data-i="1"><span class="k">02</span><b>价格，从电开始就低</b><p>按模型、用量、时延和绿电来源计价；公开价在模型市场，企业可按量报价。</p><a class="ul" href="#models" data-scrollto="p-api">了解计费条件 →</a></div>
-      <div class="it" data-i="2"><span class="k">03</span><b>每一个词元，都查得到产地</b><p>每笔订单一张产地卡：哪座电站、哪个时段、用了多少电、产出多少词元。</p><a class="ul" href="#network">了解节点合作 →</a></div>
+      <div class="it on" data-i="0"><span class="k">01</span><button type="button" class="feat-trigger" aria-controls="feature-window-0">改一行地址，就接上了</button><p>改接入地址和 API Key，跑通一条真实任务，再切业务流量。</p><a class="ul" href="#models">浏览模型市场 →</a></div>
+      <div class="it" data-i="1"><span class="k">02</span><button type="button" class="feat-trigger" aria-controls="feature-window-1">价格，从电开始就低</button><p>按模型、用量、时延和绿电来源计价；公开价在模型市场，企业可按量报价。</p><a class="ul" href="#models" data-scrollto="p-api">了解计费条件 →</a></div>
+      <div class="it" data-i="2"><span class="k">03</span><button type="button" class="feat-trigger" aria-controls="feature-window-2">每一个词元，都查得到产地</button><p>每笔订单一张产地卡：哪座电站、哪个时段、用了多少电、产出多少词元。</p><a class="ul" href="#network">了解节点合作 →</a></div>
     </div>
     <div class="stick">
-      <div class="shot fade on" data-s="0"><div class="mk">模型市场</div><div id="homeModels"></div></div>
-      <div class="shot fade" data-s="1"><div class="mk">计价因素</div><div class="trow"><span>模型类型</span><span class="k">对话 · 推理</span></div><div class="trow"><span>调用规模</span><span class="k">Token 用量</span></div><div class="trow"><span>响应时延</span><span class="k">实时 · 非实时</span></div><div class="trow"><span>并发需求</span><span class="k">并发数</span></div><div class="trow" style="border:0"><span>绿电来源</span><span class="k">光伏 · 风电 · 水电</span></div></div>
-      <div class="shot fade" data-s="2"><div class="mk">一笔订单关联的记录</div><div class="trow"><span>计算节点</span><span class="k">电站侧一体机</span></div><div class="trow"><span>运行时段</span><span class="k">开始 · 结束</span></div><div class="trow"><span>电力来源</span><span class="k">光伏 · 风电 · 水电</span></div><div class="trow"><span>能源消耗</span><span class="k">kWh</span></div><div class="trow" style="border:0"><span>词元产出</span><span class="k">Token</span></div></div>
+      <div class="shot" data-s="0" id="feature-window-0"><div class="story-bar" aria-hidden="true"><i></i><i></i><i></i><span>fathompeak.cn / 模型市场</span></div><div class="story-sheet"><div class="mk">模型市场</div><div id="homeModels"></div></div></div>
+      <div class="shot" data-s="1" id="feature-window-1"><div class="story-bar" aria-hidden="true"><i></i><i></i><i></i><span>fathompeak.cn / 计价因素</span></div><div class="story-sheet"><div class="mk">计价因素</div><div class="trow"><span>模型类型</span><span class="k">对话 · 推理</span></div><div class="trow"><span>调用规模</span><span class="k">Token 用量</span></div><div class="trow"><span>响应时延</span><span class="k">实时 · 非实时</span></div><div class="trow"><span>并发需求</span><span class="k">并发数</span></div><div class="trow" style="border:0"><span>绿电来源</span><span class="k">光伏 · 风电 · 水电</span></div></div></div>
+      <div class="shot" data-s="2" id="feature-window-2"><div class="story-bar" aria-hidden="true"><i></i><i></i><i></i><span>fathompeak.cn / 产地记录</span></div><div class="story-sheet"><div class="mk">一笔订单关联的记录</div><div class="trow"><span>计算节点</span><span class="k">电站侧一体机</span></div><div class="trow"><span>运行时段</span><span class="k">开始 · 结束</span></div><div class="trow"><span>电力来源</span><span class="k">光伏 · 风电 · 水电</span></div><div class="trow"><span>能源消耗</span><span class="k">kWh</span></div><div class="trow" style="border:0"><span>词元产出</span><span class="k">Token</span></div></div></div>
     </div>
   </div>
 
   <div class="wrap rv" style="padding-top:60px">
     <div class="sec sx-sec"><div class="hh c rv"><span class="k">一张图看懂</span><h2>行业与场景</h2><p class="sx-lead">已有词元采购客户包括某 AI for Science 独角兽、某全球头部社交平台，以及某头部大厂的跨境电商图文审核。</p></div>
-      <div class="sx rv"><div class="sx-r"><span class="sx-k">场景</span><div class="sx-g3p"><span class="sxp"><b style="background:#2F63B8"></b><span class="t">AI 短剧与影视</span><span class="v">批量</span></span><span class="sxp"><b style="background:#A9C3E8"></b><span class="t">AI for Science</span><span class="v">科研</span></span><span class="sxp"><b style="background:#4E3F66"></b><span class="t">社交与陪伴</span><span class="v">对话</span></span><span class="sxp"><b style="background:#EBCFC4"></b><span class="t">内容与图文审核</span><span class="v">审核</span></span><span class="sxp"><b style="background:#5284D7"></b><span class="t">AI Agent</span><span class="v">多模型</span></span><span class="sxp"><b style="background:#D6CBDD"></b><span class="t">企业知识库</span><span class="v">B 端</span></span></div></div><div class="sx-r sx-wr"><span></span><svg class="sx-w" style="height:64px" viewBox="0 0 1000 64" preserveAspectRatio="none" aria-hidden="true"><g class="base"><path d="M166.7 0 C166.7 35 500.0 29 500.0 64"/><path d="M500.0 0 C500.0 35 500.0 29 500.0 64"/><path d="M833.3 0 C833.3 35 500.0 29 500.0 64"/></g><g class="flow"><path d="M166.7 0 C166.7 35 500.0 29 500.0 64"/><path d="M500.0 0 C500.0 35 500.0 29 500.0 64"/><path d="M833.3 0 C833.3 35 500.0 29 500.0 64"/></g></svg></div><a class="sx-r sx-a" href="#models" data-product-target="p-api"><span class="sx-k">接口</span><span class="sxw mist"><b>绿色词元交易平台</b><span class="sxw-v"><i>统一 API</i><i>OpenAI / Gemini 格式</i><i>按词元计费</i></span><em aria-hidden="true">→</em></span></a><div class="sx-r sx-wr"><span></span><svg class="sx-w" style="height:36px" viewBox="0 0 1000 36" preserveAspectRatio="none" aria-hidden="true"><g class="base"><path d="M500.0 0 C500.0 20 500.0 16 500.0 36"/></g><g class="flow"><path d="M500.0 0 C500.0 20 500.0 16 500.0 36"/></g></svg></div><a class="sx-r sx-a" href="#models" data-product-target="p-market"><span class="sx-k">模型</span><span class="sx-models"><span class="sxp"><b style="background:#2F63B8"></b><span class="t">DeepSeek</span></span><span class="sxp"><b style="background:#4E3F66"></b><span class="t">Qwen</span></span><span class="sxp"><b style="background:#5284D7"></b><span class="t">GLM</span></span><span class="sxp"><b style="background:#D6CBDD"></b><span class="t">MiniMax</span></span><em aria-hidden="true">→</em></span></a><div class="sx-r sx-wr"><span></span><svg class="sx-w" style="height:36px" viewBox="0 0 1000 36" preserveAspectRatio="none" aria-hidden="true"><g class="base"><path d="M500.0 0 C500.0 20 500.0 16 500.0 36"/></g><g class="flow"><path d="M500.0 0 C500.0 20 500.0 16 500.0 36"/></g></svg></div><a class="sx-r sx-a" href="#models" data-product-target="p-base"><span class="sx-k">调度</span><span class="sxw lav"><b>算电协同群智基座</b><span class="sxw-v"><i>任务时限</i><i>电力预测</i><i>节点状态</i></span><em aria-hidden="true">→</em></span></a><div class="sx-r sx-wr"><span></span><svg class="sx-w" style="height:64px" viewBox="0 0 1000 64" preserveAspectRatio="none" aria-hidden="true"><g class="base"><path d="M500.0 0 C500.0 35 166.7 29 166.7 64"/><path d="M500.0 0 C500.0 35 500.0 29 500.0 64"/><path d="M500.0 0 C500.0 35 833.3 29 833.3 64"/></g><g class="flow"><path d="M500.0 0 C500.0 35 166.7 29 166.7 64"/><path d="M500.0 0 C500.0 35 500.0 29 500.0 64"/><path d="M500.0 0 C500.0 35 833.3 29 833.3 64"/></g></svg></div><a class="sx-r sx-a" href="#models" data-product-target="p-box"><span class="sx-k">电站</span><span class="sx-g3"><span class="sx-plant sun"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg><b>光伏电站</b><i>FPTM 一体机</i></span><span class="sx-plant wind"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12v10M12 12 8 3M12 12l9 3M12 12l-8 6"/><circle cx="12" cy="12" r="1.4"/></g></svg><b>风电场</b><i>FPTM 一体机</i></span><span class="sx-plant hydro"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></g></svg><b>水电站</b><i>FPTM 一体机</i></span></span></a></div></div>
+      <div class="sx rv"><div class="sx-r"><span class="sx-k">场景</span><div class="sx-g3p"><span class="sxp"><b aria-hidden="true" style="--dot:#5284D7"></b><span class="t">AI 短剧与影视</span><span class="v">批量</span></span><span class="sxp"><b aria-hidden="true" style="--dot:#B7A8A3"></b><span class="t">AI for Science</span><span class="v">科研</span></span><span class="sxp"><b aria-hidden="true" style="--dot:#3D314F"></b><span class="t">社交与陪伴</span><span class="v">对话</span></span><span class="sxp"><b aria-hidden="true" style="--dot:#2F63B8"></b><span class="t">内容与图文审核</span><span class="v">审核</span></span><span class="sxp"><b aria-hidden="true" style="--dot:#212021"></b><span class="t">AI Agent</span><span class="v">多模型</span></span><span class="sxp"><b aria-hidden="true" style="--dot:#5284D7"></b><span class="t">企业知识库</span><span class="v">B 端</span></span></div></div><div class="sx-r sx-wr"><span></span><svg class="sx-w" style="height:64px" viewBox="0 0 1000 64" preserveAspectRatio="none" aria-hidden="true"><g class="base"><path d="M166.7 0 C166.7 35 500.0 29 500.0 64"/><path d="M500.0 0 C500.0 35 500.0 29 500.0 64"/><path d="M833.3 0 C833.3 35 500.0 29 500.0 64"/></g><g class="flow"><path d="M166.7 0 C166.7 35 500.0 29 500.0 64"/><path d="M500.0 0 C500.0 35 500.0 29 500.0 64"/><path d="M833.3 0 C833.3 35 500.0 29 500.0 64"/></g></svg></div><a class="sx-r sx-a" href="#models" data-product-target="p-api"><span class="sx-k">接口</span><span class="sxw mist"><span class="sxw-title"><span class="sx-mark" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14v10H3zM7 8l-2 2 2 2M13 8l2 2-2 2M11 7l-2 6"/></svg></span><b>绿色词元交易平台</b></span><span class="sxw-v"><i>统一 API</i><i>OpenAI / Gemini 格式</i><i>按词元计费</i></span><em aria-hidden="true">→</em></span></a><div class="sx-r sx-wr"><span></span><svg class="sx-w" style="height:36px" viewBox="0 0 1000 36" preserveAspectRatio="none" aria-hidden="true"><g class="base"><path d="M500.0 0 C500.0 20 500.0 16 500.0 36"/></g><g class="flow"><path d="M500.0 0 C500.0 20 500.0 16 500.0 36"/></g></svg></div><a class="sx-r sx-a" href="#models" data-product-target="p-market"><span class="sx-k">模型</span><span class="sx-models"><span class="sxp"><b aria-hidden="true" style="--dot:#5284D7"></b><span class="t">DeepSeek</span></span><span class="sxp"><b aria-hidden="true" style="--dot:#B7A8A3"></b><span class="t">Qwen</span></span><span class="sxp"><b aria-hidden="true" style="--dot:#3D314F"></b><span class="t">GLM</span></span><span class="sxp"><b aria-hidden="true" style="--dot:#2F63B8"></b><span class="t">MiniMax</span></span><em aria-hidden="true">→</em></span></a><div class="sx-r sx-wr"><span></span><svg class="sx-w" style="height:36px" viewBox="0 0 1000 36" preserveAspectRatio="none" aria-hidden="true"><g class="base"><path d="M500.0 0 C500.0 20 500.0 16 500.0 36"/></g><g class="flow"><path d="M500.0 0 C500.0 20 500.0 16 500.0 36"/></g></svg></div><a class="sx-r sx-a" href="#models" data-product-target="p-base"><span class="sx-k">调度</span><span class="sxw lav"><span class="sxw-title"><span class="sx-mark" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14M3 10h14M3 15h14"/><circle cx="7" cy="5" r="2"/><circle cx="13" cy="10" r="2"/><circle cx="8" cy="15" r="2"/></svg></span><b>算电协同群智基座</b></span><span class="sxw-v"><i>任务时限</i><i>电力预测</i><i>节点状态</i></span><em aria-hidden="true">→</em></span></a><div class="sx-r sx-wr"><span></span><svg class="sx-w" style="height:64px" viewBox="0 0 1000 64" preserveAspectRatio="none" aria-hidden="true"><g class="base"><path d="M500.0 0 C500.0 35 166.7 29 166.7 64"/><path d="M500.0 0 C500.0 35 500.0 29 500.0 64"/><path d="M500.0 0 C500.0 35 833.3 29 833.3 64"/></g><g class="flow"><path d="M500.0 0 C500.0 35 166.7 29 166.7 64"/><path d="M500.0 0 C500.0 35 500.0 29 500.0 64"/><path d="M500.0 0 C500.0 35 833.3 29 833.3 64"/></g></svg></div><a class="sx-r sx-a" href="#models" data-product-target="p-box"><span class="sx-k">电站</span><span class="sx-g3"><span class="sx-plant sun"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg><b>光伏电站</b><i>FPTM 一体机</i></span><span class="sx-plant wind"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12v10M12 12 8 3M12 12l9 3M12 12l-8 6"/><circle cx="12" cy="12" r="1.4"/></g></svg><b>风电场</b><i>FPTM 一体机</i></span><span class="sx-plant hydro"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></g></svg><b>水电站</b><i>FPTM 一体机</i></span></span></a></div></div>
     <div class="sec home-sec"><div class="hh rv"><span class="k">试点与推进中项目</span><h2>项目案例</h2></div>
       <div class="cases">
         <div class="case"><span class="k">境外 · 集中式光伏</span><b>南亚 1GW 集中式光伏电站算电协同试点</b><p>境外新能源场站的算电协同试点。</p></div>
@@ -722,7 +763,7 @@ a.sx-a:hover em{transform:translateX(4px);color:var(--ink)}
       <article class="pe" id="p-flow">
         <span class="pe-d">总览 · 三款产品如何协同</span>
         <h2 class="pe-t">从任务接入到交付结算</h2>
-        <div class="pe-grid"><div class="pe-it"><b>接入需求</b><p>客户确认模型、用量与交付时限，平台提供接入、报价和订单管理。</p><span class="pe-by"><i aria-hidden="true"></i>绿色词元交易平台</span></div><div class="pe-it"><b>调度资源</b><p>结合任务要求、电力预测与节点状态，安排计算资源和运行时段。</p><span class="pe-by"><i aria-hidden="true"></i>Tapestrix · NetWeaver</span></div><div class="pe-it"><b>执行推理</b><p>部署在场站或机房的 FPTM 一体机运行模型，提供推理算力。</p><span class="pe-by"><i aria-hidden="true"></i>FPTM 系列</span></div><div class="pe-it"><b>交付结算</b><p>交付模型调用结果，记录用量、费用与能源信息。</p><span class="pe-by"><i aria-hidden="true"></i>可追溯</span></div></div>
+        <div class="pe-grid"><div class="pe-it"><b>接入需求</b><p>客户确认模型、用量与交付时限，平台提供接入、报价和订单管理。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14v10H3zM7 8l-2 2 2 2M13 8l2 2-2 2M11 7l-2 6"/></svg></i>绿色词元交易平台</span></div><div class="pe-it"><b>调度资源</b><p>结合任务要求、电力预测与节点状态，安排计算资源和运行时段。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14M3 10h14M3 15h14M6 3v4M13 8v4M8 13v4"/></svg></i>Tapestrix · NetWeaver</span></div><div class="pe-it"><b>执行推理</b><p>部署在场站或机房的 FPTM 一体机运行模型，提供推理算力。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h14v6H3zM3 11h14v6H3zM6 6h1M6 14h1M10 6h4M10 14h4"/></svg></i>FPTM 系列</span></div><div class="pe-it"><b>交付结算</b><p>交付模型调用结果，记录用量、费用与能源信息。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2h7l4 4v12H5zM12 2v5h4M8 10h5M8 13h5"/></svg></i>可追溯</span></div></div>
       </article>
 
       <article class="pe" id="p-api">
@@ -730,7 +771,7 @@ a.sx-a:hover em{transform:translateX(4px);color:var(--ink)}
         <h2 class="pe-t">绿色词元交易平台</h2>
         <div class="pe-tags"><span class="tg acc"><i aria-hidden="true"></i>API</span><span class="tg ln">按词元计费</span><span class="tg ln">OpenAI · Gemini 格式</span></div>
         <p class="pe-lead">统一接口接入主流模型，按词元用量计费。面向开发者和机构，主要承接非实时或弱实时推理。</p>
-        <div class="pe-grid"><div class="pe-it"><b>账户开通与 API 接入</b><p>在本站获取 API Key，按接入文档配置地址、模型名称与调用参数。<a class="ul" href="#start">查看开通流程 →</a></p><span class="pe-by"><i aria-hidden="true"></i>个人与开发者</span></div><div class="pe-it"><b>面向企业、科研机构与高校</b><p>说明应用场景、模型需求和预期用量，用样例负载测试后报价采购。<a class="ul" href="#enterprise">联系销售 →</a></p><span class="pe-by"><i aria-hidden="true"></i>企业与机构</span></div><div class="pe-it"><b>应用分发与渠道合作</b><p>将模型服务用于自有应用或授权渠道分发，价格与结算按协议执行。<a class="ul" href="#enterprise">联系销售 →</a></p><span class="pe-by"><i aria-hidden="true"></i>渠道商与平台方</span></div><div class="pe-it"><b>词元出海</b><p>出海运营主体持中央网信办词元出海业务批复，海外团队合规地用上中国模型。</p><span class="pe-by"><i aria-hidden="true"></i>海外客户</span></div></div>
+        <div class="pe-grid"><div class="pe-it"><b>账户开通与 API 接入</b><p>在本站获取 API Key，按接入文档配置地址、模型名称与调用参数。<a class="ul" href="#start">查看开通流程 →</a></p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 6a3 3 0 1 0 6 0a3 3 0 1 0-6 0M4 18v-2a6 6 0 0 1 12 0v2"/></svg></i>个人与开发者</span></div><div class="pe-it"><b>面向企业、科研机构与高校</b><p>说明应用场景、模型需求和预期用量，用样例负载测试后报价采购。<a class="ul" href="#enterprise">联系销售 →</a></p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V3h12v15M2 18h16M7 6h1M12 6h1M7 10h1M12 10h1M8 18v-4h4v4"/></svg></i>企业与机构</span></div><div class="pe-it"><b>应用分发与渠道合作</b><p>将模型服务用于自有应用或授权渠道分发，价格与结算按协议执行。<a class="ul" href="#enterprise">联系销售 →</a></p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h4v4H8zM2 14h4v4H2zM14 14h4v4h-4zM10 6v4M4 14v-4h12v4"/></svg></i>渠道商与平台方</span></div><div class="pe-it"><b>词元出海</b><p>出海运营主体持中央网信办词元出海业务批复，海外团队合规地用上中国模型。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10a8 8 0 1 0 16 0a8 8 0 1 0-16 0M2 10h16M10 2c-5 5-5 11 0 16M10 2c5 5 5 11 0 16"/></svg></i>海外客户</span></div></div>
         <div class="pe-sub"><h3>主要承接的任务</h3><span class="caps"><i>AI Agent 调用</i><i>科研模型推理</i><i>AI 内容处理</i><i>企业知识库推理</i><i>文本生成</i><i>图像生成</i><i>代码生成</i><i>开发者与 OPC 应用</i><i>园区与机构集中采购</i></span></div>
       </article>
 
@@ -757,7 +798,7 @@ a.sx-a:hover em{transform:translateX(4px);color:var(--ink)}
         <h2 class="pe-t">算电协同群智基座</h2>
         <div class="pe-tags"><span class="tg pk"><i aria-hidden="true"></i>项目交付</span><span class="tg ln">Tapestrix</span><span class="tg ln">NetWeaver</span></div>
         <p class="pe-lead">将算力、电力、网络与存储纳入协同管理，支持资源观测、预测和任务安排。</p>
-        <div class="pe-grid"><div class="pe-it"><b>算力集群管理</b><p>观测 GPU 与进程状态，管理异构资源，并结合任务负载评估能耗。</p><span class="pe-by"><i aria-hidden="true"></i>智能体一</span></div><div class="pe-it"><b>电力资源管理</b><p>结合场站数据预测发电与用电条件，为成本评估和任务安排提供依据。</p><span class="pe-by"><i aria-hidden="true"></i>智能体二</span></div><div class="pe-it"><b>算电协同调度</b><p>根据任务时限、网络状态与资源供给，选择合适节点并协调任务运行。</p><span class="pe-by"><i aria-hidden="true"></i>智能体三</span></div><div class="pe-it"><b>按项目交付</b><p>调度基座按项目交付，通过企业合作入口说明需求。<a class="ul" href="#enterprise">项目合作 →</a></p><span class="pe-by"><i aria-hidden="true"></i>项目合作</span></div></div>
+        <div class="pe-grid"><div class="pe-it"><b>算力集群管理</b><p>观测 GPU 与进程状态，管理异构资源，并结合任务负载评估能耗。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h10v10H5zM8 8h4v4H8zM7 2v3M13 2v3M7 15v3M13 15v3M2 7h3M2 13h3M15 7h3M15 13h3"/></svg></i>智能体一</span></div><div class="pe-it"><b>电力资源管理</b><p>结合场站数据预测发电与用电条件，为成本评估和任务安排提供依据。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2 4 11h5l-1 7 8-10h-6z"/></svg></i>智能体二</span></div><div class="pe-it"><b>算电协同调度</b><p>根据任务时限、网络状态与资源供给，选择合适节点并协调任务运行。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14M3 10h14M3 15h14M6 3v4M13 8v4M8 13v4"/></svg></i>智能体三</span></div><div class="pe-it"><b>按项目交付</b><p>调度基座按项目交付，通过企业合作入口说明需求。<a class="ul" href="#enterprise">项目合作 →</a></p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2h7l4 4v12H5zM12 2v5h4M8 10h5M8 13h5"/></svg></i>项目合作</span></div></div>
         <div class="pe-sub"><h3>应用场景</h3><span class="caps"><i>算力中心任务调度</i><i>GPU 集群能耗预测</i><i>AI 任务跨空间调度</i><i>光伏电站发电量预测</i><i>电价变化预测</i><i>光伏电站群智观测</i><i>算力任务跨电站调度</i><i>网络时延协同管理</i></span></div>
       </article>
 
@@ -766,7 +807,7 @@ a.sx-a:hover em{transform:translateX(4px);color:var(--ink)}
         <h2 class="pe-t">FPTM 系列词元一体机</h2>
         <div class="pe-tags"><span class="tg acc"><i aria-hidden="true"></i>风冷</span><span class="tg acc"><i aria-hidden="true"></i>液冷</span><span class="tg ln">可移动集装箱</span></div>
         <p class="pe-lead">面向场站、机房与既有节点的推理设备，支持异构 GPU 配置及风冷、液冷方案。</p>
-        <div class="pe-grid"><div class="pe-it"><b>8 卡 / 16 卡风冷一体机</b><p>5090 / RTX Pro 6000，8 卡或 16 卡，可上架标准机房。</p><span class="pe-by"><i aria-hidden="true"></i>风冷</span></div><div class="pe-it"><b>CDU 塔式液冷一体机</b><p>无需机房恒温恒湿，适配电站环境，部署即用。</p><span class="pe-by"><i aria-hidden="true"></i>液冷</span></div><div class="pe-it"><b>可移动集装箱方案</b><p>无需机房建设，单箱可达 300P 算力，无氟液冷。</p><span class="pe-by"><i aria-hidden="true"></i>集装箱</span></div><div class="pe-it"><b>新能源场站与闲置算力</b><p>分布式与集中式光伏电站、风电场、水电站、既有闲置算力中心和边缘算力节点。</p><span class="pe-by"><i aria-hidden="true"></i>部署场景</span></div><div class="pe-it"><b>以算代储</b><p>利用适用的富余电力运行 AI 推理任务，拓展电力消纳与价值实现方式。</p><span class="pe-by"><i aria-hidden="true"></i>核心用途</span></div><div class="pe-it"><b>单机异构 GPU 混插</b><p>同一台设备混插不同型号 GPU，统一调度、协同计算。</p><span class="pe-by"><i aria-hidden="true"></i>核心能力</span></div><div class="pe-it"><b>设备采购与本地部署</b><p>资产方可采购设备并合作运营；企业、科研机构与高校可在机房或实验室部署。<a class="ul" href="#enterprise">联系销售 →</a></p><span class="pe-by"><i aria-hidden="true"></i>采购与部署</span></div></div>
+        <div class="pe-grid"><div class="pe-it"><b>8 卡 / 16 卡风冷一体机</b><p>5090 / RTX Pro 6000，8 卡或 16 卡，可上架标准机房。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11a2 2 0 1 0-2-2M2 10h14a2 2 0 1 1-2 2M2 14h6a2 2 0 1 1-2 2"/></svg></i>风冷</span></div><div class="pe-it"><b>CDU 塔式液冷一体机</b><p>无需机房恒温恒湿，适配电站环境，部署即用。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2s6 7 6 10a6 6 0 0 1-12 0c0-3 6-10 6-10z"/></svg></i>液冷</span></div><div class="pe-it"><b>可移动集装箱方案</b><p>无需机房建设，单箱可达 300P 算力，无氟液冷。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h14v12H3zM6 4v12M10 4v12M14 4v12M5 18v-2M15 18v-2"/></svg></i>集装箱</span></div><div class="pe-it"><b>新能源场站与闲置算力</b><p>分布式与集中式光伏电站、风电场、水电站、既有闲置算力中心和边缘算力节点。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10a3 3 0 1 0 6 0a3 3 0 1 0-6 0M10 1v3M10 16v3M1 10h3M16 10h3M4 4l2 2M14 14l2 2M4 16l2-2M14 6l2-2"/></svg></i>部署场景</span></div><div class="pe-it"><b>以算代储</b><p>利用适用的富余电力运行 AI 推理任务，拓展电力消纳与价值实现方式。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2 4 11h5l-1 7 8-10h-6z"/></svg></i>核心用途</span></div><div class="pe-it"><b>单机异构 GPU 混插</b><p>同一台设备混插不同型号 GPU，统一调度、协同计算。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h10v10H5zM8 8h4v4H8zM7 2v3M13 2v3M7 15v3M13 15v3M2 7h3M2 13h3M15 7h3M15 13h3"/></svg></i>核心能力</span></div><div class="pe-it"><b>设备采购与本地部署</b><p>资产方可采购设备并合作运营；企业、科研机构与高校可在机房或实验室部署。<a class="ul" href="#enterprise">联系销售 →</a></p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h14v6H3zM3 11h14v6H3zM6 6h1M6 14h1M10 6h4M10 14h4"/></svg></i>采购与部署</span></div></div>
       </article>
 
       <article class="pe" id="p-coop">
@@ -774,7 +815,7 @@ a.sx-a:hover em{transform:translateX(4px);color:var(--ink)}
         <h2 class="pe-t">能源与算力节点合作</h2>
         <div class="pe-tags"><span class="tg pk"><i aria-hidden="true"></i>分润</span><span class="tg ln">新能源场站</span><span class="tg ln">第三方算力中心</span></div>
         <p class="pe-lead">资产方投入场地、电力或设备；沐仞提供接入、调度、运营与词元销售，双方按协议分享收益。</p>
-        <div class="pe-grid"><div class="pe-it"><b>资产方或投资机构出资采购一体机</b><p>一体机部署在光伏、风电、水电等新能源场站。</p><span class="pe-by"><i aria-hidden="true"></i>新能源场站</span></div><div class="pe-it"><b>算法、接入、调度、运营、销售</b><p>提供技术方案、节点接入、任务调度、设备运营与词元销售服务。</p><span class="pe-by"><i aria-hidden="true"></i>沐仞负责</span></div><div class="pe-it"><b>词元销售分润</b><p>按协议约定的比例和周期分配词元销售收益。</p><span class="pe-by"><i aria-hidden="true"></i>收益</span></div><div class="pe-it"><b>接入绿色词元交易平台</b><p>既有算力中心也可以接入交易平台。<a class="ul" href="#network">电站合作页 →</a></p><span class="pe-by"><i aria-hidden="true"></i>第三方算力中心</span></div></div>
+        <div class="pe-grid"><div class="pe-it"><b>资产方或投资机构出资采购一体机</b><p>一体机部署在光伏、风电、水电等新能源场站。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10a3 3 0 1 0 6 0a3 3 0 1 0-6 0M10 1v3M10 16v3M1 10h3M16 10h3M4 4l2 2M14 14l2 2M4 16l2-2M14 6l2-2"/></svg></i>新能源场站</span></div><div class="pe-it"><b>算法、接入、调度、运营、销售</b><p>提供技术方案、节点接入、任务调度、设备运营与词元销售服务。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14M3 10h14M3 15h14M6 3v4M13 8v4M8 13v4"/></svg></i>沐仞负责</span></div><div class="pe-it"><b>词元销售分润</b><p>按协议约定的比例和周期分配词元销售收益。</p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0M12 6H8v4h4v4H8M10 4v12"/></svg></i>收益</span></div><div class="pe-it"><b>接入绿色词元交易平台</b><p>既有算力中心也可以接入交易平台。<a class="ul" href="#network">电站合作页 →</a></p><span class="pe-by"><i aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h4v4H8zM2 14h4v4H2zM14 14h4v4h-4zM10 6v4M4 14v-4h12v4"/></svg></i>第三方算力中心</span></div></div>
       </article>
 
 
@@ -1400,11 +1441,21 @@ a.sx-a:hover em{transform:translateX(4px);color:var(--ink)}
     if(end) new IntersectionObserver(function(es){endIn=es[0].isIntersecting;upd()},{threshold:0.01}).observe(end);
     window.addEventListener('hashchange',function(){setTimeout(upd,60)}); upd() })();
   /* ---------- 功能区：指示条 + 粘性截图 ---------- */
-  var its=$$('.feat .it'), bar=$('#featBar');
-  function setFeat(i){ its.forEach(function(it,k){it.classList.toggle('on',k===i)}); $$('.feat .shot').forEach(function(s,k){s.classList.toggle('on',k===i)}); var it=its[i]; if(it&&bar){bar.style.height=(it.offsetHeight-46)+'px';bar.style.transform='translateY('+it.offsetTop+'px)'} }
-  if(window.IntersectionObserver){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setFeat(+e.target.getAttribute('data-i'))})},{rootMargin:'-40% 0px -45% 0px'}); its.forEach(function(it){io.observe(it)}) }
-  its.forEach(function(it){it.addEventListener('mouseenter',function(){setFeat(+it.getAttribute('data-i'))})});
-  setTimeout(function(){setFeat(0)},50);
+  var its=$$('.feat .it'), shots=$$('.feat .shot'), bar=$('#featBar');
+  function setFeat(i){
+    its.forEach(function(it,k){it.classList.toggle('on',k===i);var btn=it.querySelector('.feat-trigger');if(btn)btn.setAttribute('aria-pressed',String(k===i))});
+    shots.forEach(function(s,k){s.classList.toggle('on',k===i)});
+    var it=its[i];if(it&&bar){bar.style.height=Math.max(28,it.offsetHeight-40)+'px';bar.style.transform='translateY('+it.offsetTop+'px)'}
+  }
+  function syncFeatureScroll(){
+    if(!$('section[data-route="home"]').classList.contains('on'))return;
+    var point=window.innerHeight*.42,best=0,distance=Infinity;
+    shots.forEach(function(s,i){var r=s.getBoundingClientRect(),d=r.top<=point&&r.bottom>=point?0:Math.min(Math.abs(r.top-point),Math.abs(r.bottom-point));if(d<distance){distance=d;best=i}});setFeat(best);
+  }
+  var featureFrame=0;function queueFeatureScroll(){if(featureFrame)return;featureFrame=requestAnimationFrame(function(){featureFrame=0;syncFeatureScroll()})}
+  window.addEventListener('scroll',queueFeatureScroll,{passive:true});window.addEventListener('resize',queueFeatureScroll);window.addEventListener('hashchange',queueFeatureScroll);
+  its.forEach(function(it,i){it.querySelector('.feat-trigger').addEventListener('click',function(){setFeat(i);var r=shots[i].getBoundingClientRect();window.scrollTo({top:window.scrollY+r.top-115,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})})});
+  setFeat(0);
 
   /* ---------- 渐显 ---------- */
   var rv=$$('.rv');
@@ -1584,7 +1635,7 @@ a.sx-a:hover em{transform:translateX(4px);color:var(--ink)}
     if(name==='model') renderModel(arg); if(name==='guide') renderGuide(arg); if(name==='models') renderPricing(); if(name==='newsletter') renderNL();
     closeMenu(); window.scrollTo(0,0); bindToast(); if(toPricing){setTimeout(function(){var el=$('#pricingSec'); if(el){window.scrollTo(0,Math.max(0,window.scrollY+el.getBoundingClientRect().top-100))}},30)}
     document.title=({home:'沐仞 FathomPeak',models:'产品与服务 · 沐仞',model:(byId[arg]||M[0]).name+' · 沐仞',pricing:'节点与价格条件 · 沐仞',docs:'文档 · 沐仞',guides:'接入与采购指南 · 沐仞',guide:'指南 · 沐仞',network:'电站网络 · 沐仞',console:'控制台 · 沐仞',start:'账户开通流程 · 沐仞',changelog:'更新日志 · 沐仞',newsletter:'往期周报 · 沐仞',enterprise:'企业合作 · 沐仞',login:'登录 · 沐仞',news:'新闻动态 · 沐仞',about:'关于沐仞 · 沐仞'})[name]||'沐仞'; document.__zt=null; titleLang();
-    if(name==='home'){setTimeout(function(){setFeat(0)},60)} }
+    if(name==='home'){setTimeout(queueFeatureScroll,60)} }
   $$('[data-product-target]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();jumpTo(a.getAttribute('data-product-target'))})});
   window.addEventListener('hashchange',route); route();
 })();
