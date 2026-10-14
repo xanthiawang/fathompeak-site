@@ -28,7 +28,7 @@
 - 改哪里：整站都在 `index.html`；logo 在 `art/logos/`，字体在 `fonts/`。推送到 main 约 1 分钟后线上自动更新，大家看到的永远是最新版。
 - 网页上直接改：打开 `index.html` → 右上角铅笔 → 修改 → Commit changes。本地改：`git pull` → 改 → `git commit` → `git push`。改之前先 pull，避免覆盖别人的修改。
 - 编辑权限：仓库 Settings → Collaborators → Add people，输入对方的 GitHub 用户名。
-- `design/`：设计交付文档（`handoff-deck.pdf` / `.pptx`）和色卡与字体页（线上 `design/palette-type.html`）。
+- `design/`：[当前色卡与文字规范](https://xanthiawang.github.io/fathompeak-site/design/palette-type.html)、[当前设计交接说明](design/DESIGN_HANDOFF.md)。`handoff-deck.pdf` / `.pptx` 是 2026-10-13 历史快照，未同步最新后台；开发以当前文档与运行源码为准。
 - `tools/`：重拍交付文档截图、重建交付文档的脚本（路径按 Zixin 本机写）。
 - 境内稳定访问：把仓库内容放到公司已备案域名的网站根目录。
 

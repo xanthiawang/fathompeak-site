@@ -15,6 +15,7 @@
 | API 参考文档 | https://xanthiawang.github.io/fathompeak-site/#api |
 | 模型目录 | https://xanthiawang.github.io/fathompeak-site/#models |
 | 色卡与字体 | https://xanthiawang.github.io/fathompeak-site/design/palette-type.html |
+| 当前设计交接（色彩、文字、组件、动效） | https://github.com/xanthiawang/fathompeak-site/blob/main/design/DESIGN_HANDOFF.md |
 | 可编辑 Git 仓库 | https://github.com/xanthiawang/fathompeak-site |
 | GitHub 在线编辑主文件 | https://github.com/xanthiawang/fathompeak-site/edit/main/index.html |
 | 开发交付包 | https://github.com/xanthiawang/fathompeak-site/releases |
