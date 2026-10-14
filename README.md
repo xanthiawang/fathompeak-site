@@ -125,3 +125,9 @@ Validation: inline JavaScript syntax; local browser checks for home, pricing, lo
 此前未发布的双色雕版素材已弃用；上一版手绘图保留作为历史素材。本次继续保留 Dia 方向的卡片透明度、轻边框和软阴影，替换的是封面语言。
 
 运行素材：`art/console/editorial-collage-atlas_2026-10-14.webp`，原始图保存在同目录 `.png`。原路径：`/Users/zixin/.codex/generated_images/01a138c9-8cb1-71d3-9451-ed06ffff3277/exec-69b3ad4a-ad3a-44f7-a5b8-7119869db751.png`；2026-10-14 按任务复制到网站，保留生成原件与上一版素材。封面标题由 HTML 提供。
+
+## 2026-10-14 排线主体与 Dia 图标透明度（当前版）
+
+- 按用户新的 Every 近景参考调整主体：更多轮廓排线、交叉线和雕刻笔触；用不规则撕纸、曲线印刷片与断续色带组成多色层，去掉此前照片式灰度与规整色块。图片不再有独立实色方框，透明素材直接叠在网站晨昏底板上。
+- 卡片与功能 icon 继续参考 Dia：本地 `diabrowser_stylesheet_2026-10-12.css` 中可核查 `border-black/5`、`text-black/50`、`text-black/70` 等层次；品牌色使用沐仞色卡。卡片边框降至 5% 墨色、白底 60%；未选 icon 50% 墨色、选中/悬停 85%；右栏 icon 底白 58%、细线 5%；动态计数改为浅桃 38% 填充和 70% 墨色，动态小点 55% 透明度。正文未整体降低透明度。
+- 新素材 `art/console/engraved-blend-atlas_2026-10-14.png` 与 WebP。生成来源：`/Users/zixin/.codex/generated_images/01a138c9-8cb1-71d3-9451-ed06ffff3277/exec-4e22d74c-8c29-4d9a-90f2-77461c680c0c.png`。2026-10-14 按当前任务复制进网站仓库，旧版本与生成原件保留。所有图片是概念插画。
