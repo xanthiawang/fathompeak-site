@@ -1334,6 +1334,25 @@ html[lang="en"] #home2 .case b::first-letter,html[lang="en"] #home2 .cgh2 b::fir
 .bt-lang:hover{color:var(--ink);box-shadow:var(--dia-sh2)}
 .bt-lang:focus-visible{outline:2px solid var(--blue-1);outline-offset:2px}
 </style>
+<style id="roles-css">
+/* 四个角色状态（2026-10-14）：个人 / 企业成员 / 企业管理员 / 超管共用一套壳，data-roles 决定显隐 */
+.bt-orgs{display:grid;gap:2px;padding:4px 4px 6px}
+.bt-orgs button{appearance:none;border:0;background:transparent;text-align:left;cursor:pointer;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;font:inherit;color:inherit;width:100%}
+.bt-orgs button:hover{background:rgba(0,0,0,.045)} .bt-orgs button.on{background:rgba(0,0,0,.06)}
+.bt-orgs i{width:26px;height:26px;border-radius:8px;flex:none;display:grid;place-items:center;font:500 12px var(--serif);background:linear-gradient(135deg,#E3ECF8,#F3E6E0);color:#000}
+.bt-orgs span{display:grid;line-height:1.25;min-width:0} .bt-orgs span b{font-weight:500;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .bt-orgs span small{font:400 11px var(--mono);color:var(--ink-50)}
+.bt-orgs-new{display:block;font-size:12.5px;color:var(--ink-50);padding:2px 14px 10px} .bt-orgs-new:hover{color:var(--ink)}
+.bt-pophd2{border-top:1px solid var(--line);margin-top:4px;padding-top:12px}
+.bt-cred .bt-a{appearance:none;border:0;background:transparent;font:400 12px var(--sans);color:var(--ink-50);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0;margin-left:8px} .bt-cred .bt-a:hover{color:var(--ink)}
+.bt-nav .bt-ext{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;color:var(--ink-50);font-size:13.5px} .bt-nav .bt-ext svg{width:18px;height:18px;flex:none} .bt-nav .bt-ext:hover{color:var(--ink)}
+.cs-own{font-size:14px;color:var(--ink-70);margin:-8px 0 18px;padding:10px 14px;border-radius:12px;background:linear-gradient(100deg,#E3ECF8,#EEE7EC 56%,#F3E6E0)} .cs-own b{font-weight:500;color:#000}
+.cs-list{list-style:none;margin:0 0 6px;padding:0} .cs-list li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line-2);font-size:14px} .cs-list li .k{white-space:nowrap}
+.cs-mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px 18px;margin-top:8px} .cs-mods label{display:flex;gap:10px;align-items:center;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.7)} .cs-mods input{accent-color:#000}
+.cs-tbl .cs-lim{width:92px;text-align:right;height:30px;font-size:13px;padding:0 8px}
+.cs-tbl .cs-pr{width:84px;text-align:right;height:30px;font-size:13px;padding:0 8px}
+.bt-nav .cs-grp[data-roles]{margin-top:10px}
+@media (max-width:860px){.cs-mods{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
 
@@ -2490,9 +2509,13 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <button class="bt-col" type="button" id="btCol" aria-label="收起侧栏" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4v12" stroke="currentColor" stroke-width="1.4"/></svg></button>
       </div>
       <div class="bt-pop bt-orgpop" id="btOrgPop" hidden>
-        <div class="bt-pophd"><b>账户设置</b><span id="btOrgSub"></span></div>
+        <div class="bt-pophd"><b>账户</b><span id="btOrgSub"></span></div>
+        <div class="bt-orgs" id="btOrgs"></div>
+        <a class="bt-orgs-new" href="#enterprise" data-roles="personal">开通企业账户 →</a>
+        <div class="bt-pophd bt-pophd2"><b>账户设置</b></div>
         <button type="button" data-go="acct"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 2.5v2.2M10 15.3v2.2M2.5 10h2.2M15.3 10h2.2M4.7 4.7l1.6 1.6M13.7 13.7l1.6 1.6M4.7 15.3l1.6-1.6M13.7 6.3l1.6-1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>通用设置</button>
-        <button type="button" data-go="bill"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 8h15" stroke="currentColor" stroke-width="1.4"/></svg>钱包与账单</button>
+        <button type="button" data-go="members" data-roles="admin root"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="7.5" cy="7" r="2.8" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 16.5c0-2.8 2.2-4.5 5-4.5s5 1.7 5 4.5M13 7.2a2.6 2.6 0 0 1 0 5.2M14.5 12.3c1.9.4 3 1.8 3 4.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>成员</button>
+        <button type="button" data-go="bill" data-roles="personal admin root"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 8h15" stroke="currentColor" stroke-width="1.4"/></svg>钱包与账单</button>
         <button type="button" data-go="keys"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="6.5" cy="13.5" r="3.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9 11l7.5-7.5M13.5 6.5l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>API Key</button>
         <button type="button" data-go="sec"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 16 5v4.5c0 4-2.6 6.6-6 8-3.4-1.4-6-4-6-8V5Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>安全与访问</button>
         <button type="button" data-go="usage"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 10h3l2.5-6 4 12 2.5-6h3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>使用日志</button>
@@ -2508,23 +2531,30 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <i class="bt-rule" aria-hidden="true"></i>
         <span class="cs-grp bt-grp">账户设置</span>
         <button type="button" data-p="acct"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 2.5v2.2M10 15.3v2.2M2.5 10h2.2M15.3 10h2.2M4.7 4.7l1.6 1.6M13.7 13.7l1.6 1.6M4.7 15.3l1.6-1.6M13.7 6.3l1.6-1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>通用设置</span></button>
-        <button type="button" data-p="bill"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 8h15" stroke="currentColor" stroke-width="1.4"/></svg><span>钱包与账单</span></button>
+        <button type="button" data-p="members" data-roles="admin root"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="7.5" cy="7" r="2.8" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 16.5c0-2.8 2.2-4.5 5-4.5s5 1.7 5 4.5M13 7.2a2.6 2.6 0 0 1 0 5.2M14.5 12.3c1.9.4 3 1.8 3 4.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>成员</span></button>
+        <button type="button" data-p="bill" data-roles="personal admin root"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 8h15" stroke="currentColor" stroke-width="1.4"/></svg><span>钱包与账单</span></button>
         <button type="button" data-p="keys"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="6.5" cy="13.5" r="3.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9 11l7.5-7.5M13.5 6.5l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>API Key</span></button>
         <button type="button" data-p="sec"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 16 5v4.5c0 4-2.6 6.6-6 8-3.4-1.4-6-4-6-8V5Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span>安全与访问</span></button>
         <button type="button" data-p="usage"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 10h3l2.5-6 4 12 2.5-6h3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>使用日志</span></button>
+        <span class="cs-grp bt-grp" data-roles="root">管理员</span>
+        <button type="button" data-p="root-users" data-roles="root"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 8.5h7M6.5 11.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>用户与组织</span></button>
+        <button type="button" data-p="root-models" data-roles="root"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 10h3l2.5-6 4 12 2.5-6h3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>模型与价格</span></button>
+        <button type="button" data-p="root-content" data-roles="root"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4.5h12v8H8l-4 3Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M7 7.5h6M7 10h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>内容</span></button>
+        <a class="bt-ext" href="https://admin.fathompeak.cn/" target="_blank" rel="noopener" data-roles="root"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8 4H4.5v11.5H16V12M11 4h5v5M16 4l-7 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>高级设置 ↗</span></a>
       </nav>
       <div class="bt-pins"><span class="cs-grp bt-grp">已固定</span><div id="btPins"></div><p class="bt-pin0" id="btPin0">还没有固定的模型</p></div>
       <div class="bt-foot">
-        <button class="bt-credit" type="button" id="btCredB" aria-haspopup="true" aria-expanded="false" aria-controls="btCredPop"><span aria-hidden="true">¥</span><span>余额</span><b class="mono" id="btBal">¥0.00</b></button>
+        <button class="bt-credit" type="button" id="btCredB" aria-haspopup="true" aria-expanded="false" aria-controls="btCredPop"><span aria-hidden="true">¥</span><span id="btCredL">余额</span><b class="mono" id="btBal">¥0.00</b></button>
         <a href="#docs"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3.5h9.5a2 2 0 0 1 2 2v11H6a2 2 0 0 1-2-2Z M4 14.5a2 2 0 0 1 2-2h9.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span>文档</span></a>
         <a href="mailto:fathompeak@163.com"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 8a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.3v.4M10 14h.01" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>支持</span></a>
       </div>
       <div class="bt-pop bt-credpop" id="btCredPop" hidden>
-        <div class="bt-cred"><b>余额</b><p>在线充值后按实际用量扣费。</p><span class="mono" id="btCredBal">¥0.00</span></div>
+        <div class="bt-cred"><b id="btCredT">余额</b><p id="btCredP">在线充值后按实际用量扣费。</p><span class="mono" id="btCredBal">¥0.00</span></div>
         <div class="bt-cred"><b>可用时长</b><p>按余额和近 24 小时消费估算。</p><span class="mono" id="btCredRun">--</span></div>
-        <div class="bt-cred"><b>本月消费</b><p>按本月请求的实际用量计算。</p><span class="mono" id="btCredMon">¥0.00</span><i class="bt-track"><i id="btCredBar"></i></i></div>
+        <div class="bt-cred"><b>预警线</b><p id="btCredAlP">余额低于这个数时发通知。</p><span class="mono" id="btCredAl">未设置</span><button class="bt-a" type="button" data-go="acct">设置</button></div>
+        <div class="bt-cred" data-roles="member"><b>组织额度</b><p>由企业管理员充值和分配，你的用量计入组织账单。</p></div>
         <div class="bt-cred" data-for="edu" hidden><b>教育优惠</b><p>完成教育认证后按教育价计费。</p></div>
-        <button class="bt-btn pri full" type="button" data-go="bill">去充值</button>
+        <button class="bt-btn pri full" type="button" data-go="bill" data-roles="personal admin root">去充值</button>
       </div>
     </aside>
 
@@ -2675,7 +2705,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <div class="cs-empty" id="csSumE"><b>还没有调用记录</b><span>发出第一个请求后，这里按模型显示用量。</span><a class="ul" href="#docs">查看接入文档 →</a></div>
         <h3 class="cs-h3">请求明细</h3>
         <div class="cs-bar"><select class="mk-sel" id="csLt" aria-label="时间范围"><option value="1">今天</option><option value="7" selected>近 7 天</option><option value="30">近 30 天</option><option value="90">近 90 天</option></select>
-          <select class="mk-sel" id="csLm" aria-label="按模型筛选"></select><select class="mk-sel" id="csLk" aria-label="按 Key 筛选"></select></div>
+          <select class="mk-sel" id="csLm" aria-label="按模型筛选"></select><select class="mk-sel" id="csLk" aria-label="按 Key 筛选"></select><select class="mk-sel" id="csLu" aria-label="按成员筛选" data-roles="admin root"><option value="">全部成员</option></select></div>
         <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>时间</th><th>Key</th><th>模型</th><th class="r">输入 Token</th><th class="r">输出 Token</th><th class="r">费用</th><th>算力节点</th><th class="r">绿电折扣</th></tr></thead><tbody id="csLogs"></tbody></table></div>
         <div class="cs-empty" id="csLogsEmpty"><b>还没有请求记录</b><span>每次调用的时间、Key、模型、Token、费用、节点和绿电折扣会显示在这里。</span></div>
         <p class="cs-fine">算力节点是处理该请求的节点；绿电折扣是该请求结算时适用的绿电折扣。</p>
@@ -2690,6 +2720,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
       </div>
       <div class="cs-p" data-p="bill">
         <div class="cs-hd"><div><h2>钱包</h2><p>余额以人民币显示，按实际用量扣费。</p></div></div>
+        <p class="cs-own" id="csOwn"></p>
         <div class="cs-tiles n4"><div><span class="k">余额</span><b class="mono" id="csBal">¥0.00</b></div><div><span class="k">可用时长</span><b class="mono" id="csRun">--</b><span class="cs-help">按近 24 小时消费估算</span></div><div><span class="k">累计消费</span><b class="mono" id="csSpent">¥0.00</b></div><div><span class="k">请求次数</span><b class="mono" id="csReqs">0</b></div></div>
         <h3 class="cs-h3">充值</h3>
         <div class="cs-pay">
@@ -2705,21 +2736,79 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <h3 class="cs-h3">账单</h3>
         <div class="cs-empty">还没有账单</div>
         <p class="cs-fine">企业客户可以对公转账或按月结算，邮件 <a class="ul" href="mailto:fathompeak@163.com">fathompeak@163.com</a>。</p>
+        <div data-roles="admin root">
+          <h3 class="cs-h3">对公转账</h3>
+          <p class="cs-fine">企业账户可以对公转账或按月结算。收款信息与合同由商务提供：<a class="ul" href="mailto:fathompeak@163.com">fathompeak@163.com</a>。款项到账后由运营入账，入账记录显示在上方的充值记录里。</p>
+          <h3 class="cs-h3">发票</h3>
+          <form class="cs-ntf" id="csInvoice" novalidate>
+            <div class="cs-f"><label for="csInvT">发票抬头</label><input class="in" id="csInvT" name="title" autocomplete="organization"><p class="cs-help">企业认证通过后抬头固定为认证主体。</p></div>
+            <div class="cs-f"><label for="csInvN">纳税人识别号</label><input class="in mono" id="csInvN" name="tax" autocomplete="off" spellcheck="false"></div>
+            <div class="cs-f"><label for="csInvM">接收邮箱</label><input class="in" id="csInvM" name="mail" type="email" autocomplete="off"></div>
+            <p class="cs-help">按充值记录开票，电子发票发到接收邮箱。</p>
+            <div><button class="btn black sm" type="submit">申请开票</button></div>
+          </form>
+          <h3 class="cs-h3">按成员分摊</h3>
+          <div class="tbl"><table class="cs-tbl"><thead><tr><th>成员</th><th class="r">请求次数</th><th class="r">费用</th><th class="r">占比</th></tr></thead><tbody id="csShare"></tbody></table></div>
+          <div class="cs-empty" id="csShare0"><b>还没有消费</b><span>成员发出请求后，这里按成员汇总费用，可以导出对账。</span></div>
+        </div>
         <div class="cs-ref">
           <div><h3 class="cs-h3">推荐计划</h3><p>其他用户通过你的邀请链接注册后，你可以获得邀请奖励。</p></div>
           <div class="cs-ref-n"><div><span class="k">待确认</span><b class="mono">¥0.00</b></div><div><span class="k">总收入</span><b class="mono">¥0.00</b></div><div><span class="k">邀请人数</span><b class="mono">0</b></div></div>
           <div class="cs-keyrow"><code class="mono" id="csAff"></code><button class="btn gray sm" type="button" id="csAffCp">复制链接</button></div>
         </div>
       </div>
+      <div class="cs-p" data-p="root-users">
+        <div class="cs-hd"><div><h2>用户与组织</h2><p>平台上的个人账户、企业账户和待处理事项。开通企业、审核教育认证、对公入账在这里完成。</p></div></div>
+        <div class="cs-tiles n4"><div><span class="k">用户</span><b class="mono" id="rtU">0</b></div><div><span class="k">企业账户</span><b class="mono" id="rtO">0</b></div><div><span class="k">待审核认证</span><b class="mono" id="rtE">0</b></div><div><span class="k">待入账对公</span><b class="mono" id="rtB">0</b></div></div>
+        <div class="cs-bar"><input class="in" id="rtQ" placeholder="按邮箱、手机号或企业名查找" aria-label="查找账户"><select class="mk-sel" id="rtF" aria-label="筛选"><option value="">全部账户</option><option value="personal">个人</option><option value="edu">教育</option><option value="company">企业</option></select><button class="btn black sm" type="button" id="rtNew">开通企业账户</button></div>
+        <form class="cs-ntf" id="rtNewF" hidden novalidate><h3 class="cs-h3">开通企业账户</h3>
+          <div class="cs-f"><label for="rtOn">企业名称</label><input class="in" id="rtOn" name="name" autocomplete="organization"></div>
+          <div class="cs-f"><label for="rtOm">管理员邮箱</label><input class="in" id="rtOm" name="mail" type="email" autocomplete="off"><p class="cs-help">开通后给这个邮箱发邀请，对方接受后成为企业管理员。</p></div>
+          <div class="cs-f"><label for="rtOp">合同价</label><select class="mk-sel" id="rtOp" name="price"><option value="list">公开价</option><option value="contract">按合同折扣</option></select></div>
+          <div class="cs-f"><label for="rtOb">结算方式</label><select class="mk-sel" id="rtOb" name="bill"><option value="prepaid">预付充值</option><option value="monthly">月结</option></select></div>
+          <div><button class="btn black sm" type="submit">开通</button> <button class="btn gray sm" type="button" id="rtNewX">取消</button></div>
+        </form>
+        <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>账户</th><th>类型</th><th class="r">余额</th><th class="r">本月消费</th><th>状态</th><th></th></tr></thead><tbody id="rtRows"></tbody></table></div>
+        <div class="cs-empty" id="rtRows0"><b>还没有账户</b><span>用户注册后显示在这里；企业账户可以在上方开通。</span></div>
+        <h3 class="cs-h3">教育认证审核</h3>
+        <div class="cs-empty" id="rtEdu0"><b>没有待审核的申请</b><span>学生或老师上传学生证、在读证明后，申请显示在这里，通过后账户按教育价计费。</span></div>
+        <h3 class="cs-h3">对公入账</h3>
+        <form class="cs-newf" id="rtBank" novalidate><input class="in" name="org" placeholder="企业账户" aria-label="企业账户" autocomplete="off"><input class="in mono" name="amt" inputmode="decimal" placeholder="金额（¥）" aria-label="金额"><input class="in mono" name="ref" placeholder="银行流水号" aria-label="银行流水号" autocomplete="off" spellcheck="false"><button class="btn black sm" type="submit">入账</button></form>
+        <p class="cs-help">核对银行到账后在这里入账，金额计入该企业的余额，并写入它的充值记录。</p>
+      </div>
+      <div class="cs-p" data-p="root-models">
+        <div class="cs-hd"><div><h2>模型与价格</h2><p>官网的产品页、定价页和控制台的模型目录都读这张表。改价格后前台同步更新。</p></div></div>
+        <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>模型</th><th>厂商</th><th>类型</th><th>上下文</th><th class="r">输入 ¥/M</th><th class="r">输出 ¥/M</th><th class="r">缓存 ¥/M</th><th>上架</th><th>状态</th><th></th></tr></thead><tbody id="rtModels"></tbody></table></div>
+        <p class="cs-help">输出参考价来自当前目录；输入、缓存单价按模型分别填写。</p>
+      </div>
+      <div class="cs-p" data-p="root-content">
+        <div class="cs-hd"><div><h2>内容</h2><p>控制台里运营自己维护的内容：公告、常见问答，以及哪些菜单对用户显示。</p></div></div>
+        <h3 class="cs-h3">公告</h3>
+        <form class="cs-newf" id="rtNotice" novalidate><input class="in" name="t" placeholder="标题" aria-label="公告标题" autocomplete="off"><select class="mk-sel" name="k" aria-label="类型"><option value="notice">公告</option><option value="maint">维护</option><option value="model">模型上新</option></select><button class="btn black sm" type="submit">发布</button></form>
+        <ul class="cs-list" id="rtNotices"></ul>
+        <div class="cs-empty" id="rtNotices0"><b>还没有公告</b><span>发布后显示在用户的通知铃和概览里。</span></div>
+        <h3 class="cs-h3">常见问答</h3>
+        <form class="cs-newf" id="rtFaq" novalidate><input class="in" name="q" placeholder="问题" aria-label="问题" autocomplete="off"><input class="in" name="a" placeholder="答案" aria-label="答案" autocomplete="off"><button class="btn black sm" type="submit">添加</button></form>
+        <ul class="cs-list" id="rtFaqs"></ul>
+        <div class="cs-empty" id="rtFaqs0"><b>还没有问答</b><span>添加后显示在概览的常见问答里。</span></div>
+        <h3 class="cs-h3">侧栏模块</h3>
+        <p class="cs-help">关掉的模块对所有用户隐藏；管理员区域不受影响。</p>
+        <div class="cs-mods" id="rtMods"></div>
+      </div>
+      <div class="cs-p" data-p="members">
+        <div class="cs-hd"><div><h2>成员</h2><p>邀请同事加入企业账户。额度和账单由企业账户统一管理；管理员可以管理成员、API Key 和账单，成员可以创建和使用自己的 API Key。</p></div></div>
+        <div class="cs-tiles n4"><div><span class="k">成员</span><b class="mono" id="csMemN">1</b></div><div><span class="k">待加入</span><b class="mono" id="csMemP">0</b></div><div><span class="k">本月消费</span><b class="mono" id="csMemS">¥0.00</b></div><div><span class="k">启用的 Key</span><b class="mono" id="csMemK">0</b></div></div>
+        <h3 class="cs-h3">邀请</h3>
+        <form class="cs-newf" id="csInv" novalidate><input class="in" type="email" name="email" placeholder="同事邮箱" aria-label="同事邮箱" autocomplete="off"><select class="mk-sel" name="mrole" aria-label="角色"><option value="member">成员</option><option value="admin">管理员</option></select><button class="btn black sm" type="submit">发邀请</button><button class="btn gray sm" type="button" id="csInvLink">复制邀请链接</button></form>
+        <p class="cs-help">邮件邀请适合有邮箱的同事；没有邮箱的同事用邀请链接注册后自动加入。成员被移除后，他创建的 API Key 同时失效。</p>
+        <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>成员</th><th>角色</th><th>状态</th><th class="r">本月消费</th><th class="r">月限额（¥）</th><th>加入时间</th><th></th></tr></thead><tbody id="csSubs"></tbody></table></div>
+      </div>
       <div class="cs-p" data-p="acct">
         <div class="cs-hd"><div><h2>个人资料</h2><p>账户类型在注册时选择，同一个控制台。</p></div></div>
         <dl class="cs-dl"><dt>用户 ID</dt><dd class="mono" id="csUid"></dd><dt>邮箱</dt><dd class="mono" id="csMail2"></dd><dt>账户类型</dt><dd id="csType2"></dd><dt>注册时间</dt><dd class="mono" id="csSince"></dd><dt data-for="company" hidden>企业名称</dt><dd data-for="company" hidden id="csOrg"></dd><dt data-for="edu" hidden>学校</dt><dd data-for="edu" hidden id="csSchool"></dd></dl>
         <div class="cs-box" data-for="edu" hidden><h3 class="cs-h3">教育认证</h3><p class="cs-st" id="csEduSt"></p>
           <label class="btn gray sm cs-up" id="csUp"><input type="file" accept="image/*,.pdf" hidden id="csFile">上传学生证或在读证明</label></div>
-        <div class="cs-box cs-mem" data-for="company" hidden><h3 class="cs-h3">成员与角色</h3><p>邀请同事加入企业账户，额度和账单由企业账户统一管理。管理员可以管理成员、API Key 和账单；成员可以创建和使用自己的 API Key。</p>
-          <form class="cs-newf" id="csInv" novalidate><input class="in" type="email" name="email" placeholder="同事邮箱" aria-label="同事邮箱" autocomplete="off"><select class="mk-sel" name="mrole" aria-label="角色"><option value="member">成员</option><option value="admin">管理员</option></select><button class="btn black sm" type="submit">邀请</button></form>
-          <ul class="cs-mems" id="csSubs"></ul></div>
-        <form class="cs-ntf" id="csNtf" novalidate><h3 class="cs-h3">通知设置</h3>
+                <form class="cs-ntf" id="csNtf" novalidate><h3 class="cs-h3">通知设置</h3>
           <div class="cs-f"><span class="cs-lb" id="csNmL">通知方式</span><div class="cs-pm" role="radiogroup" aria-labelledby="csNmL"><button type="button" role="radio" aria-checked="true" data-v="email">邮箱</button><button type="button" role="radio" aria-checked="false" tabindex="-1" data-v="webhook">Webhook</button></div></div>
           <div class="cs-f"><label for="csNth">余额预警阈值（¥）</label><input class="in mono" id="csNth" name="th" inputmode="decimal" autocomplete="off"><p class="cs-help">余额低于此金额时发送通知。留空则不提醒。</p></div>
           <div class="cs-f" data-nm="email"><label for="csNmail">通知邮箱</label><input class="in" id="csNmail" name="mail" type="email" placeholder="留空则使用账户邮箱" autocomplete="off"></div>
@@ -2762,10 +2851,9 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
 
     <aside class="bt-rail" id="btRail" aria-label="账户摘要">
       <div class="bt-rs">
-        <button class="bt-spend" type="button" data-go="bill"><span><b>本期消费</b><span class="bt-big" id="btSpend">¥0.00</span><span class="bt-mut">本计费周期</span></span><svg class="bt-chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10M9 4.5l3.5 3.5L9 11.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="bt-spend" type="button" data-go="bill"><span><b id="btSpendL">本期消费</b><span class="bt-big" id="btSpend">¥0.00</span><span class="bt-mut">本计费周期</span></span><svg class="bt-chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10M9 4.5l3.5 3.5L9 11.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <button class="bt-row" type="button" data-go="acct"><i><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4 16.5c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></i><span id="btMem"></span><svg class="bt-chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10M9 4.5l3.5 3.5L9 11.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <button class="bt-row" type="button" data-go="keys"><i><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="6.5" cy="13.5" r="3.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9 11l7.5-7.5M13.5 6.5l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></i><span id="btKeyN"></span><svg class="bt-chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10M9 4.5l3.5 3.5L9 11.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="bt-row" type="button" data-go="acct"><i><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3a4.5 4.5 0 0 0-4.5 4.5c0 4-1.5 5.5-1.5 5.5h12s-1.5-1.5-1.5-5.5A4.5 4.5 0 0 0 10 3ZM8.3 16a1.8 1.8 0 0 0 3.4 0" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></i><span id="btAlert"></span><svg class="bt-chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10M9 4.5l3.5 3.5L9 11.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
       <div class="bt-rs bt-stats">
         <div><span>启用的 API Key</span><b id="btSk">0</b><i class="bt-track"><i id="btSkB"></i></i></div>
@@ -3360,7 +3448,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   function load(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
   function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
   /* Never turn legacy browser-only records into an authenticated session. */
-  var accounts={},me=null,logged=false;
+  var accounts={},me=null,logged=false; window.__me=function(){return me};
   var TYPE={personal:'个人账户',edu:'教育账户',company:'企业账户'};
   var MAIL=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
   function today(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
@@ -3450,6 +3538,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
     if(!me.aff){me.aff=rnd(ALNUM,6);persist()}
     $('#csMail').textContent=me.email; $('#csMail2').textContent=me.email; $('#csType').textContent=TYPE[me.type]; $('#csType2').textContent=TYPE[me.type];
     $('#csUid').textContent=me.uid; $('#csSince').textContent=me.since; $('#csOrg').textContent=me.org||''; $('#csSchool').textContent=me.school||'';
+    if(!me.role)me.role=me.type==='company'?'admin':'personal'; if(me.type==='company'&&!me.orgs)me.orgs=[{name:me.org||'企业账户',role:'admin'}];
     $$('[data-route="console"] [data-for]').forEach(function(el){el.hidden=el.getAttribute('data-for')!==me.type});
     $('#csEduFlag').hidden=!(me.type==='edu'&&me.edu!=='ok');
     var st=$('#csEduSt'); st.className='cs-st'+(me.edu==='ok'?' ok':me.edu==='wait'?' wait':''); st.textContent=me.edu==='ok'?'已通过（学校邮箱）':me.edu==='wait'?'已提交，审核中':'待认证'; $('#csUp').hidden=me.edu!=='none';
@@ -3503,7 +3592,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   /* 成员与角色：本人为管理员；邀请时选角色（管理员 / 成员），之后可改角色或移除。邀请邮件等平台接口 */
   $('#csInv').addEventListener('submit',function(e){e.preventDefault();var f=this,m=f.email.value.trim().toLowerCase();if(!MAIL.test(m)){toast('请输入有效的邮箱地址。');f.email.focus();return}
     me.subs=me.subs||[];if(m===String(me.email||'').toLowerCase()||me.subs.some(function(s){return s.email===m})){toast('这个邮箱已在成员列表中。');return}
-    me.subs.push({email:m,at:today(),role:f.mrole.value==='admin'?'admin':'member'});persist();f.reset();renderConsole();toast('已加入成员列表。邀请邮件接入后即可发送。')});
+    me.subs.push({email:m,at:today(),role:f.mrole.value==='admin'?'admin':'member'});persist();f.reset();renderConsole();toast('已发出邀请，对方接受后显示为已加入。')});
   var ntf=$('#csNtf'), setNm=radios($('.cs-pm',ntf),function(v){$$('[data-nm]',ntf).forEach(function(el){el.hidden=el.getAttribute('data-nm')!==v});clearAccountError(ntf)});
   ntf.addEventListener('input',function(){clearAccountError(ntf)});
   ntf.addEventListener('submit',function(e){e.preventDefault();var via=val(ntf),th=ntf.th.value.trim(),mail=ntf.mail.value.trim().toLowerCase(),hook=ntf.hook.value.trim();
@@ -3585,11 +3674,16 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   $$('#csTrSeg [data-td]').forEach(function(b){b.addEventListener('click',function(){trN=+b.getAttribute('data-td');$$('#csTrSeg [data-td]').forEach(function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',String(on))});renderTrend()})});
 
   /* 成员列表：本人（管理员）在最前，其后是邀请的同事 */
-  function renderMembers(){var you='<li><span class="cs-mm"><span>'+esc(me.email||'')+'</span><span class="cs-you">你</span></span><span>管理员</span><span class="cs-st ok">已加入</span><span></span></li>';
-    $('#csSubs').innerHTML=you+(me.subs||[]).map(function(s,i){var r=s.role==='admin'?'admin':'member';
-      return '<li><span class="cs-mm"><span>'+esc(s.email)+'</span><span class="cs-sub mono">'+esc(s.at||'')+'</span></span><select class="mk-sel" data-role="'+i+'" aria-label="角色"><option value="member"'+(r==='member'?' selected':'')+'>成员</option><option value="admin"'+(r==='admin'?' selected':'')+'>管理员</option></select><span class="cs-st wait">待加入</span><button class="ac-link" type="button" data-rm="'+i+'">移除</button></li>'}).join('');
+  function roleName(r){return {personal:'个人账户',member:'企业成员',admin:'企业管理员',root:'超级管理员'}[r]||'个人账户'}
+  function renderMembers(){var subs=me.subs||[],tb=$('#csSubs');if(!tb)return;
+    var you='<tr><td><span class="cs-mm"><span>'+esc(me.email||roleName(me.role))+'</span><span class="cs-you">你</span></span></td><td>'+(me.role==='root'?'超级管理员':'管理员')+'</td><td><span class="cs-st ok">已加入</span></td><td class="r mono">¥0.00</td><td class="r mono">不限</td><td class="mono">'+esc(me.since||'')+'</td><td></td></tr>';
+    tb.innerHTML=you+subs.map(function(x,i){var r=x.role==='admin'?'admin':'member';
+      return '<tr><td><span class="cs-mm"><span>'+esc(x.email)+'</span></span></td><td><select class="mk-sel" data-role="'+i+'" aria-label="角色"><option value="member"'+(r==='member'?' selected':'')+'>成员</option><option value="admin"'+(r==='admin'?' selected':'')+'>管理员</option></select></td><td><span class="cs-st wait">待加入</span></td><td class="r mono">¥0.00</td><td class="r"><input class="in mono cs-lim" data-lim="'+i+'" inputmode="decimal" value="'+(x.limit?esc(x.limit):'')+'" placeholder="不限" aria-label="月限额"></td><td class="mono">'+esc(x.at||'')+'</td><td class="r"><button class="ac-link" type="button" data-rm="'+i+'">移除</button></td></tr>'}).join('');
+    $('#csMemN').textContent=1+subs.length; $('#csMemP').textContent=subs.length; $('#csMemK').textContent=me.keys.filter(function(k){return kState(k)==='on'}).length;
     $$('#csSubs [data-role]').forEach(function(sel){sel.addEventListener('change',function(){me.subs[+sel.getAttribute('data-role')].role=sel.value;persist();toast('已更新角色。')})});
-    $$('#csSubs [data-rm]').forEach(function(b){b.addEventListener('click',function(){if(!b._armed){b._armed=1;b.textContent='确认移除';return}me.subs.splice(+b.getAttribute('data-rm'),1);persist();renderConsole();toast('已移除成员。')})})}
+    $$('#csSubs [data-lim]').forEach(function(inp){inp.addEventListener('change',function(){var v=inp.value.trim();if(v&&!(+v>0)){toast('请输入大于 0 的金额，留空为不限。');inp.value='';return}me.subs[+inp.getAttribute('data-lim')].limit=v;persist();toast(v?'已设置月限额 ¥'+v+'。':'已取消限额。')})});
+    $$('#csSubs [data-rm]').forEach(function(b){b.addEventListener('click',function(){if(!b._armed){b._armed=1;b.textContent='确认移除';return}me.subs.splice(+b.getAttribute('data-rm'),1);persist();renderConsole();toast('已移除成员，他的 API Key 已失效。')})})}
+  $('#csInvLink').addEventListener('click',function(){if(!me)return;var link=location.origin+location.pathname+'#start?invite='+(me.aff||'');copyText(link,function(){toast('邀请链接已复制，7 天内有效。')})});
 
   /* 余额与可用时长：可用时长 = 余额 ÷ 近 24 小时消费；没有消费时显示 -- */
   function runway(){var s=Date.now()-864e5,d=LOGS.reduce(function(a,r){return r.t>=s?a+(+r.cost||0):a},0);if(!(d>0))return '--';var x=BALANCE/d;
@@ -3679,21 +3773,65 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
     $('#btXq').addEventListener('input',btExplore); btExplore()})();
 
   function btRender(){if(!me)return;
-    $('#btOrgN').textContent=me.preview?'界面预览':(me.org||me.school||me.email); $('#btOrgSub').textContent=TYPE[me.type]||'';
+    $('#btOrgN').textContent=me.org||(me.preview?'界面预览':(me.school||me.email)); $('#btOrgSub').textContent=roleName(me.role);
+    roleApply();
     var on=me.keys.filter(function(k){return kState(k)==='on'}).length, ps=pins(), spend=LOGS.reduce(function(a,r){return a+(+r.cost||0)},0);
     var _mn=(me.subs||[]).length+1; $('#btMem').innerHTML='<b>'+_mn+'</b> <span>'+(_mn===1?'位成员\u200b':'位成员')+'</span>';  /* \u200b：数量为 1 时英文用单数 */
     var _kn=me.keys.length; $('#btKeyN').innerHTML='<b>'+_kn+'</b> <span>'+(_kn===1?'个 API Key\u200b':'个 API Key')+'</span>';  /* \u200b：数量为 1 时英文用单数 */
-    var th=me.notify&&me.notify.th; $('#btAlert').innerHTML=th?'<span>余额预警</span> <b>'+cny(th)+'</b>':'<span>余额预警未设置</span>';
     $('#btSk').textContent=on; $('#btSkB').style.width=(me.keys.length?on/me.keys.length*100:0)+'%';
     $('#btSr').textContent=LOGS.length.toLocaleString('en-US'); $('#btSp').textContent=ps.length; $('#btSpB').style.width=(ps.length/M.length*100)+'%';
-    $('#btSpend').textContent=cny(spend); $('#btCredMon').textContent=cny(spend);
+    $('#btSpend').textContent=cny(spend); var th0=me.notify&&me.notify.th; $('#btCredAl').textContent=th0?cny(th0):'未设置';
     $('#btPins').innerHTML=ps.map(function(id){return byId[id]}).filter(Boolean).map(function(m){return '<a href="#model-'+m.id+'">'+vlogo(m.vendor,18)+'<span>'+esc(m.name)+'</span></a>'}).join(''); $('#btPin0').hidden=ps.length>0;
     $('#btModels').innerHTML=M.map(function(m){return mRow(m,false)}).join(''); $('#btModels2').innerHTML=M.map(function(m){return mRow(m,true)}).join('');
     $$('#btModels2 [data-pin]').forEach(function(b){b.addEventListener('click',function(){togglePin(b.getAttribute('data-pin'))})});
     btKeys(); btSync(($('.cs-p.on')||{getAttribute:function(){return 'home'}}).getAttribute('data-p'))}
 
+
+  /* ---------- 四个角色状态（2026-10-14）：同一套壳，按 me.role 显隐 ---------- */
+  var ORGS=[], RT_NOTICES=[], RT_FAQS=[], RT_MODS={};
+  function roleApply(){var role=me.role||'personal';bt.setAttribute('data-role',role);
+    $$('.bt [data-roles]').forEach(function(el){el.hidden=el.getAttribute('data-roles').split(' ').indexOf(role)<0});
+    $('#btCredL').textContent=role==='member'?'组织额度':role==='admin'?'组织余额':'余额';
+    $('#btCredT').textContent=role==='member'?'可用额度':role==='admin'?'组织余额':'余额'; $('#btCredP').textContent=role==='member'?'管理员分配给你的额度；没有设上限时等于组织余额。':role==='admin'?'在线充值或对公转账后，成员的用量从这里扣。':'在线充值后按实际用量扣费。';
+    var mr=$('#btMem')&&$('#btMem').closest('.bt-row'); if(mr)mr.setAttribute('data-go',(role==='admin'||role==='root')?'members':'acct');
+    $('#btCredAlP').textContent=role==='member'?'组织余额低于这个数时提醒管理员。':'余额低于这个数时发通知。';
+    $('#btSpendL').textContent=role==='member'?'本期我的消费':role==='admin'?'本期企业消费':'本期消费';
+    var own=$('#csOwn');if(own){own.innerHTML=role==='admin'?'这个钱包属于 <b>'+esc(me.org||'企业账户')+'</b>，成员的用量计入这里；充值、发票和对账由管理员处理。':role==='root'?'这是你自己的钱包。平台账户的余额与入账在「用户与组织」里处理。':'<b>个人钱包</b>，在线充值后按实际用量扣费。'}
+    var list=[{name:me.email||'个人账户',role:'personal',sub:'个人账户'}].concat((me.orgs||[]).map(function(o){return {name:o.name,role:o.role,sub:roleName(o.role)}}));
+    $('#btOrgs').innerHTML=list.map(function(o,i){var on=o.role===role;return '<button type="button" data-sw="'+i+'" class="'+(on?'on':'')+'" aria-pressed="'+on+'"><i>'+(lang==='en'?(o.role==='personal'?'P':o.role==='root'?'F':'B'):esc(o.name.charAt(0)))+'</i><span><b>'+esc(o.name)+'</b><small>'+esc(o.sub)+(on?' · 当前':'')+'</small></span></button>'}).join('');
+    $$('#btOrgs [data-sw]').forEach(function(b){b.addEventListener('click',function(){var o=list[+b.getAttribute('data-sw')];if(o.role===me.role)return;me.role=o.role;me.org=o.role==='personal'?'':o.name;me.type=(o.role==='member'||o.role==='admin')?'company':(me.baseType||'personal');closePops();renderConsole();csTab('home');window.scrollTo(0,0);toast('已切换到 '+o.name)})});
+    var inv=$('#csInvoice');if(inv&&!inv.title.value)inv.title.value=me.org||'';
+    if(role==='root')rootRender()}
+  /* 超管页：用户与组织、模型与价格、内容。预览账户只在内存里 */
+  function rootRender(){var q=($('#rtQ').value||'').trim().toLowerCase(),f=$('#rtF').value;
+    var rows=ORGS.filter(function(o){return (!q||o.name.toLowerCase().indexOf(q)>=0||(o.mail||'').indexOf(q)>=0)&&(!f||o.type===f)});
+    $('#rtRows').innerHTML=rows.map(function(o){return '<tr><td><span class="cs-mm"><span>'+esc(o.name)+'</span><span class="cs-sub mono">'+esc(o.mail||'')+'</span></span></td><td>'+TYPE[o.type]+'</td><td class="r mono">'+cny(o.bal||0)+'</td><td class="r mono">¥0.00</td><td><span class="cs-st '+(o.st==='ok'?'ok':'wait')+'">'+(o.st==='ok'?'已开通':'待管理员接受邀请')+'</span></td><td class="r"><button class="ac-link" type="button" data-rtview="'+esc(o.name)+'">查看</button></td></tr>'}).join('');
+    $('#rtRows0').hidden=rows.length>0; $('#rtU').textContent=ORGS.length; $('#rtO').textContent=ORGS.filter(function(o){return o.type==='company'}).length;
+    $$('#rtRows [data-rtview]').forEach(function(b){b.addEventListener('click',function(){toast('账户详情页接平台接口后显示 Key、用量和成员。')})});
+    $('#rtModels').innerHTML=M.map(function(m,i){var off=!!m.off;return '<tr'+(off?' class="cs-off"':'')+'><td><span class="bt-mn">'+vlogo(m.vendor,20)+'<span>'+esc(m.name)+'</span></span></td><td>'+esc(m.vendor)+'</td><td>'+esc(m.type.join(' · '))+'</td><td class="mono">'+esc(m.ctx)+'</td><td class="r"><input class="in mono cs-pr" data-pr="in:'+i+'" inputmode="decimal" value="'+(m.pin!=null?m.pin:'')+'" placeholder="--" aria-label="输入单价"></td><td class="r"><input class="in mono cs-pr" data-pr="out:'+i+'" inputmode="decimal" value="'+m.mkt+'" aria-label="输出单价"></td><td class="r"><input class="in mono cs-pr" data-pr="cache:'+i+'" inputmode="decimal" value="'+(m.pcache!=null?m.pcache:'')+'" placeholder="--" aria-label="缓存单价"></td><td class="mono">'+esc(m.seen||'')+'</td><td><span class="cs-st '+(off?'':'ok')+'">'+(off?'已下架':'已上架')+'</span></td><td class="r"><button class="ac-link" type="button" data-rtoff="'+i+'">'+(off?'上架':'下架')+'</button></td></tr>'}).join('');
+    $$('#rtModels [data-pr]').forEach(function(inp){inp.addEventListener('change',function(){var p=inp.getAttribute('data-pr').split(':'),m=M[+p[1]],v=inp.value.trim();if(v&&!(+v>=0)){toast('请输入数字。');return}if(p[0]==='out'){if(!v){inp.value=m.mkt;return}m.mkt=+v}else if(p[0]==='in')m.pin=v?+v:null;else m.pcache=v?+v:null;btRender();toast('价格已更新；预览账户不保存。')})});
+    $$('#rtModels [data-rtoff]').forEach(function(b){b.addEventListener('click',function(){var m=M[+b.getAttribute('data-rtoff')];m.off=!m.off;rootRender();toast(m.off?'已下架 '+m.name+'，用户侧不再显示。':'已上架 '+m.name+'。')})});
+    $('#rtNotices').innerHTML=RT_NOTICES.map(function(n){return '<li><span>'+esc(n.t)+'</span><span class="k">'+({notice:'公告',maint:'维护',model:'模型上新'})[n.k]+' · '+esc(n.at)+'</span></li>'}).join(''); $('#rtNotices0').hidden=RT_NOTICES.length>0;
+    $('#rtFaqs').innerHTML=RT_FAQS.map(function(n){return '<li><span><b>'+esc(n.q)+'</b><br>'+esc(n.a)+'</span></li>'}).join(''); $('#rtFaqs0').hidden=RT_FAQS.length>0;
+    var mods=[['models','模型 API'],['orders','订单与产地卡'],['explore','探索'],['bill','钱包与账单'],['keys','API Key'],['sec','安全与访问'],['usage','使用日志']];
+    if(!$('#rtMods').children.length){$('#rtMods').innerHTML=mods.map(function(x){return '<label><input type="checkbox" data-mod="'+x[0]+'" checked><span>'+x[1]+'</span></label>'}).join('');
+      $$('#rtMods [data-mod]').forEach(function(c){c.addEventListener('change',function(){var p=c.getAttribute('data-mod');RT_MODS[p]=!c.checked;$$('.bt-nav [data-p="'+p+'"]').forEach(function(b){b.hidden=!c.checked});toast((c.checked?'已显示「':'已隐藏「')+mods.filter(function(x){return x[0]===p})[0][1]+'」。')})})}}
+  $('#rtQ').addEventListener('input',function(){if(me&&me.role==='root')rootRender()}); $('#rtF').addEventListener('change',function(){if(me&&me.role==='root')rootRender()});
+  $('#rtNew').addEventListener('click',function(){$('#rtNewF').hidden=false;$('#rtOn').focus()}); $('#rtNewX').addEventListener('click',function(){$('#rtNewF').hidden=true});
+  $('#rtNewF').addEventListener('submit',function(e){e.preventDefault();var f=this,n=f.name.value.trim(),m=f.mail.value.trim().toLowerCase();if(!n){toast('请填写企业名称。');f.name.focus();return}if(!MAIL.test(m)){toast('请输入有效的管理员邮箱。');f.mail.focus();return}
+    ORGS.push({name:n,mail:m,type:'company',st:'wait',price:f.price.value,bill:f.bill.value,bal:0});f.reset();f.hidden=true;rootRender();toast('已开通 '+n+'，邀请已发给管理员。')});
+  $('#rtBank').addEventListener('submit',function(e){e.preventDefault();var f=this,o=f.org.value.trim(),a=+f.amt.value,r=f.ref.value.trim();var org=ORGS.filter(function(x){return x.name===o})[0];
+    if(!org){toast('没有找到这个企业账户，请先开通。');f.org.focus();return}if(!(a>0)){toast('请输入入账金额。');f.amt.focus();return}if(!r){toast('请填写银行流水号。');f.ref.focus();return}
+    org.bal=(org.bal||0)+a;f.reset();rootRender();toast('已入账 '+cny(a)+' 到 '+o+'。')});
+  $('#rtNotice').addEventListener('submit',function(e){e.preventDefault();var f=this,t=f.t.value.trim();if(!t){toast('请填写标题。');return}RT_NOTICES.unshift({t:t,k:f.k.value,at:today()});f.reset();rootRender();toast('已发布公告。')});
+  $('#rtFaq').addEventListener('submit',function(e){e.preventDefault();var f=this,q=f.q.value.trim(),a=f.a.value.trim();if(!q||!a){toast('问题和答案都要填。');return}RT_FAQS.push({q:q,a:a});f.reset();rootRender();toast('已添加问答。')});
+  $('#csInvoice').addEventListener('submit',function(e){e.preventDefault();var f=this;if(!TOPUPS.length){toast('还没有可开票的充值记录。');return}if(!f.title.value.trim()||!f.tax.value.trim()||!MAIL.test(f.mail.value.trim())){toast('请填写抬头、税号和接收邮箱。');return}toast('已提交开票申请，电子发票会发到 '+f.mail.value.trim()+'。')});
+
   /* 评审入口：#console-preview 打开一个只在内存里的空账户（不写入浏览器、不验证身份），用来看控制台界面 */
-  function btPreview(){if(location.hash!=='#console-preview')return;if(!me){me={email:'',type:'personal',since:today(),keys:[],subs:[],edu:'none',preview:true};logged=true;syncLogin()}history.replaceState(null,'',location.pathname+location.search+'#console')}
+  function btPreview(){var h=location.hash.match(/^#console-preview(?:-(member|admin|root))?$/);if(!h)return;var role=h[1]||'personal';
+    var org=role==='root'?'沐仞运营':(role==='personal'?'':'企业账户');
+    me={email:'',type:(role==='member'||role==='admin')?'company':'personal',baseType:'personal',role:role,org:org,orgs:org?[{name:org,role:role}]:[],since:today(),keys:[],subs:[],edu:'none',preview:true};logged=true;syncLogin();
+    history.replaceState(null,'',location.pathname+location.search+'#console')}
   window.addEventListener('hashchange',btPreview); btPreview();
 
   /* ---------- 复制与提示 ---------- */
@@ -3790,6 +3928,8 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   /* 2026-10-14 原平台功能补齐：通知铃、开始使用清单、可用时长、公告与常见问答、消费趋势、导入客户端、批量创建、成员与角色、第三方绑定、文档客户端与计费 */
   Object.assign(I18N,{"通知": "Notifications", "余额预警与公告": "Balance alerts and announcements", "还没有通知": "No notifications yet", "余额预警和平台公告会显示在这里。": "Balance alerts and platform announcements will appear here.", "设置余额预警": "Set a balance alert", "开始使用": "Get started", "已创建 Key": "API key created", "按项目创建 API Key，完整 Key 只在创建时显示一次。": "Create an API key per project. The full key is shown only once, when it's created.", "已充值": "Balance topped up", "已发出首个请求": "First request sent", "用 Key 调用任一模型，请求会出现在使用日志里。": "Call any model with your key; the request will show up in your usage logs.", "未完成": "Not done yet", "公告": "Announcements", "还没有公告": "No announcements yet", "平台发布的维护和服务公告会显示在这里。": "Maintenance and service announcements from the platform will appear here.", "常见问答": "FAQ", "还没有常见问答": "No FAQ entries yet", "平台整理的常见问题会显示在这里。": "Common questions collected by the platform will appear here.", "可用时长": "Est. time left", "按余额和近 24 小时消费估算。": "Estimated from your balance and spend over the last 24 hours.", "按近 24 小时消费估算": "Based on the last 24 hours of spend", "天": "days", "小时": "hours", "不足 1 小时": "Under 1 hour", "导入客户端": "Import to client", "复制并保存这些 Key，关闭后无法再次查看。": "Copy and save these keys. You won't be able to see them again.", "平台开放其他分组后可在这里选择。": "Other groups can be selected here once the platform offers them.", "批量创建": "Batch create", "一次创建 1–20 个 Key，名称后自动加序号。": "Create 1–20 keys at once; a number is added to each name.", "无限额度": "Unlimited", "已开启无限额度。关闭后填写额度上限。": "Unlimited is on. Turn it off to set a spend limit.", "这个 Key 的累计消费达到上限后停止调用。": "Calls stop once this key's total spend reaches the limit.", "批量创建数量请填写 1 到 20 之间的整数。": "For batch create, enter a whole number from 1 to 20.", "客户端": "Clients", "接口地址": "Base URL", "模型名称": "Model name", "完成": "Done", "完整 Key 只在创建时显示一次，请粘贴你保存的 Key。": "The full key is shown only once, when it's created. Paste the key you saved.", "将 YOUR_API_HOST 替换为平台提供的 HTTPS 接入域名。各客户端的菜单名称会随版本变化，以客户端当前版本为准。": "Replace YOUR_API_HOST with the HTTPS endpoint provided by the platform. Menu names vary between client versions; follow the version you have.", "设置 → 模型服务 → 添加，提供商类型选 OpenAI。API 地址不用带 /v1，Cherry Studio 会自动补全。": "Settings → Model Provider → Add, with provider type OpenAI. Leave /v1 off the API address; Cherry Studio adds it.", "新增自定义供应商，按要切换的工具选择接口格式，填入请求地址和 API Key，保存后切换到这个供应商。": "Add a custom provider, choose the API format for the tool you're switching, enter the request URL and API key, save, then switch to this provider.", "设置 → AI 服务商 → OpenAI，填入 API Key 和 API 代理地址，再获取模型列表或手动添加模型。": "Settings → AI Providers → OpenAI. Enter the API key and API proxy URL, then fetch the model list or add models by hand.", "设置 → 模型服务商 → 添加自定义服务商，类型选 OpenAI，填入 API URL 和 API Key，再拉取或添加模型。": "Settings → Model Providers → Add custom provider, type OpenAI. Enter the API URL and API key, then fetch or add models.", "消费趋势": "Spend trend", "消费趋势时间范围": "Spend trend time range", "还没有消费记录": "No spend yet", "发出请求后，这里按天显示每个模型的消费。": "After you send requests, daily spend by model appears here.", "所选时间内没有消费": "No spend in this period", "换一个时间范围，或发出请求后再来看。": "Try another time range, or check back after sending requests.", "其他": "Other", "成员与角色": "Members & roles", "邀请同事加入企业账户，额度和账单由企业账户统一管理。管理员可以管理成员、API Key 和账单；成员可以创建和使用自己的 API Key。": "Invite colleagues to the company account; credit and billing are managed centrally. Admins manage members, API keys and billing; members create and use their own API keys.", "角色": "Role", "成员": "Member", "管理员": "Admin", "你": "You", "已加入": "Joined", "待加入": "Pending", "移除": "Remove", "确认移除": "Confirm removal", "这个邮箱已在成员列表中。": "This email is already on the member list.", "已加入成员列表。邀请邮件接入后即可发送。": "Added to the member list. Invitation emails will be sent once that's connected.", "已更新角色。": "Role updated.", "已移除成员。": "Member removed.", "第三方账号绑定": "Linked accounts", "绑定后可以用第三方账号登录。": "Link an account to sign in with it.", "微信账号：未绑定": "WeChat: not linked", "绑定微信": "Link WeChat", "微信绑定接入后即可使用。": "WeChat linking will be available once connected.", "在控制台的 API Key 列表里点「导入客户端」，可以逐项复制接入地址、API Key 和模型名称。": "In the console's API key list, click “Import to client” to copy the endpoint, API key and model name one at a time.", "桌面与网页客户端": "Desktop and web clients", "在服务商设置里添加自定义服务商，类型选 OpenAI 兼容，API 地址填": "In provider settings, add a custom provider of type OpenAI-compatible and set the API URL to", "，再填 API Key 和模型名称。": ", then enter the API key and model name.", "编程工具": "Coding tools", "编程工具要求平台开启对应接口：Claude Code 使用 Anthropic Messages 格式（": "Coding tools need the matching interface enabled on the platform: Claude Code uses the Anthropic Messages format (", "），Codex CLI 使用 OpenAI Responses 格式（": "), and Codex CLI uses the OpenAI Responses format (", "）。使用前请确认平台已为你要用的模型开启这些接口。": "). Before you start, confirm these interfaces are enabled for the models you plan to use.", "用三个环境变量设置接入地址（不带 /v1）、API Key 和模型名称，然后在同一个终端运行 claude。": "Set three environment variables for the endpoint (without /v1), API key and model name, then run claude in the same terminal.", "编辑": "Edit", "，新增一个服务商：base_url 填接入地址，env_key 填保存 API Key 的环境变量名，model 填模型名称。设置好环境变量后，在终端运行 codex。": " and add a provider: set base_url to the endpoint, env_key to the name of the environment variable that holds your API key, and model to the model name. Set that variable, then run codex in your terminal.", "聊天机器人框架": "Chatbot frameworks", "在管理面板添加模型，供应商选 OpenAI 兼容，Base URL 填": "In the admin panel, add a model with an OpenAI-compatible provider and set the Base URL to", "在管理面板的服务提供商里新增一项，类型选 OpenAI，API Base URL 填": "In the admin panel, add a service provider of type OpenAI and set the API Base URL to", "翻译工具": "Translation tools", "Fluent Read（流畅阅读）": "Fluent Read", "在插件设置里把翻译服务设为自定义 OpenAI 兼容接口，接口地址填完整的": "In the extension settings, set the translation service to a custom OpenAI-compatible API and set the API URL to the full", "翻译设置里添加大模型通用接口，API 接口地址填": "In translation settings, add a general LLM API and set the API URL to", "缓存计费": "Cache billing", "部分模型支持输入缓存：请求开头与近期请求相同的输入内容可以命中缓存，命中部分按缓存价计费，其余输入按普通输入价计费。是否支持缓存、缓存价是多少，取决于平台为该模型开启的配置，以模型详情和控制台为准。": "Some models support input caching: when the start of a request repeats input from recent requests, that part can hit the cache and is billed at the cache rate, while the rest is billed at the normal input rate. Whether a model supports caching, and its cache rate, depend on how the platform has configured that model; see the model details and the console.", "推理强度后缀": "Reasoning-effort suffixes", "支持推理强度的模型，可以在模型名称后加后缀指定推理强度，相当于把请求的推理强度（reasoning_effort）设为对应档位。推理强度越高，模型用于思考的 Token 通常越多，费用和耗时也会增加。哪些模型可以加后缀，取决于平台为该模型开启的配置。": "For models that support reasoning effort, add a suffix to the model name to set it; this is the same as setting the request's reasoning effort (reasoning_effort) to that level. Higher effort usually means more thinking tokens, so cost and latency go up. Which models accept these suffixes depends on how the platform has configured each model.", "后缀": "Suffix", "推理强度": "Reasoning effort", "高": "High", "中": "Medium", "低": "Low", "控制台导航": "Console navigation", "返回沐仞官网": "Back to the FathomPeak website", "收起侧栏": "Collapse sidebar", "展开侧栏": "Expand sidebar", "按名称查找 API Key": "Find an API key by name", "按类型和厂商筛选": "Filter by type and vendor", "账户摘要": "Account summary", "暂停背景光影": "Pause background light", "播放背景光影": "Play background light"});
   Object.assign(I18N,{"客户合作":"Customer partnerships","绿色词元，直供全球客户。":"Green tokens, supplied to customers worldwide.","申请企业采购 →":"Apply for enterprise purchasing →","富余绿电，就地变成词元。":"Surplus green power, turned into tokens on site.","申请电站合作 →":"Apply for a plant partnership →"});
+  Object.assign(I18N,{"成员": "Members", "账户": "Account", "开通企业账户 →": "Open a business account →", "用户与组织": "Users & organizations", "模型与价格": "Models & pricing", "内容": "Content", "高级设置 ↗": "Advanced settings ↗", "管理员": "Admin", "预警线": "Alert line", "余额低于这个数时发通知。": "We notify you when the balance drops below this.", "组织余额低于这个数时提醒管理员。": "Admins are notified when the organization balance drops below this.", "未设置": "Not set", "设置": "Set", "组织额度": "Organization allowance", "由企业管理员充值和分配，你的用量计入组织账单。": "Topped up and allocated by your organization's admin; your usage goes on the organization's bill.", "组织余额": "Organization balance", "本期我的消费": "My spend this period", "本期企业消费": "Organization spend this period", "个人账户": "Personal account", "企业成员": "Organization member", "企业管理员": "Organization admin", "超级管理员": "Super admin", "当前": "current", "对公转账": "Bank transfer", "企业账户可以对公转账或按月结算。收款信息与合同由商务提供：": "Business accounts can pay by bank transfer or monthly billing. Sales provides the account details and contract: ", "款项到账后由运营入账，入账记录显示在上方的充值记录里。": "Once received, operations credits it and the entry appears in the top-up history above.", "发票": "Invoices", "发票抬头": "Invoice title", "企业认证通过后抬头固定为认证主体。": "After business verification the title is fixed to the verified entity.", "纳税人识别号": "Tax ID", "接收邮箱": "Delivery email", "按充值记录开票，电子发票发到接收邮箱。": "Invoices are issued per top-up and emailed as e-invoices.", "申请开票": "Request invoice", "按成员分摊": "Split by member", "请求次数": "Requests", "费用": "Cost", "占比": "Share", "还没有消费": "No spend yet", "成员发出请求后，这里按成员汇总费用，可以导出对账。": "Once members send requests, cost is summarized per member here and can be exported.", "邀请同事加入企业账户。额度和账单由企业账户统一管理；管理员可以管理成员、API Key 和账单，成员可以创建和使用自己的 API Key。": "Invite colleagues to the business account. Allowance and billing are managed centrally; admins manage members, API keys and billing, members create and use their own API keys.", "待加入": "Pending", "启用的 Key": "Active keys", "邀请": "Invite", "同事邮箱": "Colleague's email", "发邀请": "Send invite", "复制邀请链接": "Copy invite link", "邮件邀请适合有邮箱的同事；没有邮箱的同事用邀请链接注册后自动加入。成员被移除后，他创建的 API Key 同时失效。": "Email invites suit colleagues with email; others sign up through the invite link and join automatically. When a member is removed, their API keys are disabled.", "角色": "Role", "状态": "Status", "月限额（¥）": "Monthly limit (¥)", "加入时间": "Joined", "你": "you", "已加入": "Joined", "不限": "Unlimited", "月限额": "Monthly limit", "移除": "Remove", "确认移除": "Confirm removal", "平台上的个人账户、企业账户和待处理事项。开通企业、审核教育认证、对公入账在这里完成。": "Personal and business accounts on the platform, plus pending tasks: opening business accounts, reviewing education verification and crediting bank transfers.", "用户": "Users", "企业账户": "Business accounts", "待审核认证": "Pending verifications", "待入账对公": "Pending transfers", "按邮箱、手机号或企业名查找": "Search by email, phone or company", "全部账户": "All accounts", "个人": "Personal", "教育": "Education", "企业": "Business", "开通企业账户": "Open business account", "企业名称": "Company name", "管理员邮箱": "Admin email", "开通后给这个邮箱发邀请，对方接受后成为企业管理员。": "An invite goes to this email; once accepted they become the organization admin.", "合同价": "Pricing", "公开价": "List price", "按合同折扣": "Contract discount", "结算方式": "Billing", "预付充值": "Prepaid", "月结": "Monthly", "开通": "Open", "取消": "Cancel", "类型": "Type", "余额": "Balance", "本月消费": "Spend this month", "还没有账户": "No accounts yet", "用户注册后显示在这里；企业账户可以在上方开通。": "Users appear here after sign-up; business accounts can be opened above.", "教育认证审核": "Education verification", "没有待审核的申请": "No pending applications", "学生或老师上传学生证、在读证明后，申请显示在这里，通过后账户按教育价计费。": "Applications appear here when students or teachers upload their ID or enrolment proof; approved accounts get education pricing.", "对公入账": "Credit bank transfer", "金额（¥）": "Amount (¥)", "银行流水号": "Bank reference", "入账": "Credit", "核对银行到账后在这里入账，金额计入该企业的余额，并写入它的充值记录。": "After checking the bank receipt, credit it here; the amount goes to the organization's balance and its top-up history.", "账户详情页接平台接口后显示 Key、用量和成员。": "The account page shows keys, usage and members once connected to the platform.", "查看": "View", "已开通": "Open", "待管理员接受邀请": "Waiting for the admin to accept", "官网的产品页、定价页和控制台的模型目录都读这张表。改价格后前台同步更新。": "The website's product and pricing pages and the console's model list all read this table; price changes update the front end.", "模型": "Model", "厂商": "Vendor", "上下文": "Context", "输入 ¥/M": "Input ¥/M", "输出 ¥/M": "Output ¥/M", "缓存 ¥/M": "Cache ¥/M", "上架": "Listed", "已上架": "Listed", "已下架": "Unlisted", "下架": "Unlist", "输出参考价来自当前目录；输入、缓存单价按模型分别填写。": "Output reference prices come from the current catalog; input and cache prices are set per model.", "价格已更新；预览账户不保存。": "Price updated; the preview account does not save.", "控制台里运营自己维护的内容：公告、常见问答，以及哪些菜单对用户显示。": "Content operations maintain in the console: announcements, FAQs and which menus users see.", "公告": "Announcements", "标题": "Title", "维护": "Maintenance", "模型上新": "New model", "发布": "Publish", "还没有公告": "No announcements yet", "发布后显示在用户的通知铃和概览里。": "Published announcements appear in users' notifications and overview.", "常见问答": "FAQ", "问题": "Question", "答案": "Answer", "添加": "Add", "还没有问答": "No FAQs yet", "添加后显示在概览的常见问答里。": "Added entries appear in the overview FAQ.", "侧栏模块": "Sidebar modules", "关掉的模块对所有用户隐藏；管理员区域不受影响。": "Modules you turn off are hidden for all users; the admin area is unaffected.", "模型 API": "Model API", "订单与产地卡": "Orders & origin cards", "探索": "Explore", "钱包与账单": "Wallet & billing", "安全与访问": "Security & access", "使用日志": "Usage logs", "全部成员": "All members", "沐仞运营": "FathomPeak operations", "界面预览": "Preview", "这是你自己的钱包。平台账户的余额与入账在「用户与组织」里处理。": "This is your own wallet. Platform accounts' balances and credits are handled under Users & organizations."});
+  Object.assign(I18N,{"可用额度": "Available allowance", "管理员分配给你的额度；没有设上限时等于组织余额。": "The allowance your admin assigned; with no cap it equals the organization balance.", "在线充值或对公转账后，成员的用量从这里扣。": "Top up online or by bank transfer; members' usage is deducted here.", "没有符合条件的模型": "No models match", "个人钱包": "Personal wallet", "，在线充值后按实际用量扣费。": ", topped up online and charged by actual usage.", "这个钱包属于": "This wallet belongs to", "，成员的用量计入这里；充值、发票和对账由管理员处理。": "; members' usage is charged here, and top-ups, invoices and reconciliation are handled by the admin.", "。款项到账后由运营入账，入账记录显示在上方的充值记录里。": ". Once the money arrives, operations credits it and the entry appears in the top-up history above.", "按成员筛选": "Filter by member", "查找账户": "Find an account", "筛选": "Filter", "公告标题": "Announcement title", "输入单价": "Input price", "输出单价": "Output price", "缓存单价": "Cache price", "月限额": "Monthly limit", "企业账户": "Business account", "沐仞运营": "FathomPeak operations", "已切换到 ": "Switched to "});
   var lang='zh'; try{lang=localStorage.getItem('fp-lang')||'zh'}catch(e){}
   var CJK=/[一-鿿。；]/;
   /* 先查字典与短语；查不到时把「A · B」「A → B」拆开逐段查，价格与示例请求按规则换 */
@@ -3835,6 +3975,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   function titleLang(){ var z=document.__zt||document.title; if(lang==='en'){ var t=trKey(z); if(t==null) t=rxTr(z); if(t!=null){ document.__zt=z; document.title=t } } else if(document.__zt){ document.title=document.__zt; document.__zt=null } }
   function setLang(l){ lang=l; try{localStorage.setItem('fp-lang',l)}catch(e){} syncAuthLocale(); applyLang(); titleLang() }
   $$('.lang').forEach(function(b){ b.addEventListener('click',function(e){ e.preventDefault(); setLang(lang==='en'?'zh':'en') }) });
+  $$('.lang').forEach(function(b){ b.addEventListener('click',function(){ setTimeout(function(){ if(typeof roleApply==='function'&&window.__me&&window.__me()) roleApply() },0) }) });
   var __lt=null; new MutationObserver(function(){ if(lang==='en'){ clearTimeout(__lt); __lt=setTimeout(applyLang,16) } }).observe(document.body,{childList:true,subtree:true});
   new MutationObserver(function(ms){ if(lang!=='en') return; for(var i=0;i<ms.length;i++){ var v=ms[i].target.getAttribute(ms[i].attributeName); if(v&&CJK.test(v)){ clearTimeout(__lt); __lt=setTimeout(applyLang,16); return } } }).observe(document.body,{subtree:true,attributes:true,attributeFilter:['aria-label','title','placeholder']});
   syncAuthLocale(); applyLang();
