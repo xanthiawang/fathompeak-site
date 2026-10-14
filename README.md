@@ -92,3 +92,11 @@
 Merged the current production homepage, account flow, console, catalog, legal pages and assets from `origin/main` (`d3cff81`). Kept production styling and routes intact; integrated the compact product-process animation and sourced bilingual news. Earlier local homepage styling experiments remain in Git history and do not replace the newer production homepage.
 
 Validation: inline JavaScript syntax; local browser checks for home, pricing, login, console preview, product flow and bilingual news; news and product overflow checks at mobile width; four-step navigation and image loading. No account forms submitted.
+
+## 2026-10-14 控制台手绘插画与卡片细化
+
+- 基于当时线上 `b9c0b65`，保留其现有页面与交互；修改概览的订单面板、学习卡片和 API Key 空状态的插画/表面。两个订单入口铺满面板宽度，手机维持单列。
+- 卡片采用 1px 淡边框、58% 白色面板和轻量错层软阴影，学习封面从晨昏蓝经灰紫衔接浅桃；仅使用既有色卡。参考本地 Dia CSS 的细线和软阴影层次，不宣称逐像素复刻。
+- `art/console/doodle-atlas_2026-10-14.png` 为 ImageGen 生成的 3 × 2 透明插画 atlas，WebP 为无损运行素材。参考用户提供的手绘线条图，涵盖太阳能板、书、路牌、包裹、价签和钥匙；无统计/业务数据。原 SVG 生成脚本保留为历史实现。
+- 素材原始路径：`/Users/zixin/.codex/generated_images/01a138c9-8cb1-71d3-9451-ed06ffff3277/exec-b8eda4ab-4eec-488c-ba47-33fc43da058c.png`；本次复制到网站仓库，未替换原件。工作目录：`/Users/zixin/Desktop/沐仞科技/site-console-refinement_2026-10-14`（基于线上版本的独立 Git worktree，旧本地 main 保留）。
+- 检查：桌面和 390px 手机布局、素材加载、入口跳转、内联 JavaScript 语法与 diff 空白。Impeccable 全站静态检测仍有既有对比度/装饰警告，不作为整站无障碍验收。
