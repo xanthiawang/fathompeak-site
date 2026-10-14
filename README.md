@@ -145,3 +145,5 @@ Validation: inline JavaScript syntax; local browser checks for home, pricing, lo
 参考 Dia 当前首页的虚焦叶影与动态层：浏览器 DOM 确认其首页使用 leaf-shadows-tinted 图像及 canvas。此处使用原创 ImageGen 蓝紫叶影素材，不复制 Dia 图片。`art/backgrounds/api-key-dapple-blue_2026-10-14.png` 为源图，WebP q85 为生产图。色彩来自晨蓝、暮紫与雾蓝。
 
 仅概览顶部 API Key 区域启用：白卡透明度 83–91%，背景叶影轻度虚焦，26 秒往返摆动加 34 秒光照层变化，均使用 transform/opacity；右下角可暂停。IntersectionObserver、页面可见性和 prefers-reduced-motion 共同控制运行；不在可视区或减少动态效果时停止。未改变 Key 创建逻辑或任何业务数据。
+
+光影可见度修正：实测上一版 CSS 动画运行，但单程 26 秒、水平总摆幅 3.3%，感知过弱。改为单程 10 秒（完整往返 20 秒）、水平摆幅 ±4%，13 秒独立光照变化；负延迟让首屏直接进入运动中段。保留暂停、离屏停止和减少动态效果支持。
