@@ -1,5 +1,7 @@
 # 沐仞官网原型（可部署版）
 
+开发人员从 [DEVELOPER_HANDOFF.md](DEVELOPER_HANDOFF.md) 开始：最新入口、本地启动、编辑位置、服务端接入边界与源码打包。
+
 线上地址：https://xanthiawang.github.io/fathompeak-site/ （GitHub Pages，main 分支根目录；推送后约一分钟生效）
 
 - `index.html`：整站单文件（hash 路由：#home #models #enterprise #network #news #docs #about #login #console …）。
