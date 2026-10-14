@@ -173,12 +173,16 @@ section[data-route="home"] .home-sec .hh{text-align:center}
 .ed-copy h1{font-size:clamp(40px,5.6vw,68px);line-height:1.04}
 .ed-copy p{color:var(--ink-70);font-size:18px;max-width:34em;margin:18px 0 0}
 .ed-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
-.ed-offer{position:relative;overflow:hidden;border-radius:var(--r24);padding:32px 30px 34px;color:#fff;background:radial-gradient(150% 95% at 50% 128%,var(--hz-3) 0 47%,var(--hz-2b) 55%,var(--hz-2) 63%,var(--hz-haze) 70%,var(--accent-soft) 78%,var(--hz-1) 100%);box-shadow:var(--shadow-lg)}
-.ed-offer .k{color:rgba(0,0,0,.6)}
-.ed-offer b{display:block;font-size:64px;line-height:1;margin:12px 0 10px;color:var(--ink)}
-.ed-offer p{margin:0 0 120px;color:rgba(0,0,0,.72);font-size:15px;max-width:22em}
-.ed-offer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px;color:rgba(255,255,255,.9)}
-.ed-offer li:before{content:"— ";color:rgba(255,255,255,.5)}
+/* Education offer: editorial grid, paper label and distinct benefit panel. */
+.ed-offer{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(47,99,184,.16);border-radius:8px;padding:32px 30px 0;color:#212021;background-color:#DCE7F7;background-image:linear-gradient(rgba(47,99,184,.085) 1px,transparent 1px),linear-gradient(90deg,rgba(47,99,184,.085) 1px,transparent 1px);background-size:76px 76px;background-position:30px 32px;box-shadow:0 3px 0 rgba(33,32,33,.035)}
+.ed-offer::after{content:"";position:absolute;z-index:-1;right:25px;top:26px;width:79px;height:79px;pointer-events:none;background:radial-gradient(circle,#2F63B8 1px,transparent 1.4px) 0 0 / 7px 7px;opacity:.22;mask-image:linear-gradient(135deg,transparent 15%,#000 85%)}
+.ed-offer .k{display:inline-block;padding:5px 9px;background:#F8F8F8;color:#3D314F;border:1px solid rgba(61,49,79,.08);box-shadow:0 2px 2px rgba(33,32,33,.035)}
+.ed-offer b{display:block;font-size:64px;line-height:1;margin:20px 0 16px;color:#212021}
+.ed-offer p{margin:0 0 64px;color:#3D314F;font-size:15px;max-width:22em}
+.ed-offer ul{position:relative;list-style:none;margin:0 -30px;padding:26px 30px 30px;display:grid;gap:12px;font-size:14px;color:#F8F8F8;background:#212021;border-top:3px solid #5284D7}
+.ed-offer ul::before{content:"";position:absolute;top:11px;left:30px;right:30px;border-top:1px dashed rgba(183,168,163,.3);pointer-events:none}
+.ed-offer li{position:relative;padding-left:20px}
+.ed-offer li:before{content:"";position:absolute;left:1px;top:.5em;width:7px;height:7px;border:1px solid #5284D7;background:rgba(82,132,215,.16)}
 .ed-sec{margin-top:120px}
 .ed-sec h2{margin-bottom:28px}
 .ed-steps,.ed-uses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
