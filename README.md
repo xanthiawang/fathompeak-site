@@ -86,3 +86,9 @@
 - 2025-07-03 [中国青年报人物报道／新浪财经转载](https://finance.sina.com.cn/jjxw/2025-07-03/doc-infeekxp3570895.shtml)；2025-04-24 [清华 x-lab 团队故事](https://www.x-lab.tsinghua.edu.cn/2025/0424/c455a7009/page.htm)。两条明确标注“创始人过往经历”，所涉主体为深涌智能，不将其融资、客户或荣誉归给沐仞。清华页面内嵌原文日期为 4 月 21 日，列表采用当前链接页面发布日期 4 月 24 日。
 - 暂未加入：清华工匠大赛“万仞科技”项目（项目主体关联未确认）；南通万仞专利；商标聚合记录；《转在北京》页面（本轮未核实精确日期及完整人物信息）。
 - 所有来源于 2026-10-14 检索核查；本地修改，未部署线上。
+
+## Production integration · 2026-10-14
+
+Merged the current production homepage, account flow, console, catalog, legal pages and assets from `origin/main` (`d3cff81`). Kept production styling and routes intact; integrated the compact product-process animation and sourced bilingual news. Earlier local homepage styling experiments remain in Git history and do not replace the newer production homepage.
+
+Validation: inline JavaScript syntax; local browser checks for home, pricing, login, console preview, product flow and bilingual news; news and product overflow checks at mobile width; four-step navigation and image loading. No account forms submitted.
