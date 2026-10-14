@@ -1276,7 +1276,8 @@ section[data-route="home"]{padding:0;margin:0;max-width:none}
 #home2 #plant .cgh2{margin-top:44px}
 #home2 .cgh2 b{grid-area:b;font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.25;letter-spacing:-.015em;color:#000;font-variation-settings:"opsz" 144;font-feature-settings:"halt"}
 #home2 .cgh2 a.ul{grid-area:a;font-size:14px;white-space:nowrap}
-html[lang="en"] #home2 .cgh2 b::first-letter{font:inherit;font-size:1em;padding:0}
+/* 英文模式：案例卡片标题不加手写首字母（与审查预览一致），大标题保留 */
+html[lang="en"] #home2 .case b::first-letter,html[lang="en"] #home2 .cgh2 b::first-letter{font:inherit;font-size:1em;padding:0}
 @media (max-width:860px){
   #home2 .cgh2{grid-template-columns:1fr;grid-template-areas:"k" "b" "a";row-gap:4px}
   #home2 .cgh2 b{font-size:24px}
