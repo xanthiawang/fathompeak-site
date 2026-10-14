@@ -173,14 +173,13 @@ section[data-route="home"] .home-sec .hh{text-align:center}
 .ed-copy h1{font-size:clamp(40px,5.6vw,68px);line-height:1.04}
 .ed-copy p{color:var(--ink-70);font-size:18px;max-width:34em;margin:18px 0 0}
 .ed-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
-/* Education offer: editorial grid, paper label and distinct benefit panel. */
-.ed-offer{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(47,99,184,.16);border-radius:8px;padding:32px 30px 0;color:#212021;background-color:#DCE7F7;background-image:linear-gradient(rgba(47,99,184,.085) 1px,transparent 1px),linear-gradient(90deg,rgba(47,99,184,.085) 1px,transparent 1px);background-size:76px 76px;background-position:30px 32px;box-shadow:0 3px 0 rgba(33,32,33,.035)}
-.ed-offer::after{content:"";position:absolute;z-index:-1;right:25px;top:26px;width:79px;height:79px;pointer-events:none;background:radial-gradient(circle,#2F63B8 1px,transparent 1.4px) 0 0 / 7px 7px;opacity:.22;mask-image:linear-gradient(135deg,transparent 15%,#000 85%)}
-.ed-offer .k{display:inline-block;padding:5px 9px;background:#F8F8F8;color:#3D314F;border:1px solid rgba(61,49,79,.08);box-shadow:0 2px 2px rgba(33,32,33,.035)}
-.ed-offer b{display:block;font-size:64px;line-height:1;margin:20px 0 16px;color:#212021}
-.ed-offer p{margin:0 0 64px;color:#3D314F;font-size:15px;max-width:22em}
-.ed-offer ul{position:relative;list-style:none;margin:0 -30px;padding:26px 30px 30px;display:grid;gap:12px;font-size:14px;color:#F8F8F8;background:#212021;border-top:3px solid #5284D7}
-.ed-offer ul::before{content:"";position:absolute;top:11px;left:30px;right:30px;border-top:1px dashed rgba(183,168,163,.3);pointer-events:none}
+/* Education offer: engraved editorial collage with live, readable copy. */
+.ed-offer{position:relative;overflow:hidden;border:1px solid rgba(33,32,33,.12);border-radius:12px;padding:26px 28px 0;color:#212021;background:#F4F1EE}
+.ed-offer .k{display:block;color:#3D314F}
+.ed-offer b{display:block;font-size:64px;line-height:1;margin:12px 0;color:#212021}
+.ed-offer p{margin:0;color:#3D314F;font-size:15px;max-width:24em}
+.ed-offer-art{display:block;width:calc(100% + 56px);max-width:none;height:auto;aspect-ratio:3/2;object-fit:cover;margin:22px -28px 0;background:#5284D7}
+.ed-offer ul{position:relative;list-style:none;margin:0 -28px;padding:22px 28px 24px;display:grid;gap:10px;font-size:14px;color:#F8F8F8;background:#212021}
 .ed-offer li{position:relative;padding-left:20px}
 .ed-offer li:before{content:"";position:absolute;left:1px;top:.5em;width:7px;height:7px;border:1px solid #5284D7;background:rgba(82,132,215,.16)}
 .ed-sec{margin-top:120px}
@@ -341,7 +340,7 @@ section[data-route="home"] .home-sec .hh{text-align:center}
 .cs-p [aria-invalid="true"],.cs-dlg [aria-invalid="true"]{border-color:#B3261E}
 .cs-steps{margin:0;padding-left:20px;font-size:14px;line-height:1.6;color:var(--ink-70);display:grid;gap:2px}
 
-@media (max-width:1000px){.pr-plans{grid-template-columns:1fr;max-width:520px;margin-inline:auto}.ed-top{grid-template-columns:1fr;gap:36px;padding-top:130px}.ed-offer p{margin-bottom:60px}}
+@media (max-width:1000px){.pr-plans{grid-template-columns:1fr;max-width:520px;margin-inline:auto}.ed-top{grid-template-columns:1fr;gap:36px;padding-top:130px}.ed-offer{width:100%;max-width:520px;justify-self:center}}
 @media (max-width:800px){
   .pr-hd{grid-template-columns:1fr;gap:10px} .pr-steps,.ed-steps,.ed-uses{grid-template-columns:1fr} .pr-sec,.ed-sec,.ed-lab{margin-top:80px}
   .pr-tbl th:nth-child(2),.pr-tbl td:nth-child(2),.pr-tbl th:nth-child(4),.pr-tbl td:nth-child(4),.pr-tbl th:last-child,.pr-tbl td:last-child{display:none}
@@ -2425,6 +2424,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
       <div class="ed-copy"><span class="k">教育优惠</span><h1 class="display">给学生和老师的沐仞</h1><p>课程作业、毕业设计和科研实验，用的是和开发者同一套模型与接口。用学校邮箱认证，账户按教育价计费。</p>
         <div class="ed-ctas"><a class="btn black" href="#start">登录后申请教育认证</a><button class="btn gray" type="button" data-scrollto="ed-lab">老师与实验室申请</button></div></div>
       <div class="ed-offer"><span class="k">教育账户</span><b class="display">教育价</b><p>认证通过后生效，价格在控制台模型列表显示。</p>
+        <img class="ed-offer-art" src="art/education-editorial-engraving-2026-10-14.png" width="1536" height="1024" alt="" decoding="async">
         <ul><li>目录内全部模型</li><li>与按量付费相同的接口</li><li>用量与账单在控制台查看</li></ul></div>
     </div>
 
