@@ -3044,7 +3044,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <button type="button" data-p="acct"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 2.5v2.2M10 15.3v2.2M2.5 10h2.2M15.3 10h2.2M4.7 4.7l1.6 1.6M13.7 13.7l1.6 1.6M4.7 15.3l1.6-1.6M13.7 6.3l1.6-1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>通用设置</span></button>
         <button type="button" data-p="members" data-roles="admin root"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="7.5" cy="7" r="2.8" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 16.5c0-2.8 2.2-4.5 5-4.5s5 1.7 5 4.5M13 7.2a2.6 2.6 0 0 1 0 5.2M14.5 12.3c1.9.4 3 1.8 3 4.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>成员</span></button>
         <button type="button" data-p="bill" data-roles="personal admin root"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 8h15" stroke="currentColor" stroke-width="1.4"/></svg><span>钱包与账单</span></button>
-        <button type="button" data-p="kyc" class="sup-new" data-roles="personal admin root"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 4.5h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z M7 11.3a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z M11.5 8.5H15M11.5 11.5H15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>实名认证</span></button>
+        <button type="button" data-p="kyc" class="sup-new" data-roles="personal root"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 4.5h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z M7 11.3a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z M11.5 8.5H15M11.5 11.5H15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>实名认证</span></button>
         <button type="button" data-p="keys"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="6.5" cy="13.5" r="3.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9 11l7.5-7.5M13.5 6.5l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>API Key</span></button>
         <button type="button" data-p="sec"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 16 5v4.5c0 4-2.6 6.6-6 8-3.4-1.4-6-4-6-8V5Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span>安全与访问</span></button>
         <button type="button" data-p="usage"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 10h3l2.5-6 4 12 2.5-6h3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>使用日志</span></button>
@@ -3327,7 +3327,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
           <p class="cs-fine">企业账户可以对公转账或按月结算。收款信息与合同由商务提供：<a class="ul" href="mailto:fathompeak@163.com">fathompeak@163.com</a>。款项到账后由运营入账，入账记录显示在上方的充值记录里。</p>
           <h3 class="cs-h3">发票</h3>
           <form class="cs-ntf" id="csInvoice" novalidate>
-            <div class="cs-f"><label for="csInvT">发票抬头</label><input class="in" id="csInvT" name="title" autocomplete="organization"><p class="cs-help">企业认证通过后抬头固定为认证主体。</p></div>
+            <div class="cs-f"><label for="csInvT">发票抬头</label><input class="in" id="csInvT" name="title" autocomplete="organization"><p class="cs-help">抬头默认为合同签约主体。</p></div>
             <div class="cs-f"><label for="csInvN">纳税人识别号</label><input class="in mono" id="csInvN" name="tax" autocomplete="off" spellcheck="false"></div>
             <div class="cs-f"><label for="csInvM">接收邮箱</label><input class="in" id="csInvM" name="mail" type="email" autocomplete="off"></div>
             <p class="cs-help">按充值记录开票，电子发票发到接收邮箱。</p>
@@ -3864,7 +3864,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <p class="cs-st" id="supKycSt">未认证</p>
         <ul class="cs-sl">
           <li data-roles="personal root"><div><b>个人认证</b><p>姓名、身份证号与人脸核验，适合个人开发者。</p></div><button class="btn gray sm" type="button" data-kyc>开始认证</button></li>
-          <li data-roles="admin root"><div><b>企业认证</b><p>上传营业执照，再由法定代表人人脸核验，或用对公账户小额打款验证。认证后，发票抬头与合同主体为企业。</p></div><button class="btn gray sm" type="button" data-kyc>开始认证</button></li>
+          <li data-roles="root"><div><b>企业认证</b><p>上传营业执照，再由法定代表人人脸核验，或用对公账户小额打款验证。认证后，发票抬头与合同主体为企业。</p></div><button class="btn gray sm" type="button" data-kyc>开始认证</button></li>
           <li><div><b>海外用户</b><p>海外个人与企业的身份核验方式另行提供。</p></div></li>
         </ul>
       </div>
@@ -5692,6 +5692,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   (function(S){for(var k in S) if(!(k in I18N)) I18N[k]=S[k]})({"原型阶段不发送验证码，输入任意 6 位数字即可。": "Prototype: no code is sent. Enter any 6 digits."});  /* 原型登录提示 */
   (function(S){for(var k in S) if(!(k in I18N)) I18N[k]=S[k]})({"拿到 API Key，就能调用": "Get an API key and start calling", "在控制台创建 API Key，填上接入地址，就能调用 GLM、DeepSeek、Qwen、MiniMax 等主流模型；OpenAI 与 Gemini 调用格式都兼容。": "Create an API key in the console, set the endpoint, and call leading models including GLM, DeepSeek, Qwen and MiniMax; OpenAI and Gemini request formats both work.", "获取 API Key →": "Get an API key →"});  /* 首页 01 新口径 */
   (function(S){for(var k in S) if(!(k in I18N)) I18N[k]=S[k]})({"数千万元海外词元采购合同": "Overseas token purchase contract worth tens of millions of RMB", "千万元级推理服务协议": "Inference service agreement in the RMB 10-million range", "已签词元订单数千万元": "Tens of millions of RMB in signed token orders", "截至 2026 年第三季度，其中以海外订单为主。": "As of Q3 2026, mostly from overseas customers.", "2026 年第三季度已签词元订单数千万元": "Tens of millions of RMB in token orders signed as of Q3 2026", "其中以海外订单为主": "mostly from overseas customers"});  /* 金额不写具体数字 */
+  (function(S){for(var k in S) if(!(k in I18N)) I18N[k]=S[k]})({"抬头默认为合同签约主体。": "Defaults to the party named in your contract."});  /* 企业不做认证 */
   syncAuthLocale(); applyLang();
 
   /* ---------- 接口参考（#api，2026-10-14）：内容取自沐仞模型平台的 OpenAPI 文档（/openapi/ai-model.json），
