@@ -727,7 +727,7 @@ html.in-console body{background:#F8F8F8}
 .bt-faq details p{margin:0;padding:0 18px 16px;color:var(--ink-70);font-size:14px}
 
 /* 钱包：四格（余额、可用时长、累计消费、请求次数） */
-.cs-tiles.n4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.cs-tiles.n4{grid-template-columns:repeat(4,minmax(0,1fr))} @media (max-width:900px){.cs-tiles.n4{grid-template-columns:repeat(2,minmax(0,1fr))}} .cs-tiles .k{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cs-tiles .cs-help{font-size:12.5px}
 
 /* 使用日志：按模型的每日消费（堆叠柱，颜色跟随模型在目录中的顺序） */
