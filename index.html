@@ -1743,6 +1743,7 @@ section[data-route="models"] .pe+.pe.sub{border-top-color:rgba(61,49,79,.07);pad
 .rt-soon{font-style:normal;font:400 10.5px var(--mono);letter-spacing:.04em;color:var(--ink-50);margin-left:8px;padding:1px 6px;border-radius:999px;background:rgba(0,0,0,.05)}
 .bt[data-role="root"] .bt-nav button:has(.rt-soon){color:var(--ink-50)}
 .rt-sh2{margin:0 0 14px}
+.rt-chks{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px 18px;margin:0 0 16px} .rt-sysf .rt-tab{display:grid;gap:4px} .rt-sysf .rt-tab[hidden]{display:none}
 .bt[data-role="root"] .bt-popme{display:none}
 .bt-ws{display:grid;gap:8px;padding:10px 14px 12px;border-top:1px solid var(--line)} .bt-ws .k{font-size:12px;color:var(--ink-50)} .bt-ws>div{display:flex;gap:4px;padding:3px;border-radius:999px;background:rgba(0,0,0,.05);width:max-content} .bt-ws button{appearance:none;border:0;background:transparent;font:inherit;font-size:13px;padding:6px 14px;border-radius:999px;cursor:pointer;color:var(--ink-70)} .bt-ws button.on{background:#111;color:#fff}
 /* 渠道接入（10-15 夜，对照原后台渠道页） */
@@ -3067,7 +3068,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <button type="button" data-p="ad-logs" data-roles="root"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 10h3l2.5-6 4 12 2.5-6h3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>日志<i class="rt-soon">待接入</i></span></button>
         <span class="cs-grp bt-grp bt-sub" data-roles="root">系统</span>
         <button type="button" data-p="ad-admins" data-roles="root"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 16 5v4.5c0 4-2.6 6.6-6 8-3.4-1.4-6-4-6-8V5Z M10 8.2a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Z M7.3 12c.4-1.4 1.5-2.2 2.7-2.2s2.3.8 2.7 2.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>员工与权限<i class="rt-soon">待接入</i></span></button>
-        <a class="bt-ext" href="https://admin.fathompeak.cn/" target="_blank" rel="noopener" data-roles="root"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 2.5v2.2M10 15.3v2.2M2.5 10h2.2M15.3 10h2.2M4.7 4.7l1.6 1.6M13.7 13.7l1.6 1.6M4.7 15.3l1.6-1.6M13.7 6.3l1.6-1.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>系统高级设置 ↗</span></a>
+        <button type="button" data-p="rt-sys" data-roles="root"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 2.5v2.2M10 15.3v2.2M2.5 10h2.2M15.3 10h2.2M4.7 4.7l1.6 1.6M13.7 13.7l1.6 1.6M4.7 15.3l1.6-1.6M13.7 6.3l1.6-1.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>系统设置</span></button>
         <button type="button" data-p="rt-me" data-roles="root" data-ws="both"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4 17c.6-3 3-4.5 6-4.5s5.4 1.5 6 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>我的账号</span></button>
       </nav>
       <div class="bt-pins" data-roles="personal member admin"><span class="cs-grp bt-grp">已固定</span><div id="btPins"></div><p class="bt-pin0" id="btPin0">还没有固定的模型</p></div>
@@ -3398,7 +3399,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>渠道</th><th>厂商 / 协议</th><th>凭证</th><th class="r">已接入</th><th class="r">上游模型</th><th>上次同步</th><th>状态</th><th><span class="sr">操作</span></th></tr></thead><tbody id="rtChs"></tbody></table></div>
         <div class="cs-empty" id="rtChs0"><b>还没有渠道</b><span>用上面的三步接入第一个渠道。</span></div>
         <div class="rt-detail" id="rtChD" hidden>
-          <div class="rt-dhd"><div><span class="k">渠道详情</span><h3 id="rtChDN" tabindex="-1"></h3></div><a class="ul rt-native" id="rtChDNative" href="https://admin.fathompeak.cn/channels" target="_blank" rel="noopener" title="在原后台的渠道列表里按名称找到这条渠道">打开原生配置 ↗</a></div>
+          <div class="rt-dhd"><div><span class="k">渠道详情</span><h3 id="rtChDN" tabindex="-1"></h3></div><span id="rtChDNative" hidden></span></div>
           <div class="rt-tabs" role="tablist" id="rtChTabs"><button type="button" role="tab" id="rtChT-conn" aria-controls="rtChP-conn" class="on" data-tab="conn" aria-selected="true">连接与模型</button><button type="button" role="tab" id="rtChT-route" aria-controls="rtChP-route" data-tab="route" aria-selected="false">路由与映射</button><button type="button" role="tab" id="rtChT-req" aria-controls="rtChP-req" data-tab="req" aria-selected="false">请求与响应</button><button type="button" role="tab" id="rtChT-other" aria-controls="rtChP-other" data-tab="other" aria-selected="false">其他设置</button></div>
           <div class="rt-tab" role="tabpanel" id="rtChP-conn" aria-labelledby="rtChT-conn" data-tab="conn">
             <dl class="cs-dl"><dt>厂商 / 协议</dt><dd id="rtChDV"></dd><dt>API 地址</dt><dd class="mono" id="rtChDB"></dd><dt>上游密钥</dt><dd class="mono" id="rtChDK"></dd><dt>分组</dt><dd class="mono" id="rtChDG"></dd><dt>上游模型</dt><dd id="rtChDU"></dd></dl>
@@ -3509,6 +3510,47 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
           </form>
         </div>
       </div>
+      </div>
+      <div class="cs-p" data-p="rt-sys">
+        <div class="cs-hd"><div><h2>系统设置</h2><p>登录注册、计费充值、安全限制、邮件和日志的全局开关，都在这里改，不再跳回原后台。渠道重试与自动禁用在「路由与转换」，公司信息与 API 地址在官网后台。</p></div></div>
+        <div class="rt-tabs" role="tablist" id="rtSysTabs"><button type="button" role="tab" class="on" data-tab="auth" aria-selected="true">登录与注册</button><button type="button" role="tab" data-tab="pay" aria-selected="false">计费与充值</button><button type="button" role="tab" data-tab="sec" aria-selected="false">安全与限制</button><button type="button" role="tab" data-tab="mail" aria-selected="false">邮件</button><button type="button" role="tab" data-tab="log" aria-selected="false">日志与数据</button></div>
+        <p class="cs-help rt-sh2">当前值在接口接入后从平台读取；现在是空白表单，保存只在预览里生效并记入审计。</p>
+        <form class="cs-ntf rt-sysf" id="rtSysF" novalidate>
+          <div class="rt-tab" data-tab="auth">
+            <h3 class="cs-h3">登录方式</h3>
+            <div class="rt-chks"><label class="f-chk"><input type="checkbox" name="l_mail"><span>邮箱验证码（登录即注册）</span></label><label class="f-chk"><input type="checkbox" name="l_phone"><span>手机验证码（登录即注册）</span></label><label class="f-chk"><input type="checkbox" name="l_pw"><span>密码登录（验证码下方「用密码登录」）</span></label><label class="f-chk"><input type="checkbox" name="l_wx"><span>微信登录</span></label><label class="f-chk"><input type="checkbox" name="l_google"><span>Google 登录</span></label><label class="f-chk"><input type="checkbox" name="l_gh"><span>GitHub 登录</span></label></div>
+            <h3 class="cs-h3">注册</h3>
+            <div class="rt-chks"><label class="f-chk"><input type="checkbox" name="r_open"><span>允许新用户注册</span></label><label class="f-chk"><input type="checkbox" name="r_cap"><span>登录 / 注册需要图形验证码</span></label></div>
+            <div class="cs-f"><label for="rtSys_r_dom">邮箱域名白名单</label><input class="in mono" id="rtSys_r_dom" name="r_dom" placeholder="例：company.com, edu.cn" autocomplete="off" spellcheck="false"><p class="cs-help">逗号分隔；留空不限制。</p></div>
+          </div>
+          <div class="rt-tab" data-tab="pay" hidden>
+            <h3 class="cs-h3">在线充值</h3>
+            <div class="rt-chks"><label class="f-chk"><input type="checkbox" name="p_on"><span>开启在线充值</span></label><label class="f-chk"><input type="checkbox" name="p_ali"><span>支付宝</span></label><label class="f-chk"><input type="checkbox" name="p_wx"><span>微信支付</span></label><label class="f-chk"><input type="checkbox" name="p_stripe"><span>Stripe（海外卡）</span></label></div>
+            <div class="rt-g2"><div class="cs-f"><label for="rtSys_p_min">最低充值（元）</label><input class="in mono" id="rtSys_p_min" name="p_min" placeholder="留空不限" inputmode="decimal" autocomplete="off"></div><div class="cs-f"><label for="rtSys_p_tiers">充值档位（元）</label><input class="in mono" id="rtSys_p_tiers" name="p_tiers" placeholder="例：10, 50, 100, 500" inputmode="text" autocomplete="off"><p class="cs-help">逗号分隔，个人用户充值页按这个顺序显示。</p></div></div>
+            <h3 class="cs-h3">赠送</h3>
+            <div class="rt-g2"><div class="cs-f"><label for="rtSys_p_new">新用户赠送额度（元）</label><input class="in mono" id="rtSys_p_new" name="p_new" placeholder="0" inputmode="decimal" autocomplete="off"></div><div class="cs-f"><label for="rtSys_p_inv">邀请奖励 · 邀请人（元）</label><input class="in mono" id="rtSys_p_inv" name="p_inv" placeholder="0" inputmode="decimal" autocomplete="off"></div><div class="cs-f"><label for="rtSys_p_invd">邀请奖励 · 被邀请人（元）</label><input class="in mono" id="rtSys_p_invd" name="p_invd" placeholder="0" inputmode="decimal" autocomplete="off"></div></div>
+            <p class="cs-help">企业对公转账、先用后付和开票在「财务」身份里处理；套餐和分时价在「模型与定价」。</p>
+          </div>
+          <div class="rt-tab" data-tab="sec" hidden>
+            <h3 class="cs-h3">速率限制</h3>
+            <div class="rt-g2"><div class="cs-f"><label for="rtSys_s_user">每个用户每分钟请求上限</label><input class="in mono" id="rtSys_s_user" name="s_user" placeholder="留空不限" inputmode="numeric" autocomplete="off"></div><div class="cs-f"><label for="rtSys_s_key">每个 API Key 每分钟请求上限</label><input class="in mono" id="rtSys_s_key" name="s_key" placeholder="留空不限" inputmode="numeric" autocomplete="off"></div><div class="cs-f"><label for="rtSys_s_ip">同一 IP 每小时注册上限</label><input class="in mono" id="rtSys_s_ip" name="s_ip" placeholder="留空不限" inputmode="numeric" autocomplete="off"></div></div>
+            <h3 class="cs-h3">内容</h3>
+            <div class="rt-chks"><label class="f-chk"><input type="checkbox" name="s_ban"><span>开启屏蔽词检查</span></label></div>
+            <div class="cs-f"><label for="rtSys_s_words">屏蔽词</label><textarea class="in" id="rtSys_s_words" name="s_words" rows="3" spellcheck="false" placeholder="一行一个"></textarea></div>
+          </div>
+          <div class="rt-tab" data-tab="mail" hidden>
+            <h3 class="cs-h3">发信（验证码、通知、发票）</h3>
+            <div class="rt-g2"><div class="cs-f"><label for="rtSys_m_host">SMTP 服务器</label><input class="in mono" id="rtSys_m_host" name="m_host" placeholder="smtp.example.com" inputmode="url" autocomplete="off"></div><div class="cs-f"><label for="rtSys_m_port">端口</label><input class="in mono" id="rtSys_m_port" name="m_port" placeholder="465" inputmode="numeric" autocomplete="off"></div><div class="cs-f"><label for="rtSys_m_user">账号</label><input class="in mono" id="rtSys_m_user" name="m_user" placeholder="" inputmode="email" autocomplete="off"></div><div class="cs-f"><label for="rtSys_m_from">发件地址</label><input class="in mono" id="rtSys_m_from" name="m_from" placeholder="noreply@…" inputmode="email" autocomplete="off"></div></div>
+            <p class="cs-help">SMTP 密码在服务器环境变量里配置，后台不显示也不保存。</p>
+          </div>
+          <div class="rt-tab" data-tab="log" hidden>
+            <h3 class="cs-h3">日志与数据</h3>
+            <div class="rt-chks"><label class="f-chk"><input type="checkbox" name="g_req"><span>记录请求日志（用户侧「用量与订单」读它）</span></label><label class="f-chk"><input type="checkbox" name="g_dash"><span>开启数据看板统计</span></label></div>
+            <div class="rt-g2"><div class="cs-f"><label for="rtSys_g_keep">请求日志保留天数</label><input class="in mono" id="rtSys_g_keep" name="g_keep" placeholder="留空不清理" inputmode="numeric" autocomplete="off"></div></div>
+          </div>
+          <p class="rt-err" id="rtSysErr" role="alert" hidden></p>
+          <div><button class="btn black sm" type="submit">保存设置</button></div>
+        </form>
       </div>
       <div class="cs-p" data-p="rt-route">
         <div class="cs-hd"><div><h2>路由与转换</h2><p>每个渠道的映射、优先级、权重和请求 / 响应转换一览；点「编辑」在这里直接改，和「渠道接入」用同一个编辑框。</p></div></div>
@@ -3705,9 +3747,9 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <div class="cs-empty" id="rtLogos0"><b>还没有 Logo</b><span>上传接入存储后可以新增。</span></div>
         <h3 class="cs-h3">原后台的系统设置</h3>
         <ul class="cs-list rt-native-list">
-          <li><span><b>登录方式</b><br>验证码、密码、微信 / Google / GitHub 登录的开关。</span><a class="ul" href="https://admin.fathompeak.cn/" target="_blank" rel="noopener">系统设置 › 身份验证 ↗</a></li>
-          <li><span><b>计费与支付</b><br>支付渠道、充值档位、最低充值。</span><a class="ul" href="https://admin.fathompeak.cn/" target="_blank" rel="noopener">系统设置 › 计费与支付 ↗</a></li>
-          <li><span><b>安全与限制</b><br>速率限制、注册限制。</span><a class="ul" href="https://admin.fathompeak.cn/" target="_blank" rel="noopener">系统设置 › 安全与限制 ↗</a></li>
+          <li><span><b>登录方式</b><br>验证码、密码、微信 / Google / GitHub 登录的开关。</span><button class="ac-link" type="button" data-go="rt-sys">系统设置 › 身份验证</button></li>
+          <li><span><b>计费与支付</b><br>支付渠道、充值档位、最低充值。</span><button class="ac-link" type="button" data-go="rt-sys">系统设置 › 计费与支付</button></li>
+          <li><span><b>安全与限制</b><br>速率限制、注册限制。</span><button class="ac-link" type="button" data-go="rt-sys">系统设置 › 安全与限制</button></li>
         </ul>
       </div>
       <div class="cs-p" data-p="root-models">
@@ -3861,12 +3903,15 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
       </div>
       <div class="cs-p" data-p="ad-admins">
         <div class="bt-pg">
-          <div class="bt-hd"><h1>员工与权限</h1><div class="ad-hr"><span class="bt-tag ad-api">new-api 现成</span><span class="bt-tag g ad-dev">需开发</span><button class="bt-btn pri" type="button" data-ad-act>添加管理员</button></div></div>
-          <p class="bt-lede">按职责分权：运营管渠道、价格和客户，财务管入账、开票和退款，只读账号只能看。员工账号和官网后台共用一个，不再各建一套。</p>
-          <div class="bt-tw"><table class="bt-tbl ad-perm"><thead><tr><th>权限</th><th>超级管理员</th><th>运营</th><th>财务</th><th>只读</th></tr></thead><tbody><tr><td>渠道与模型</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr><tr><td>改价（模型价、分时价）</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr><tr><td>用户与额度</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr><tr><td>开通、冻结组织</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr><tr><td>认证审核</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr><tr><td>对公入账（录款 / 复核）</td><td>✓</td><td>—</td><td>✓</td><td>—</td></tr><tr><td>开票与退款</td><td>✓</td><td>—</td><td>✓</td><td>—</td></tr><tr><td>系统设置与菜单</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr><tr><td>查看日志与报表</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr></tbody></table></div>
-          <h2 class="ad-h2">管理员</h2>
-          <div class="bt-tw"><table class="bt-tbl"><thead><tr><th>管理员</th><th>角色</th><th>两步验证</th><th>最近登录</th><th>状态</th></tr></thead><tbody></tbody></table></div>
-          <div class="bt-empty"><span class="bt-ill bt-collage" data-art="key" aria-hidden="true"></span><b>还没有其他管理员</b><p>添加后，对方用工作邮箱登录运营后台，第一次登录要绑定两步验证。</p></div>
+          <div class="bt-hd"><h1>员工与权限</h1><div class="ad-hr"><button class="bt-btn pri" type="button" id="rtStNew">添加员工</button></div></div>
+          <p class="bt-lede">每个员工一个账号、一个身份。身份决定登录后看到哪套侧栏；超级管理员可以在左上角账户菜单里切换运营和财务。</p>
+          <form class="cs-ntf" id="rtStF" hidden novalidate><h3 class="cs-h3">添加员工</h3>
+            <div class="cs-f"><label for="rtStM">工作邮箱</label><input class="in" id="rtStM" name="mail" type="email" autocomplete="off" spellcheck="false"><p class="cs-help">对方用这个邮箱登录员工后台，第一次登录要绑定两步验证。</p></div>
+            <div class="cs-f"><label for="rtStR">身份</label><select class="mk-sel" id="rtStR" name="role"><option value="ops">运营</option><option value="fin">财务</option><option value="ro">只读</option><option value="root">超级管理员</option></select><p class="cs-help" id="rtStRH"></p></div>
+            <div><button class="btn black sm" type="submit">添加</button> <button class="btn gray sm" type="button" id="rtStX">取消</button></div>
+          </form>
+          <div class="bt-tw"><table class="bt-tbl"><thead><tr><th>员工</th><th>身份</th><th>两步验证</th><th>最近登录</th><th>状态</th><th><span class="sr">操作</span></th></tr></thead><tbody id="rtStRows"></tbody></table></div>
+          <div class="bt-empty" id="rtSt0"><span class="bt-ill bt-collage" data-art="key" aria-hidden="true"></span><b>还没有其他员工</b><p>点「添加员工」，选身份。员工账号接入平台接口后才能真正登录。</p></div>
         </div>
       </div>
       <div class="cs-p" data-p="ad-logs">
@@ -5104,6 +5149,34 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
     var n=Object.keys(next).length;ORG_PRICES[o.name]=next;audit('改组织定价 '+o.name+'（'+n+' 个模型覆盖）');rtOrgRender();rootRender();btRender();toast(n?'已保存 '+o.name+' 的定价，'+n+' 个模型按覆盖价计费，其余继承基础价。':'已保存，'+o.name+' 全部继承基础价。')});
 
   /* ======== 渠道接入：列表 + 编辑框（对照原后台，10-15 夜） ======== */
+  /* 系统设置：原「系统高级设置 ↗」搬进来，不再跳回原后台 */
+  var RT_SYS={},RT_SYSN={auth:'登录与注册',pay:'计费与充值',sec:'安全与限制',mail:'邮件',log:'日志与数据'},rtSysT='auth';
+  rtTabs('rtSysTabs',function(t){rtSysT=t;$$('#rtSysF > .rt-tab').forEach(function(p){p.hidden=p.getAttribute('data-tab')!==t});$('#rtSysErr').hidden=true});
+  $('#rtSysF').addEventListener('submit',function(e){e.preventDefault();var f=this,bad=null;clearErrs(f);$('#rtSysErr').hidden=true;
+    var num=/^\d+(\.\d{1,2})?$/,int=/^\d+$/,mail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function chk(n,re,msg){var el=f[n],v=el.value.trim();if(v&&!re.test(v)){fieldErr(el,msg);if(!bad)bad=el}}
+    ['p_min','p_new','p_inv','p_invd'].forEach(function(n){chk(n,num,'填金额，最多两位小数。')});
+    ['s_user','s_key','s_ip','g_keep'].forEach(function(n){chk(n,int,'填正整数，或留空。')});
+    var tv=f.p_tiers.value.trim();if(tv&&!tv.split(/[,，]\s*/).every(function(x){return num.test(x)})){fieldErr(f.p_tiers,'用逗号分隔的金额，例：10, 50, 100。');if(!bad)bad=f.p_tiers}
+    else if(tv&&f.p_min.value.trim()&&Math.min.apply(null,tv.split(/[,，]\s*/).map(Number))<+f.p_min.value.trim()){fieldErr(f.p_tiers,'最小档位低于最低充值。');if(!bad)bad=f.p_tiers}
+    var pt=f.m_port.value.trim();if(pt&&!(int.test(pt)&&+pt>0&&+pt<65536)){fieldErr(f.m_port,'端口在 1–65535 之间。');if(!bad)bad=f.m_port}
+    ['m_user','m_from'].forEach(function(n){chk(n,mail,'填有效的邮箱地址。')});
+    if(f.p_on.checked&&!(f.p_ali.checked||f.p_wx.checked||f.p_stripe.checked)){$('#rtSysErr').textContent='开启在线充值时至少选一种支付方式。';$('#rtSysErr').hidden=false;if(!bad)bad=f.p_ali}
+    if(!(f.l_mail.checked||f.l_phone.checked||f.l_pw.checked||f.l_wx.checked||f.l_google.checked||f.l_gh.checked)&&f.r_open.checked){$('#rtSysErr').textContent='允许注册时至少开一种登录方式。';$('#rtSysErr').hidden=false;if(!bad)bad=f.l_mail}
+    if(bad){var tp=bad.closest('.rt-tab');if(tp&&tp.hidden){var tb=$('#rtSysTabs [data-tab="'+tp.getAttribute('data-tab')+'"]');if(tb)tb.click()}bad.focus();return}
+    [].forEach.call(f.elements,function(el){if(el.name)RT_SYS[el.name]=el.type==='checkbox'?el.checked:el.value.trim()});
+    audit('改系统设置 · '+RT_SYSN[rtSysT]);rootRender();toast('已保存系统设置。接口接入后写入平台。')});
+  /* 员工：身份 = 登录后看到的那套侧栏 */
+  var RT_STAFF=[],STN={ops:'运营',fin:'财务',ro:'只读',root:'超级管理员'},STH={ops:'看到运营侧栏：客户、渠道、模型与定价、路由、绿电、告警与日志。看不到合约和财务。',fin:'看到财务侧栏：合约、资金与兑换码、开票与退款、对账与报表。看不到渠道和定价。',ro:'两套侧栏都能看，所有按钮不可用；适合审计或老板查看。',root:'两套都能用，可切换运营 / 财务；另管员工与系统设置。至少保留两位。'};
+  function rtStHelp(){$('#rtStRH').textContent=STH[$('#rtStR').value]}
+  function rtStRender(){$('#rtStRows').innerHTML=RT_STAFF.map(function(x,i){return '<tr><td>'+esc(x.mail)+'</td><td><select class="mk-sel" data-strole="'+i+'" aria-label="身份">'+Object.keys(STN).map(function(k){return '<option value="'+k+'"'+(k===x.role?' selected':'')+'>'+STN[k]+'</option>'}).join('')+'</select></td><td><span class="cs-st wait">未绑定</span></td><td class="mono">--</td><td><span class="cs-st wait">待首次登录</span></td><td class="r"><button class="ac-link" type="button" data-strm="'+i+'">移除</button></td></tr>'}).join('');$('#rtSt0').hidden=RT_STAFF.length>0;
+    $$('#rtStRows [data-strole]').forEach(function(sel){sel.addEventListener('change',function(){var x=RT_STAFF[+sel.getAttribute('data-strole')];x.role=sel.value;audit('改员工身份 '+x.mail+' → '+STN[x.role]);toast('已把 '+x.mail+' 改为'+STN[x.role]+'。')})});
+    $$('#rtStRows [data-strm]').forEach(function(b){b.addEventListener('click',function(){var i=+b.getAttribute('data-strm'),x=RT_STAFF[i];RT_STAFF.splice(i,1);audit('移除员工 '+x.mail);rtStRender();toastAct('已移除 '+x.mail+'。','撤销',function(){RT_STAFF.splice(i,0,x);audit('撤销移除员工 '+x.mail);rtStRender()})})});rtTx()}
+  $('#rtStR').addEventListener('change',rtStHelp);rtStHelp();
+  $('#rtStNew').addEventListener('click',function(){var f=$('#rtStF');f.hidden=false;f.reset();clearErrs(f);rtStHelp();$('#rtStM').focus()});
+  $('#rtStX').addEventListener('click',function(){$('#rtStF').hidden=true});
+  $('#rtStF').addEventListener('submit',function(e){e.preventDefault();var f=this,m=f.mail.value.trim().toLowerCase();clearErrs(f);if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){fieldErr(f.mail,'填有效的工作邮箱。');f.mail.focus();return}if(RT_STAFF.some(function(x){return x.mail===m})){fieldErr(f.mail,'这个邮箱已经是员工。');f.mail.focus();return}RT_STAFF.push({mail:m,role:f.role.value});audit('添加员工 '+m+'（'+STN[f.role.value]+'）');f.hidden=true;rtStRender();toast('已添加 '+m+'，身份：'+STN[f.role.value]+'。')});
+  rtStRender();
   /* 客户归属（10-15 夜）：合约签约方、官网线索和开户申请都按企业名并进「企业客户」，没留企业名的官网个人并进「个人用户」 */
   var RT_SUBS=window.RT_SUBS=window.RT_SUBS||[];
   function rtCoList(){var by={},list=[];function get(n){n=(n||'').trim();if(!n)return null;if(!by[n]){by[n]={name:n,src:{},deals:[],rel:'client',org:null,app:null,sub:''};list.push(by[n])}return by[n]}
@@ -5407,6 +5480,8 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   Object.assign(I18N,{"官网来源": "From website", "来源": "Source", "平台注册": "Signed up", "全部企业": "All businesses", "线索与申请": "Leads & applications", "已签约未开户": "Signed, no account", "已开户": "Account open", "全部关系": "All relations", "词元客户": "Token customer", "电站合作方": "Plant partner", "全部阶段": "All stages", "官网线索": "Website lead", "开户申请": "Account application", "洽谈中": "In talks", "已签约": "Signed", "关系": "Relation", "阶段": "Stage", "合约": "Contracts", "开户": "Open account", "电站对接": "Plants", "后台开通": "Opened by staff", "官网开户申请": "Website application", "官网联系销售": "Website sales form", "官网电站合作": "Website plant form", "官网周报订阅": "Website newsletter", "未注册": "Not signed up", "没有符合条件的企业": "No matching businesses", "按企业名、联系人或邮箱查找": "Search by company, contact or email", "换个筛选条件。官网线索和开户申请接入官网后台接口后自动进来。": "Try other filters. Website leads and applications arrive once the website-CMS API is connected.", "平台注册的用户来自平台用户接口；官网的周报订阅和线索来自官网后台接口，接入后一起列在这里。": "Sign-ups come from the platform user API; website newsletter subscribers and leads come from the website-CMS API and are listed here once connected.", "平台注册的个人与教育账户，加上官网带来的个人：周报订阅、没留企业名的线索。注册账户点「详情」查余额、调额度、冻结或重置密码；企业在「企业客户」里。": "Personal and education accounts, plus people from the website: newsletter subscribers and leads without a company. For accounts, open Details to see balance, adjust credit, freeze or reset the password; companies are under Business customers.", "所有和我们打交道的企业在一张表里：官网线索、开户申请、合约签约方和已开户账户按企业名合并，看它走到哪一步。开户后在详情里绑定渠道、设合同价。": "Every company we deal with in one table: website leads, account applications, contract parties and open accounts merged by company name, showing how far each has come. After opening an account, bind channels and set contract prices in Details."});
   Object.assign(I18N,{"身份": "Workspace", "运营（超管）": "Operations (admin)", "财务": "Finance", "已切换到 财务": "Switched to Finance", "已切换到 运营（超管）": "Switched to Operations (admin)", "只读摘要。合约、收款、开票、对账在「财务」身份里管（左上角账户菜单切换）；这里只管这家企业能用哪些渠道和模型、按什么价结算。": "Read-only summary. Contracts, collections, invoices and reconciliation are handled in the Finance workspace (switch from the account menu, top left); here you only set which channels and models this business can use and at what price.", "合约在「财务」身份的「合约」里签订和维护，签约方和这家企业同名就显示在这里。": "Contracts are kept under Contracts in the Finance workspace; any contract whose party has this business's name shows here."});
   Object.assign(I18N,{"待运营开户": "Awaiting account", "客户在平台上已有企业账户就选上；还没有的，运营在「企业客户」里开户后自动关联（按签约方名称）。": "Pick the customer's business account if it exists; otherwise it links automatically (by party name) once operations opens the account under Business customers.", "这一页在「运营（超管）」身份里，从左上角账户菜单切换。": "This page is in the Operations (admin) workspace; switch from the account menu, top left."});
+  Object.assign(I18N,{"系统设置": "System settings", "登录与注册": "Sign-in & sign-up", "计费与充值": "Billing & top-up", "安全与限制": "Security & limits", "邮件": "Email", "日志与数据": "Logs & data", "登录方式": "Sign-in methods", "注册": "Sign-up", "邮箱验证码（登录即注册）": "Email code (sign-in creates the account)", "手机验证码（登录即注册）": "SMS code (sign-in creates the account)", "密码登录（验证码下方「用密码登录」）": "Password sign-in (\"Use password\" under the code field)", "微信登录": "WeChat sign-in", "Google 登录": "Google sign-in", "GitHub 登录": "GitHub sign-in", "允许新用户注册": "Allow new sign-ups", "登录 / 注册需要图形验证码": "Require an image CAPTCHA to sign in / sign up", "邮箱域名白名单": "Email domain allowlist", "逗号分隔；留空不限制。": "Comma-separated; leave blank for no restriction.", "在线充值": "Online top-up", "开启在线充值": "Enable online top-up", "支付宝": "Alipay", "微信支付": "WeChat Pay", "Stripe（海外卡）": "Stripe (international cards)", "最低充值（元）": "Minimum top-up (CNY)", "充值档位（元）": "Top-up amounts (CNY)", "逗号分隔，个人用户充值页按这个顺序显示。": "Comma-separated; the personal top-up page shows them in this order.", "赠送": "Credits", "新用户赠送额度（元）": "Sign-up credit (CNY)", "邀请奖励 · 邀请人（元）": "Referral reward · referrer (CNY)", "邀请奖励 · 被邀请人（元）": "Referral reward · invitee (CNY)", "企业对公转账、先用后付和开票在「财务」身份里处理；套餐和分时价在「模型与定价」。": "Business bank transfers, pay-later and invoices are handled in the Finance workspace; plans and time-of-day prices are under Models & pricing.", "速率限制": "Rate limits", "每个用户每分钟请求上限": "Requests per user per minute", "每个 API Key 每分钟请求上限": "Requests per API key per minute", "同一 IP 每小时注册上限": "Sign-ups per IP per hour", "留空不限": "Blank = no limit", "内容": "Content", "开启屏蔽词检查": "Enable blocked-word check", "屏蔽词": "Blocked words", "一行一个": "One per line", "发信（验证码、通知、发票）": "Outgoing mail (codes, notices, invoices)", "SMTP 服务器": "SMTP server", "端口": "Port", "账号": "Account", "发件地址": "From address", "SMTP 密码在服务器环境变量里配置，后台不显示也不保存。": "The SMTP password is set in a server environment variable; the back office neither shows nor stores it.", "记录请求日志（用户侧「用量与订单」读它）": "Record request logs (customers' Usage & orders reads them)", "开启数据看板统计": "Enable dashboard statistics", "请求日志保留天数": "Days to keep request logs", "留空不清理": "Blank = keep all", "保存设置": "Save settings", "当前值在接口接入后从平台读取；现在是空白表单，保存只在预览里生效并记入审计。": "Current values load from the platform once the API is connected; this is a blank form, and saving only applies in the preview and goes into the audit log.", "登录注册、计费充值、安全限制、邮件和日志的全局开关，都在这里改，不再跳回原后台。渠道重试与自动禁用在「路由与转换」，公司信息与 API 地址在官网后台。": "Global switches for sign-in, billing, security limits, email and logs, all changed here instead of in the old back office. Channel retries and auto-disable are under Routing & transforms; company details and the API address are in the website CMS.", "填金额，最多两位小数。": "Enter an amount with at most two decimals.", "填正整数，或留空。": "Enter a whole number, or leave blank.", "用逗号分隔的金额，例：10, 50, 100。": "Comma-separated amounts, e.g. 10, 50, 100.", "最小档位低于最低充值。": "The smallest amount is below the minimum top-up.", "端口在 1–65535 之间。": "Port must be 1–65535.", "填有效的邮箱地址。": "Enter a valid email address.", "开启在线充值时至少选一种支付方式。": "Pick at least one payment method when online top-up is on.", "允许注册时至少开一种登录方式。": "Turn on at least one sign-in method while sign-ups are allowed.", "已保存系统设置。接口接入后写入平台。": "System settings saved. They are written to the platform once the API is connected.", "系统设置 › 身份验证": "System settings › Authentication", "系统设置 › 计费与支付": "System settings › Billing & payment", "系统设置 › 安全与限制": "System settings › Security & limits"});
+  Object.assign(I18N,{"添加员工": "Add staff", "每个员工一个账号、一个身份。身份决定登录后看到哪套侧栏；超级管理员可以在左上角账户菜单里切换运营和财务。": "One account and one role per staff member. The role decides which sidebar they see after signing in; super admins can switch between Operations and Finance from the account menu, top left.", "工作邮箱": "Work email", "对方用这个邮箱登录员工后台，第一次登录要绑定两步验证。": "They sign in to the staff console with this email and set up two-step verification on first sign-in.", "运营": "Operations", "只读": "Read-only", "超级管理员": "Super admin", "添加": "Add", "员工": "Staff", "两步验证": "Two-step verification", "最近登录": "Last sign-in", "未绑定": "Not set up", "待首次登录": "Awaiting first sign-in", "移除": "Remove", "还没有其他员工": "No other staff yet", "点「添加员工」，选身份。员工账号接入平台接口后才能真正登录。": "Use Add staff and pick a role. Staff accounts can actually sign in once the platform API is connected.", "填有效的工作邮箱。": "Enter a valid work email.", "这个邮箱已经是员工。": "This email is already a staff member.", "看到运营侧栏：客户、渠道、模型与定价、路由、绿电、告警与日志。看不到合约和财务。": "Sees the Operations sidebar: customers, channels, models & pricing, routing, green power, alerts and logs. No contracts or finance.", "看到财务侧栏：合约、资金与兑换码、开票与退款、对账与报表。看不到渠道和定价。": "Sees the Finance sidebar: contracts, funds & codes, invoices & refunds, statements & reports. No channels or pricing.", "两套侧栏都能看，所有按钮不可用；适合审计或老板查看。": "Can view both sidebars with every action disabled; for audit or leadership.", "两套都能用，可切换运营 / 财务；另管员工与系统设置。至少保留两位。": "Uses both and can switch between Operations and Finance; also manages staff and system settings. Keep at least two."});
   var lang='zh'; try{lang=localStorage.getItem('fp-lang')||'zh'}catch(e){}
   var CJK=/[一-鿿。；]/;
   /* 先查字典与短语；查不到时把「A · B」「A → B」拆开逐段查，价格与示例请求按规则换 */
