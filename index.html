@@ -2882,7 +2882,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
           <div class="ac-orgapply"><span>还没有企业账户？</span><a class="ul" href="#enterprise" data-scrollto="enterprise-sales">申请开通 →</a></div>
         </div>
         <div class="ac-service" id="acService" role="status" tabindex="-1" hidden><p id="acServiceText"></p><a class="ul" href="mailto:fathompeak@163.com">联系我们</a></div>
-        <div class="ac-support"><p><span>遇到问题？</span> <a class="ul" href="mailto:fathompeak@163.com">联系我们</a></p><nav aria-label="账户帮助"><a class="ul" href="#enterprise">企业咨询</a><a class="ul" href="#edu">教育优惠</a><a class="ul" href="#docs" target="_blank" rel="noopener">接入文档</a></nav></div>
+        <div class="ac-support"><p><span>遇到问题？</span> <a class="ul" href="mailto:fathompeak@163.com">联系我们</a></p><nav aria-label="账户帮助"><a class="ul" href="#enterprise">企业咨询</a><a class="ul" href="#edu">教育优惠</a><a class="ul" href="#api" target="_blank" rel="noopener">接入文档</a></nav></div>
       </div>
     </div>
   </div>
@@ -2954,7 +2954,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
       <div class="bt-pins"><span class="cs-grp bt-grp">已固定</span><div id="btPins"></div><p class="bt-pin0" id="btPin0">还没有固定的模型</p></div>
       <div class="bt-foot">
         <button class="bt-credit" type="button" id="btCredB" aria-haspopup="true" aria-expanded="false" aria-controls="btCredPop"><span aria-hidden="true">¥</span><span id="btCredL">余额</span><b class="mono" id="btBal">¥0.00</b></button>
-        <a href="#docs"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3.5h9.5a2 2 0 0 1 2 2v11H6a2 2 0 0 1-2-2Z M4 14.5a2 2 0 0 1 2-2h9.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span>文档</span></a>
+        <a href="#api"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3.5h9.5a2 2 0 0 1 2 2v11H6a2 2 0 0 1-2-2Z M4 14.5a2 2 0 0 1 2-2h9.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span>文档</span></a>
         <a href="mailto:fathompeak@163.com"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 8a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.3v.4M10 14h.01" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>支持</span></a>
       </div>
       <div class="bt-pop bt-credpop" id="btCredPop" hidden>
@@ -2990,8 +2990,8 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
           <div class="bt-empty" id="btK0">
             <span class="bt-ill bt-collage" data-art="key" aria-hidden="true"></span>
             <b>创建你的第一个 API Key</b>
-            <p>一个 Key 可以调用目录里的全部模型。先从<button class="bt-a" type="button" data-go="explore">模型目录</button>选模型，或<a class="bt-a" href="#docs">查看接入文档</a>，几行代码就能发出第一个请求。</p>
-            <div class="bt-acts"><button class="bt-btn" type="button" data-go="keys">创建 API Key</button><a class="bt-btn" href="#docs">查看接入文档</a></div>
+            <p>一个 Key 可以调用目录里的全部模型。先从<button class="bt-a" type="button" data-go="explore">模型目录</button>选模型，或<a class="bt-a" href="#api">查看接入文档</a>，几行代码就能发出第一个请求。</p>
+            <div class="bt-acts"><button class="bt-btn" type="button" data-go="keys">创建 API Key</button><a class="bt-btn" href="#api">查看接入文档</a></div>
           </div>
           <div class="bt-klist" id="btKl" hidden></div>
           <p class="bt-none" id="btKn" hidden>没有符合筛选条件的 Key</p>
@@ -3002,7 +3002,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
             <li data-ck="key"><i aria-hidden="true"></i><div><b>已创建 Key</b><p>按项目创建 API Key，完整 Key 只在创建时显示一次。</p><span class="cs-st">未完成</span></div><button class="bt-btn" type="button" data-go="keys">创建 API Key</button></li>
             <li data-ck="topup" data-roles="personal admin root"><i aria-hidden="true"></i><div><b>已充值</b><p>在线充值后按实际用量扣费。</p><span class="cs-st">未完成</span></div><button class="bt-btn" type="button" data-go="bill">去充值</button></li>
             <li data-ck="mem" data-roles="admin"><i aria-hidden="true"></i><div><b>已添加成员</b><p>按工作邮箱添加同事，或把邀请链接发到工作群。</p><span class="cs-st">未完成</span></div><button class="bt-btn" type="button" data-go="members">添加成员</button></li>
-            <li data-ck="req" data-roles="personal member root"><i aria-hidden="true"></i><div><b>已发出首个请求</b><p>用 Key 调用任一模型，请求会出现在使用日志里。</p><span class="cs-st">未完成</span></div><a class="bt-btn" href="#docs">查看接入文档</a></li>
+            <li data-ck="req" data-roles="personal member root"><i aria-hidden="true"></i><div><b>已发出首个请求</b><p>用 Key 调用任一模型，请求会出现在使用日志里。</p><span class="cs-st">未完成</span></div><a class="bt-btn" href="#api">查看接入文档</a></li>
           </ol>
         </div>
         <div class="bt-sec">
@@ -3024,13 +3024,13 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <div class="bt-sec">
           <div class="bt-two">
             <div class="bt-box"><h2>公告</h2><ul class="bt-ann" id="btAnn" hidden></ul><div class="bt-mini" id="btAnn0"><b>还没有公告</b><p>平台发布的维护和服务公告会显示在这里。</p></div></div>
-            <div class="bt-box"><h2>常见问答</h2><div class="bt-faq" id="btFaq" hidden></div><div class="bt-mini" id="btFaq0"><b>还没有常见问答</b><p>平台整理的常见问题会显示在这里。</p><a class="bt-a" href="#docs">查看接入文档 →</a></div></div>
+            <div class="bt-box"><h2>常见问答</h2><div class="bt-faq" id="btFaq" hidden></div><div class="bt-mini" id="btFaq0"><b>还没有常见问答</b><p>平台整理的常见问题会显示在这里。</p><a class="bt-a" href="#api">查看接入文档 →</a></div></div>
           </div>
         </div>
         <div class="bt-sec">
           <h2>学习</h2>
           <div class="bt-learn">
-            <a class="bt-lc" href="#docs"><b>文档</b><span class="bt-lc-ill" aria-hidden="true"><span class="bt-collage" data-art="book"></span></span></a>
+            <a class="bt-lc" href="#api"><b>文档</b><span class="bt-lc-ill" aria-hidden="true"><span class="bt-collage" data-art="book"></span></span></a>
             <a class="bt-lc" href="#guides"><b>指南</b><span class="bt-lc-ill" aria-hidden="true"><span class="bt-collage" data-art="sign"></span></span></a>
             <button class="bt-lc" type="button" data-go="explore"><b>模型目录</b><span class="bt-lc-ill" aria-hidden="true"><span class="bt-collage" data-art="boxes"></span></span></button>
             <a class="bt-lc" href="#pricing"><b>定价</b><span class="bt-lc-ill" aria-hidden="true"><span class="bt-collage" data-art="tag"></span></span></a>
@@ -3155,7 +3155,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         </div>
         <h3 class="cs-h3">按模型汇总</h3>
         <div class="tbl" id="csSumT" hidden><table class="cs-tbl"><thead><tr><th>模型</th><th class="r">请求次数</th><th class="r">输入 Token</th><th class="r">输出 Token</th><th class="r">费用</th></tr></thead><tbody id="csSum"></tbody></table></div>
-        <div class="cs-empty" id="csSumE"><b>还没有调用记录</b><span>发出第一个请求后，这里按模型显示用量。</span><a class="ul" href="#docs">查看接入文档 →</a></div>
+        <div class="cs-empty" id="csSumE"><b>还没有调用记录</b><span>发出第一个请求后，这里按模型显示用量。</span><a class="ul" href="#api">查看接入文档 →</a></div>
         <h3 class="cs-h3">请求明细</h3>
         <div class="cs-bar"><select class="mk-sel" id="csLt" aria-label="时间范围"><option value="1">今天</option><option value="7" selected>近 7 天</option><option value="30">近 30 天</option><option value="90">近 90 天</option></select>
           <select class="mk-sel" id="csLm" aria-label="按模型筛选"></select><select class="mk-sel" id="csLk" aria-label="按 Key 筛选"></select><select class="mk-sel" id="csLu" aria-label="按成员筛选" data-roles="admin root"><option value="">全部成员</option></select></div>
@@ -4121,8 +4121,8 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   $$('[data-auth-method]').forEach(function(b){b.addEventListener('click',function(){setAuthMethod(b.dataset.authMethod)})});
   $('.ac-methods').addEventListener('keydown',function(e){if(['ArrowLeft','ArrowRight','Home','End'].indexOf(e.key)<0)return;e.preventDefault();var next=e.key==='Home'?'phone':e.key==='End'?'email':authMethod==='phone'?'email':'phone';setAuthMethod(next);$('#'+(next==='phone'?'acPhoneTab':'acEmailTab')).focus()});
   authForm.addEventListener('input',clearAuthError);
-  $('#acSend').addEventListener('click',function(){if(authLocale!=='zh'||!authIdentifier()||!requireAuthConsent())return;if(window.supCountdown){window.supCountdown(this);return}authUnavailable(authMethod)});
-  authForm.addEventListener('submit',function(e){e.preventDefault();if(authLocale!=='zh'||!authIdentifier()||!requireAuthConsent())return;if(authPw){if(!$('#acPw').value){authError($('#acPw'),'请输入密码。');return}}else if(!/^\d{6}$/.test($('#acCode').value.trim())){authError($('#acCode'),'请输入 6 位验证码。');return}if(window.supLogin){window.supLogin('personal');return}$('#acPw').value='';authUnavailable(authPw?'password':authMethod)});
+  $('#acSend').addEventListener('click',function(){if(authLocale!=='zh'||!authIdentifier()||!requireAuthConsent())return;if(window.supCountdown){window.supCountdown(this);if(window.supProtoTip)window.supProtoTip();return}authUnavailable(authMethod)});
+  authForm.addEventListener('submit',function(e){e.preventDefault();if(authLocale!=='zh'||!authIdentifier()||!requireAuthConsent())return;if(authPw){if(!$('#acPw').value){authError($('#acPw'),'请输入密码。');return}}else if(!/^\d{6}$/.test($('#acCode').value.trim())){authError($('#acCode'),'请输入 6 位验证码。');return}if(window.supLogin){var _pw=$('#acPw'); if(_pw) _pw.value=''; window.supLogin('personal',$(authMethod==='phone'?'#acPhone':'#acEmail').value.trim());return}$('#acPw').value='';authUnavailable(authPw?'password':authMethod)});
   $$('[data-provider]').forEach(function(b){b.addEventListener('click',function(){var provider=b.dataset.provider;if(provider==='wechat'){if(authLocale!=='zh'||!requireAuthConsent())return}else if(authLocale!=='en')return;authUnavailable(provider)})});
 
   /* 控制台（2026-10-14 按原平台模块补齐：使用 = 概览 / API Key / 使用日志 / 订单；账户 = 钱包 / 个人资料 / 安全与访问）
@@ -4327,8 +4327,8 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   function renderMembers(){var subs=me.subs||[],tb=$('#csSubs');if(!tb)return;
     var you='<tr><td><span class="cs-mm"><span>'+esc(me.email||roleName(me.role))+'</span><span class="cs-you">你</span></span></td><td>'+(me.role==='root'?'超级管理员':'管理员')+'</td><td><span class="cs-st ok">已加入</span></td><td class="r mono">¥0.00</td><td class="r mono">不限</td><td class="mono">'+esc(me.since||'')+'</td><td></td></tr>';
     tb.innerHTML=you+subs.map(function(x,i){var r=x.role==='admin'?'admin':'member';
-      return '<tr><td><span class="cs-mm"><span>'+esc(x.email)+'</span></span></td><td><select class="mk-sel" data-role="'+i+'" aria-label="角色"><option value="member"'+(r==='member'?' selected':'')+'>成员</option><option value="admin"'+(r==='admin'?' selected':'')+'>管理员</option></select></td><td><span class="cs-st wait">待加入</span></td><td class="r mono">¥0.00</td><td class="r"><input class="in mono cs-lim" data-lim="'+i+'" inputmode="decimal" value="'+(x.limit?esc(x.limit):'')+'" placeholder="不限" aria-label="月限额"></td><td class="mono">'+esc(x.at||'')+'</td><td class="r"><button class="ac-link" type="button" data-rm="'+i+'">移除</button></td></tr>'}).join('');
-    $('#csMemN').textContent=1+subs.length; $('#csMemP').textContent=subs.length; $('#csMemK').textContent=me.keys.filter(function(k){return kState(k)==='on'}).length;
+      return '<tr><td><span class="cs-mm"><span>'+esc(x.email)+'</span></span></td><td><select class="mk-sel" data-role="'+i+'" aria-label="角色"><option value="member"'+(r==='member'?' selected':'')+'>成员</option><option value="admin"'+(r==='admin'?' selected':'')+'>管理员</option></select></td><td>'+(x.joined?'<span class="cs-st ok">已加入</span>':'<span class="cs-st wait">待加入</span>')+'</td><td class="r mono">¥0.00</td><td class="r"><input class="in mono cs-lim" data-lim="'+i+'" inputmode="decimal" value="'+(x.limit?esc(x.limit):'')+'" placeholder="不限" aria-label="月限额"></td><td class="mono">'+esc(x.at||'')+'</td><td class="r"><button class="ac-link" type="button" data-rm="'+i+'">移除</button></td></tr>'}).join('');
+    $('#csMemN').textContent=1+subs.length; $('#csMemP').textContent=subs.filter(function(x){return !x.joined}).length; $('#csMemK').textContent=me.keys.filter(function(k){return kState(k)==='on'}).length;
     $$('#csSubs [data-role]').forEach(function(sel){sel.addEventListener('change',function(){me.subs[+sel.getAttribute('data-role')].role=sel.value;persist();toast('已更新角色。')})});
     $$('#csSubs [data-lim]').forEach(function(inp){inp.addEventListener('change',function(){var v=inp.value.trim();if(v&&!(+v>0)){toast('请输入大于 0 的金额，留空为不限。');inp.value='';return}me.subs[+inp.getAttribute('data-lim')].limit=v;persist();toast(v?'已设置月限额 ¥'+v+'。':'已取消限额。')})});
     $$('#csSubs [data-rm]').forEach(function(b){b.addEventListener('click',function(){if(!b._armed){b._armed=1;b.textContent='确认移除';return}me.subs.splice(+b.getAttribute('data-rm'),1);persist();renderConsole();toast('已移除成员，他的 API Key 已失效。')})})}
@@ -4669,6 +4669,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   I18N["留下公司和联系方式，商务会联系你。要开通企业账户，可以一起申请。"]="Leave your company and contact details and our sales team will reach out. You can apply for a business account at the same time.";  /* 改写过的键强制覆盖 */
   (function(S){for(var k in S) if(!(k in I18N)) I18N[k]=S[k]})({"我的账户": "My account", "个人账户": "Personal account", "用量": "Usage", "企业管理": "Organization", "企业认证": "Company verification", "个人": "Personal", "企业 · 管理员": "Admin", "企业 · 成员": "Member", "沐仞运营": "FathomPeak operations", "个人账户 · 在线充值，按实际用量扣费": "Personal account · top up online, pay for what you use", "企业账户 · 管理员 · 成员的用量从企业余额扣": "Business account · Admin · members' usage is charged to the business balance", "企业账户 · 成员 · 用量计入企业账单，额度由管理员分配": "Business account · Member · usage goes on the business bill; your admin sets your allowance", "运营账户 · 平台管理在左侧「管理员」分组": "Operations account · platform tools are under Admin on the left", "企业成员请退出后，用「企业登录」进入。": "Business members: sign out, then use Business sign-in.", "个人账户请退出后，用「个人登录」进入。": "For your personal account, sign out, then use Personal sign-in.", "上传营业执照，核验企业身份。认证后，发票抬头与合同主体为企业。": "Upload the business licence to verify the company. Invoices and contracts are then issued to the company.", "核验个人身份。认证结果用于开票与合同签署。": "Verify your identity. The result is used for invoices and contracts.", "账号资料": "Account profile", "你在企业账户里的账号资料与通知设置。个人账户请退出后，用「个人登录」进入。": "Your profile and notification settings in the business account. For your personal account, sign out, then use Personal sign-in.", "运营账号的资料与通知设置。": "Profile and notification settings for the operations account.", "个人账户的资料与通知设置。企业成员请用「企业登录」进入。": "Profile and notification settings for your personal account. Business members use Business sign-in.", "只显示你自己的请求。上方按模型汇总，下方逐条列出每次请求。": "Only your own requests. A per-model summary at the top, every request listed below.", "显示企业全部成员的请求。上方按模型汇总，下方逐条列出每次请求。": "Requests from every member of the business. A per-model summary at the top, every request listed below.", "只统计你自己的请求：按时间、API Key 和模型查看请求量、词元、费用与性能。": "Only your own requests: volume, tokens, cost and performance by time, API key and model.", "统计企业全部成员的请求：按时间、API Key 和模型查看请求量、词元、费用与性能。": "All members' requests: volume, tokens, cost and performance by time, API key and model.", "在线充值或对公转账，成员的用量从企业余额扣。": "Top up online or by bank transfer; members' usage is charged to the business balance.", "我的额度": "My allowance", "已添加成员": "Members added", "按工作邮箱添加同事，或把邀请链接发到工作群。": "Add colleagues by work email, or share the invite link in your team chat.", "添加成员": "Add members", "按工作邮箱添加同事，或把邀请链接发给同事，他们都用「企业登录」进入这个企业账户。额度和账单由企业账户统一管理；管理员可以管理成员、API Key 和账单，成员可以创建和使用自己的 API Key。": "Add colleagues by work email or send them the invite link; either way they use Business sign-in to enter this business account. Allowance and billing are managed centrally; admins manage members, API keys and billing, members create and use their own API keys.", "按邮箱添加：同事会收到邮件，用这个邮箱在「企业登录」用验证码登录即可。邀请链接：发到工作群，同事打开后用自己的工作邮箱验证就加入；链接可以随时重置，旧链接立即失效。成员被移除后，他创建的 API Key 同时失效。": "By email: your colleague gets an email and signs in with that address and a code under Business sign-in. Invite link: share it in your team chat; colleagues open it and verify their own work email to join. You can reset the link at any time and the old one stops working. When a member is removed, the API keys they created stop working too."});  /* 按身份分开的英文：只补缺 */
   I18N["企业认证"]="Company verification";  /* 这几个键强制用新译法 */
+  (function(S){for(var k in S) if(!(k in I18N)) I18N[k]=S[k]})({"原型阶段不发送验证码，输入任意 6 位数字即可。": "Prototype: no code is sent. Enter any 6 digits."});  /* 原型登录提示 */
   syncAuthLocale(); applyLang();
 
   /* ---------- 接口参考（#api，2026-10-14）：内容取自沐仞模型平台的 OpenAPI 文档（/openapi/ai-model.json），
@@ -4841,9 +4842,20 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
 
   /* ======== 登录：个人 / 企业两个入口（2026-10-14） ======== */
   (function(){
-    var T={personal:['personal',''],admin:['company','admin'],member:['company','member'],super:['super','super']};
-    function enter(k){var t=T[k]; me={email:'',type:t[0],role:t[1],since:today(),keys:[],subs:[],edu:'none',preview:true}; logged=true; syncLogin(); location.hash='#console'}
-    var LIVE=true; if(!LIVE) window.supLogin=enter;
+    var T={personal:['personal','personal',''],admin:['company','admin','企业账户'],member:['company','member','企业账户'],super:['personal','root','沐仞运营']};
+    /* 原型：登录不验证身份，直接进对应后台（2026-10-15）。企业成员名单记在本机浏览器，管理员加的「成员」邮箱登录后进成员后台 */
+    var PK='fp-proto-members';
+    function pget(){try{return JSON.parse(localStorage.getItem(PK)||'{}')||{}}catch(e){return {}}}
+    function enter(k,id){var t=T[k], ph=/^1\d{10}$/.test(id||''), all=pget();
+      me={email:ph?'':(id||''),phone:ph?id:'',type:t[0],role:t[1],org:t[2],since:today(),keys:[],subs:[],edu:'none',preview:true,proto:true};
+      if(k==='admin') me.subs=Object.keys(all).filter(function(e){return e!==id}).map(function(e){return {email:e,at:all[e].at||today(),role:all[e].r,joined:!!all[e].j}});
+      if(k==='member'&&all[id]){all[id].j=1; try{localStorage.setItem(PK,JSON.stringify(all))}catch(e){}}  /* 成员第一次登录：管理员那边显示「已加入」 */
+      logged=true; syncLogin(); location.hash='#console'}
+    function orgRole(em){var r=pget()[em]; return r&&r.r==='member'?'member':'admin'}
+    function psync(){if(me&&me.proto&&me.role==='admin'){var all={}; (me.subs||[]).forEach(function(x){all[x.email]={r:x.role==='admin'?'admin':'member',at:x.at||today(),j:x.joined?1:0}}); try{localStorage.setItem(PK,JSON.stringify(all))}catch(e){}}}
+    var _rcp=renderConsole; renderConsole=function(){_rcp(); psync()}; var _psp=persist; persist=function(){_psp(); psync()};  /* 加成员、改角色、移除后都记下来 */
+    function protoTip(){toast('原型阶段不发送验证码，输入任意 6 位数字即可。')}
+    var LIVE=false; if(!LIVE) window.supLogin=enter;
     function svc(t){var b=$('#acService'); if(b){$('#acServiceText').textContent=t; b.hidden=false; b.focus()} else toast(t)}
     /* 个人 / 企业切换，记住上次用的入口 */
     function tab(t,focus){var org=t==='o'; $('#acPersonal').hidden=org; $('#acOrg').hidden=!org;
@@ -4859,24 +4871,25 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
     $$('#acOrg [data-om]').forEach(function(b){b.addEventListener('click',function(){omSet(b.getAttribute('data-om'))})});
     $$('#acOrg [data-om-go]').forEach(function(b){b.addEventListener('click',function(){omSet(b.getAttribute('data-om-go')); $('#acOrgC').focus()})});
     function orgMail(){var v=$('#acOrgU').value.trim(); if(!MAIL.test(v)){$('#acOrgMsg').textContent='请输入有效的工作邮箱。'; $('#acOrgU').focus(); return ''} return v}
-    $('#acOrgSend').addEventListener('click',function(){$('#acOrgMsg').textContent=''; if(!orgMail()) return; if(LIVE){svc('企业登录尚未开通。如需开通企业账户，请联系我们。');return} if(window.supCountdown) window.supCountdown(this)});
+    $('#acOrgSend').addEventListener('click',function(){$('#acOrgMsg').textContent=''; if(!orgMail()) return; if(LIVE){svc('企业登录尚未开通。如需开通企业账户，请联系我们。');return} if(window.supCountdown){window.supCountdown(this); protoTip()}});
     $('#acOrgF').addEventListener('submit',function(e){e.preventDefault(); var m=$('#acOrgMsg'); m.textContent='';
       if(!orgMail()) return;
       if(om==='code'&&!/^\d{6}$/.test($('#acOrgC').value.trim())){m.textContent='请输入 6 位验证码。'; $('#acOrgC').focus(); return}
       if(om==='pw'&&!$('#acOrgPw').value){m.textContent='请输入密码。'; $('#acOrgPw').focus(); return}
       if(!$('#acOrgAgree').checked){m.textContent='请先阅读并同意用户服务协议和隐私政策。'; return}
-      $('#acOrgPw').value=''; if(LIVE){svc('企业登录尚未开通。如需开通企业账户，请联系我们。');return} enter('admin')});
+      $('#acOrgPw').value=''; if(LIVE){svc('企业登录尚未开通。如需开通企业账户，请联系我们。');return} var em=$('#acOrgU').value.trim().toLowerCase(); enter(orgRole(em),em)});
     /* 获取验证码：60 秒倒计时 */
     if(!LIVE) window.supCountdown=function(btn){if(btn._t) return; var n=60, txt=btn.textContent; btn.disabled=true; btn.textContent='重新发送 '+n+'s';
       btn._t=setInterval(function(){n--; if(n<=0){clearInterval(btn._t); btn._t=null; btn.disabled=false; btn.textContent=txt; return} btn.textContent='重新发送 '+n+'s'},1000)};
     /* 第三方登录（微信 / Google / GitHub）都是个人账号 */
-    if(!LIVE) $$('[data-provider]').forEach(function(b){b.addEventListener('click',function(e){e.stopImmediatePropagation(); enter('personal')},true)});
+    if(!LIVE) $$('[data-provider]').forEach(function(b){b.addEventListener('click',function(e){e.stopImmediatePropagation(); if(b.dataset.provider==='wechat'&&!$('#acAgree').checked){toast('请先阅读并同意用户服务协议和隐私政策。');return} enter('personal')},true)});
     /* 运营后台登录 */
     $('#adLogin').addEventListener('submit',function(e){e.preventDefault(); var m=$('#adMsg'); m.textContent='';
       if(!MAIL.test($('#adMail').value.trim())){m.textContent='请输入工作邮箱。'; $('#adMail').focus(); return}
       if(!$('#adPw').value){m.textContent='请输入密码。'; $('#adPw').focus(); return}
       if(!/^\d{6}$/.test($('#adOtp').value.trim())){m.textContent='请输入 6 位两步验证码。'; $('#adOtp').focus(); return}
-      $('#adPw').value=''; $('#adOtp').value=''; if(LIVE){m.textContent='运营后台尚未接入。员工账号由开发开通。';return} enter('super')});
+      var am=$('#adMail').value.trim().toLowerCase(); $('#adPw').value=''; $('#adOtp').value=''; if(LIVE){m.textContent='运营后台尚未接入。员工账号由开发开通。';return} enter('super',am)});
+    window.supProtoTip=protoTip;
   })();
 
   /* ======== 上线合并（2026-10-14 夜）：用量分析、导出、批量任务、实名、登录设备、超管补充页 ======== */
