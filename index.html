@@ -1756,17 +1756,15 @@ section[data-route="models"] .pe+.pe.sub{border-top-color:rgba(61,49,79,.07);pad
 .bt .cs-p .cs-tiles a{color:inherit;text-decoration:none;display:grid;gap:6px} .bt .cs-p .cs-tiles>div:has(>a){padding:0} .bt .cs-p .cs-tiles>div>a{padding:16px 18px;border-radius:inherit} .bt .cs-p .cs-tiles>div>a:hover{background:rgba(0,0,0,.025)}
 .rt-vmark{display:inline-block;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#E3ECF8,#F3E6E0);border:1px solid var(--line);flex:none}
 @media (max-width:860px){.rt-tabs{overflow-x:auto}.rt-tabs button{white-space:nowrap}}
-/* 评审后（10-15）：运维密度壳，只在超管态生效；员工看表格，不看页头 */
-.bt[data-role="root"] .bt-main::before{display:none}
+/* 评审后（10-15）：超管态加密度，保留页头 wash、渐变表头、黑胶囊这套视觉 */
 .bt[data-role="root"] .cs-hd{margin-bottom:18px;align-items:flex-start}
-.bt[data-role="root"] .cs-hd h2{font:500 22px/1.25 var(--sans);letter-spacing:-.01em;font-variation-settings:normal}
+.bt[data-role="root"] .cs-hd h2{font-size:32px}
 .bt[data-role="root"] .cs-hd p{font-size:13px;margin-top:4px;max-width:64em;color:var(--ink-70)}
-.bt[data-role="root"] .cs-tbl thead{background:transparent}
-.bt[data-role="root"] .cs-tbl th{color:var(--ink-70);background:var(--paper);border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.02em}
 .bt[data-role="root"] .cs-tbl td{height:44px;padding-top:8px;padding-bottom:8px}
-.bt[data-role="root"] .cs-tbl th:first-child,.bt[data-role="root"] .cs-tbl td:first-child{position:sticky;left:0;z-index:1;background:var(--paper);white-space:normal;min-width:160px;max-width:260px}
+.bt[data-role="root"] .cs-tbl th:first-child,.bt[data-role="root"] .cs-tbl td:first-child{white-space:normal;min-width:160px;max-width:260px}
+@media (max-width:1180px){.bt[data-role="root"] .cs-tbl th:first-child,.bt[data-role="root"] .cs-tbl td:first-child{position:sticky;left:0;z-index:1;background:var(--paper)} .bt[data-role="root"] .cs-tbl th:first-child{background:#2F63B8}}
 .bt[data-role="root"] .cs-tbl tbody tr:hover td{background:#F1F1F1}
-.bt[data-role="root"] .cs-tbl tr[data-dirty] td{background:#FBF4EC} .bt[data-role="root"] .cs-tbl tr[data-dirty] td:first-child{background:#FBF4EC}
+.bt[data-role="root"] .cs-tbl tr[data-dirty] td{background:#FBF4EC}
 .bt[data-role="root"] .cs-tbl .cs-pr{width:92px}
 .bt[data-role="root"] .cs-help,.bt[data-role="root"] .cs-dl dt,.bt[data-role="root"] .cs-tiles .k,.bt[data-role="root"] .cs-p .k,.bt[data-role="root"] .cs-empty{color:var(--ink-70)}
 .bt[data-role="root"] .cs-tiles>div{padding:12px 14px} .bt[data-role="root"] .cs-tiles b{font-size:20px}
@@ -1776,7 +1774,7 @@ section[data-route="models"] .pe+.pe.sub{border-top-color:rgba(61,49,79,.07);pad
 .bt[data-role="root"] .rt-detail{background:#fff}
 .rt-steps button{appearance:none;display:flex;align-items:center;gap:8px;padding:7px 12px 7px 8px;border-radius:999px;border:1px solid var(--line);font:400 13px var(--sans);color:var(--ink-70);background:rgba(255,255,255,.6);cursor:default}
 .rt-steps button b{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font:500 11px var(--mono);background:rgba(0,0,0,.06)}
-.rt-steps button.on{color:#000;border-color:rgba(0,0,0,.3);background:#fff} .rt-steps button.on b{background:#000;color:#fff}
+.rt-steps button.on{color:#000;border-color:rgba(0,0,0,.2);background:linear-gradient(100deg,#E3ECF8,#EEE7EC 56%,#F3E6E0)} .rt-steps button.on b{background:#000;color:#fff}
 .rt-steps button.done{cursor:pointer} .rt-steps button.done b{background:#000;color:#fff} .rt-steps button.done:hover{background:#fff}
 .rt-steps button:disabled{opacity:.55}
 .rt-sh{margin:0 0 10px}
@@ -4961,7 +4959,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
     /* 固定名单 + 各页 22px 以上的衬线大标题（产品页、关于页等改版后的新版式也自动覆盖） */
     var fixed='.hero .h,.page-head .display,.sec .hd h3.serif,.h2,.faq h2,.cta-end .display,.feat .it b,.prod b,.card h3,.case b,.detail .display,.article h1,.coop h2.display';
     /* 手写首字母：控制台以外的页面只在英文模式加；控制台（.bt）里中英文模式都加，只修饰以拉丁字母开头的衬线标题（设计交接；2026-10-14 晚恢复） */
-    $$(fixed+',[data-route] h1,[data-route] h2,[data-route] h3,[data-route] .display,[data-route] .lead2,.bt-empty b,.bt-panel-tx>b').forEach(function(el){ var inC=!!el.closest('.bt')&&!el.closest('.bt[data-role="root"]'), on=(lang==='en'||inC)&&/^[A-Za-z]/.test(el.textContent.trim());
+    $$(fixed+',[data-route] h1,[data-route] h2,[data-route] h3,[data-route] .display,[data-route] .lead2,.bt-empty b,.bt-panel-tx>b').forEach(function(el){ var inC=!!el.closest('.bt'), on=(lang==='en'||inC)&&/^[A-Za-z]/.test(el.textContent.trim());
       if(on&&!el.matches(fixed)){ var cs=getComputedStyle(el); on=(inC||parseFloat(cs.fontSize)>=22)&&/Fraunces/.test(cs.fontFamily) }
       if(el.classList.contains('hand1')!==on) el.classList.toggle('hand1',on) }) }
   function titleLang(){ var z=document.__zt||document.title; if(lang==='en'){ var t=trKey(z); if(t==null) t=rxTr(z); if(t!=null){ document.__zt=z; document.title=t } } else if(document.__zt){ document.title=document.__zt; document.__zt=null } }
