@@ -1338,6 +1338,7 @@ html[lang="en"] #home2 .case b::first-letter,html[lang="en"] #home2 .cgh2 b::fir
 .bt-lang:focus-visible{outline:2px solid var(--blue-1);outline-offset:2px}
 </style>
 <style id="roles-css">
+.cs-off td{opacity:.55}
 /* 四个角色状态（2026-10-14）：个人 / 企业成员 / 企业管理员 / 超管共用一套壳，data-roles 决定显隐 */
 .bt-orgs{display:grid;gap:2px;padding:4px 4px 6px}
 .bt-orgs button{appearance:none;border:0;background:transparent;text-align:left;cursor:pointer;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;font:inherit;color:inherit;width:100%}
@@ -3211,12 +3212,17 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <form class="cs-ntf" id="rtNewF" hidden novalidate><h3 class="cs-h3">开通企业账户</h3>
           <div class="cs-f"><label for="rtOn">企业名称</label><input class="in" id="rtOn" name="name" autocomplete="organization"></div>
           <div class="cs-f"><label for="rtOm">管理员邮箱</label><input class="in" id="rtOm" name="mail" type="email" autocomplete="off"><p class="cs-help">管理员的账号就是这个工作邮箱，第一次用邮箱验证码登录「企业登录」。</p></div>
-          <div class="cs-f"><label for="rtOp">合同价</label><select class="mk-sel" id="rtOp" name="price"><option value="list">公开价</option><option value="contract">按合同折扣</option></select></div>
+          <div class="cs-f"><label for="rtOp">合同价</label><select class="mk-sel" id="rtOp" name="price"><option value="list">公开价</option><option value="contract">按合同定价</option></select><p class="cs-help">选「按合同定价」的，开通后在列表里点「定价」按模型填企业价。</p></div>
           <div class="cs-f"><label for="rtOb">结算方式</label><select class="mk-sel" id="rtOb" name="bill"><option value="prepaid">预付充值</option><option value="monthly">月结</option></select></div>
           <div><button class="btn black sm" type="submit">开通</button> <button class="btn gray sm" type="button" id="rtNewX">取消</button></div>
         </form>
         <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>账户</th><th>类型</th><th class="r">余额</th><th class="r">本月消费</th><th>状态</th><th></th></tr></thead><tbody id="rtRows"></tbody></table></div>
         <div class="cs-empty" id="rtRows0"><b>还没有账户</b><span>用户注册后显示在这里；企业账户可以在上方开通。</span></div>
+        <form class="cs-ntf" id="rtPriceF" hidden novalidate><h3 class="cs-h3">企业定价 · <span id="rtPriceN"></span></h3>
+          <p class="cs-help">留空的模型按基础价计费；填了的模型，这家企业的请求按这里的价计费。</p>
+          <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>模型</th><th class="r">基础 输入</th><th class="r">基础 输出</th><th class="r">企业 输入 ¥/M</th><th class="r">企业 输出 ¥/M</th></tr></thead><tbody id="rtPriceRows"></tbody></table></div>
+          <div><button class="btn black sm" type="submit">保存企业定价</button> <button class="btn gray sm" type="button" id="rtPriceX">取消</button></div>
+        </form>
         <h3 class="cs-h3">教育认证审核</h3>
         <div class="cs-empty" id="rtEdu0"><b>没有待审核的申请</b><span>学生或老师上传学生证、在读证明后，申请显示在这里，通过后账户按教育价计费。</span></div>
         <h3 class="cs-h3">对公入账</h3>
@@ -3224,9 +3230,17 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
         <p class="cs-help">核对银行到账后在这里入账，金额计入该企业的余额，并写入它的充值记录。</p>
       </div>
       <div class="cs-p" data-p="root-models">
-        <div class="cs-hd"><div><h2>模型与价格</h2><p>官网的产品页、定价页和控制台的模型目录都读这张表。改价格后前台同步更新。</p></div></div>
-        <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>模型</th><th>厂商</th><th>类型</th><th>上下文</th><th class="r">输入 ¥/M</th><th class="r">输出 ¥/M</th><th class="r">缓存 ¥/M</th><th>上架</th><th>状态</th><th></th></tr></thead><tbody id="rtModels"></tbody></table></div>
-        <p class="cs-help">输出参考价来自当前目录；输入、缓存单价按模型分别填写。</p>
+        <div class="cs-hd"><div><h2>模型与价格</h2><p>先建渠道，再在渠道下添加模型并填访问密钥，最后给模型定基础价。官网的产品页、定价页和控制台的模型目录都读这张表。</p></div></div>
+        <h3 class="cs-h3">1. 渠道</h3>
+        <p class="cs-help">渠道对应上游模型厂商。定时任务会同步每个渠道的上游模型列表，添加模型时从列表里选。</p>
+        <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>渠道</th><th>厂商</th><th class="r">已接模型</th><th class="r">上游模型</th><th>上次同步</th><th>状态</th><th></th></tr></thead><tbody id="rtChs"></tbody></table></div>
+        <form class="cs-newf" id="rtChF" novalidate><select class="mk-sel" name="vendor" aria-label="厂商"><option value="DeepSeek">DeepSeek</option><option value="Zhipu">智谱</option><option value="Alibaba">阿里云百炼</option><option value="MiniMax">MiniMax</option><option value="other">其他厂商</option></select><input class="in" name="name" placeholder="渠道名称" aria-label="渠道名称" autocomplete="off"><input class="in mono" name="base" placeholder="接口地址（可选）" aria-label="接口地址" autocomplete="off" spellcheck="false"><button class="btn black sm" type="submit">新建渠道</button></form>
+        <h3 class="cs-h3">2. 模型</h3>
+        <form class="cs-newf" id="rtMdF" novalidate><select class="mk-sel" name="ch" id="rtMdCh" aria-label="渠道"></select><input class="in mono" name="upstream" list="rtUpList" placeholder="上游模型 ID" aria-label="上游模型 ID" autocomplete="off" spellcheck="false"><datalist id="rtUpList"></datalist><input class="in" name="name" placeholder="显示名称" aria-label="显示名称" autocomplete="off"><input class="in mono" name="key" type="password" placeholder="访问密钥" aria-label="访问密钥" autocomplete="off"><button class="btn black sm" type="submit">添加模型</button></form>
+        <p class="cs-help">上游模型列表由渠道同步得到，没同步到的可以手动填模型 ID。访问密钥只在这里填一次，之后不再显示。新添加的模型先下架，填好基础价再上架。</p>
+        <div class="tbl"><table class="cs-tbl cs-wide"><thead><tr><th>模型</th><th>渠道</th><th>类型</th><th>上下文</th><th class="r">输入 ¥/M</th><th class="r">输出 ¥/M</th><th class="r">缓存 ¥/M</th><th>上架</th><th>状态</th><th></th></tr></thead><tbody id="rtModels"></tbody></table></div>
+        <h3 class="cs-h3">3. 定价规则</h3>
+        <p class="cs-help">上表是基础定价（C 端价），个人和企业默认都按它计费。企业的合同价在「用户与组织」里按企业、按模型单独设置；设了的模型按企业价计费，没设的仍按基础价。</p>
       </div>
       <div class="cs-p" data-p="root-content">
         <div class="cs-hd"><div><h2>内容</h2><p>控制台里运营自己维护的内容：公告、常见问答，以及哪些菜单对用户显示。</p></div></div>
@@ -4363,7 +4377,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   /* 固定模型：存在账户里，侧栏「已固定」列出 */
   function pins(){return (me&&me.pins)||[]}
   function togglePin(id){if(!me)return;var ps=pins().slice(),i=ps.indexOf(id);if(i<0)ps.push(id);else ps.splice(i,1);me.pins=ps;persist();btRender()}
-  function mRow(m,full){var on=pins().indexOf(m.id)>=0,price='¥'+m.mkt.toFixed(2);
+  function mRow(m,full){var on=pins().indexOf(m.id)>=0,op=orgPrice(m),price='¥'+(op!=null?op:m.mkt).toFixed(2)+(op!=null?' <i class="bt-tag g">合同价</i>':'');
     return '<tr><td><a class="bt-mn" href="#model-'+m.id+'">'+vlogo(m.vendor)+'<span>'+esc(m.name)+'</span></a></td>'+
       (full?'<td class="bt-hide-s">'+esc(m.vendor)+'</td><td class="bt-hide-s">'+esc(m.type.join(' · '))+'</td><td class="bt-hide-s mono">'+esc(m.ctx)+'</td><td class="r mono">'+price+'</td>'
            :'<td class="bt-hide-s mono">'+price+' / 百万词元</td>')+
@@ -4399,13 +4413,16 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
     $('#btSr').textContent=LOGS.length.toLocaleString('en-US'); $('#btSp').textContent=ps.length; $('#btSpB').style.width=(ps.length/M.length*100)+'%';
     $('#btSpend').textContent=cny(spend); var th0=me.notify&&me.notify.th; $('#btCredAl').textContent=th0?cny(th0):'未设置';
     $('#btPins').innerHTML=ps.map(function(id){return byId[id]}).filter(Boolean).map(function(m){return '<a href="#model-'+m.id+'">'+vlogo(m.vendor,18)+'<span>'+esc(m.name)+'</span></a>'}).join(''); $('#btPin0').hidden=ps.length>0;
-    $('#btModels').innerHTML=M.map(function(m){return mRow(m,false)}).join(''); $('#btModels2').innerHTML=M.map(function(m){return mRow(m,true)}).join('');
+    var ML=M.filter(function(m){return !m.off}); $('#btModels').innerHTML=ML.map(function(m){return mRow(m,false)}).join(''); $('#btModels2').innerHTML=ML.map(function(m){return mRow(m,true)}).join('');
     $$('#btModels2 [data-pin]').forEach(function(b){b.addEventListener('click',function(){togglePin(b.getAttribute('data-pin'))})});
     btKeys(); btSync(($('.cs-p.on')||{getAttribute:function(){return 'home'}}).getAttribute('data-p'))}
 
 
   /* ---------- 四个角色状态（2026-10-14）：同一套壳，按 me.role 显隐 ---------- */
-  var ORGS=[], RT_NOTICES=[], RT_FAQS=[], RT_MODS={};
+  var ORGS=[], RT_NOTICES=[], RT_FAQS=[], RT_MODS={}, ORG_PRICES={}, CHANNELS=[];
+  /* 渠道 = 上游厂商；目录里已有的模型按厂商归到对应渠道。上游模型列表和同步时间来自平台的定时任务 */
+  (function(){var seen={};M.forEach(function(m){if(!m.ch)m.ch=m.vendor;if(!seen[m.ch]){seen[m.ch]=1;CHANNELS.push({name:m.ch,vendor:m.vendor,base:'',synced:'',up:[],st:'on'})}})})();
+  function orgPrice(m){var o=me&&me.org&&ORG_PRICES[me.org];return o&&o[m.id]&&o[m.id].pout!=null?o[m.id].pout:null}
   function roleApply(){var role=me.role||'personal';bt.setAttribute('data-role',role);
     $$('.bt [data-roles]').forEach(function(el){el.hidden=el.getAttribute('data-roles').split(' ').indexOf(role)<0});
     $('#btCredL').textContent=role==='member'?'组织额度':role==='admin'?'组织余额':'余额';
@@ -4422,10 +4439,18 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   /* 超管页：用户与组织、模型与价格、内容。预览账户只在内存里 */
   function rootRender(){var q=($('#rtQ').value||'').trim().toLowerCase(),f=$('#rtF').value;
     var rows=ORGS.filter(function(o){return (!q||o.name.toLowerCase().indexOf(q)>=0||(o.mail||'').indexOf(q)>=0)&&(!f||o.type===f)});
-    $('#rtRows').innerHTML=rows.map(function(o){return '<tr><td><span class="cs-mm"><span>'+esc(o.name)+'</span><span class="cs-sub mono">'+esc(o.mail||'')+'</span></span></td><td>'+TYPE[o.type]+'</td><td class="r mono">'+cny(o.bal||0)+'</td><td class="r mono">¥0.00</td><td><span class="cs-st '+(o.st==='ok'?'ok':'wait')+'">'+(o.st==='ok'?'已开通':'待管理员接受邀请')+'</span></td><td class="r"><button class="ac-link" type="button" data-rtview="'+esc(o.name)+'">查看</button></td></tr>'}).join('');
+    $('#rtRows').innerHTML=rows.map(function(o){return '<tr><td><span class="cs-mm"><span>'+esc(o.name)+'</span><span class="cs-sub mono">'+esc(o.mail||'')+'</span></span></td><td>'+TYPE[o.type]+'</td><td class="r mono">'+cny(o.bal||0)+'</td><td class="r mono">¥0.00</td><td><span class="cs-st '+(o.st==='ok'?'ok':'wait')+'">'+(o.st==='ok'?'已开通':'待管理员接受邀请')+'</span></td><td class="r">'+(o.type==='company'?'<button class="ac-link" type="button" data-rtprice="'+esc(o.name)+'">定价</button> ':'')+'<button class="ac-link" type="button" data-rtview="'+esc(o.name)+'">查看</button></td></tr>'}).join('');
     $('#rtRows0').hidden=rows.length>0; $('#rtU').textContent=ORGS.length; $('#rtO').textContent=ORGS.filter(function(o){return o.type==='company'}).length;
     $$('#rtRows [data-rtview]').forEach(function(b){b.addEventListener('click',function(){toast('账户详情页接平台接口后显示 Key、用量和成员。')})});
-    $('#rtModels').innerHTML=M.map(function(m,i){var off=!!m.off;return '<tr'+(off?' class="cs-off"':'')+'><td><span class="bt-mn">'+vlogo(m.vendor,20)+'<span>'+esc(m.name)+'</span></span></td><td>'+esc(m.vendor)+'</td><td>'+esc(m.type.join(' · '))+'</td><td class="mono">'+esc(m.ctx)+'</td><td class="r"><input class="in mono cs-pr" data-pr="in:'+i+'" inputmode="decimal" value="'+(m.pin!=null?m.pin:'')+'" placeholder="--" aria-label="输入单价"></td><td class="r"><input class="in mono cs-pr" data-pr="out:'+i+'" inputmode="decimal" value="'+m.mkt+'" aria-label="输出单价"></td><td class="r"><input class="in mono cs-pr" data-pr="cache:'+i+'" inputmode="decimal" value="'+(m.pcache!=null?m.pcache:'')+'" placeholder="--" aria-label="缓存单价"></td><td class="mono">'+esc(m.seen||'')+'</td><td><span class="cs-st '+(off?'':'ok')+'">'+(off?'已下架':'已上架')+'</span></td><td class="r"><button class="ac-link" type="button" data-rtoff="'+i+'">'+(off?'上架':'下架')+'</button></td></tr>'}).join('');
+    $$('#rtRows [data-rtprice]').forEach(function(b){b.addEventListener('click',function(){var n=b.getAttribute('data-rtprice'),cur=ORG_PRICES[n]||{};$('#rtPriceN').textContent=n;$('#rtPriceF').setAttribute('data-org',n);
+      $('#rtPriceRows').innerHTML=M.map(function(m){var c=cur[m.id]||{};return '<tr><td><span class="bt-mn">'+vlogo(m.vendor,20)+'<span>'+esc(m.name)+'</span></span></td><td class="r mono">'+(m.pin!=null?m.pin:'--')+'</td><td class="r mono">'+m.mkt+'</td><td class="r"><input class="in mono cs-pr" data-op="in:'+m.id+'" inputmode="decimal" value="'+(c.pin!=null?c.pin:'')+'" placeholder="基础价" aria-label="企业输入单价"></td><td class="r"><input class="in mono cs-pr" data-op="out:'+m.id+'" inputmode="decimal" value="'+(c.pout!=null?c.pout:'')+'" placeholder="基础价" aria-label="企业输出单价"></td></tr>'}).join('');
+      $('#rtPriceF').hidden=false;$('#rtPriceF').scrollIntoView({block:'start'})})});
+    /* 渠道表与添加模型的渠道下拉 */
+    $('#rtChs').innerHTML=CHANNELS.map(function(c,i){var n=M.filter(function(m){return m.ch===c.name}).length;return '<tr><td><span class="bt-mn">'+vlogo(c.vendor,20)+'<span>'+esc(c.name)+'</span></span></td><td>'+esc(c.vendor)+'</td><td class="r mono">'+n+'</td><td class="r mono">'+(c.up.length||'--')+'</td><td class="mono">'+(c.synced||'--')+'</td><td><span class="cs-st '+(c.st==='on'?'ok':'')+'">'+(c.st==='on'?'启用':'停用')+'</span></td><td class="r"><button class="ac-link" type="button" data-rtsync="'+i+'">同步</button> <button class="ac-link" type="button" data-rtch="'+i+'">'+(c.st==='on'?'停用':'启用')+'</button></td></tr>'}).join('');
+    $$('#rtChs [data-rtsync]').forEach(function(b){b.addEventListener('click',function(){toast('同步由平台定时任务执行，接入后这里显示上游模型列表。')})});
+    $$('#rtChs [data-rtch]').forEach(function(b){b.addEventListener('click',function(){var c=CHANNELS[+b.getAttribute('data-rtch')];c.st=c.st==='on'?'off':'on';rootRender();toast((c.st==='on'?'已启用渠道 ':'已停用渠道 ')+c.name+'。')})});
+    var sel=$('#rtMdCh'),cur=sel.value;sel.innerHTML='<option value="">选择渠道</option>'+CHANNELS.filter(function(c){return c.st==='on'}).map(function(c){return '<option value="'+esc(c.name)+'"'+(c.name===cur?' selected':'')+'>'+esc(c.name)+'</option>'}).join('');
+    $('#rtModels').innerHTML=M.map(function(m,i){var off=!!m.off;return '<tr'+(off?' class="cs-off"':'')+'><td><span class="bt-mn">'+vlogo(m.vendor,20)+'<span>'+esc(m.name)+'</span></span></td><td>'+esc(m.ch||m.vendor)+'</td><td>'+esc(m.type.join(' · '))+'</td><td class="mono">'+esc(m.ctx)+'</td><td class="r"><input class="in mono cs-pr" data-pr="in:'+i+'" inputmode="decimal" value="'+(m.pin!=null?m.pin:'')+'" placeholder="--" aria-label="输入单价"></td><td class="r"><input class="in mono cs-pr" data-pr="out:'+i+'" inputmode="decimal" value="'+m.mkt+'" aria-label="输出单价"></td><td class="r"><input class="in mono cs-pr" data-pr="cache:'+i+'" inputmode="decimal" value="'+(m.pcache!=null?m.pcache:'')+'" placeholder="--" aria-label="缓存单价"></td><td class="mono">'+esc(m.seen||'')+'</td><td><span class="cs-st '+(off?'':'ok')+'">'+(off?'已下架':'已上架')+'</span></td><td class="r"><button class="ac-link" type="button" data-rtoff="'+i+'">'+(off?'上架':'下架')+'</button></td></tr>'}).join('');
     $$('#rtModels [data-pr]').forEach(function(inp){inp.addEventListener('change',function(){var p=inp.getAttribute('data-pr').split(':'),m=M[+p[1]],v=inp.value.trim();if(v&&!(+v>=0)){toast('请输入数字。');return}if(p[0]==='out'){if(!v){inp.value=m.mkt;return}m.mkt=+v}else if(p[0]==='in')m.pin=v?+v:null;else m.pcache=v?+v:null;btRender();toast('价格已更新；预览账户不保存。')})});
     $$('#rtModels [data-rtoff]').forEach(function(b){b.addEventListener('click',function(){var m=M[+b.getAttribute('data-rtoff')];m.off=!m.off;rootRender();toast(m.off?'已下架 '+m.name+'，用户侧不再显示。':'已上架 '+m.name+'。')})});
     $('#rtNotices').innerHTML=RT_NOTICES.map(function(n){return '<li><span>'+esc(n.t)+'</span><span class="k">'+({notice:'公告',maint:'维护',model:'模型上新'})[n.k]+' · '+esc(n.at)+'</span></li>'}).join(''); $('#rtNotices0').hidden=RT_NOTICES.length>0;
@@ -4433,6 +4458,17 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
     var mods=[['models','模型 API'],['orders','订单与产地卡'],['explore','探索'],['bill','钱包与账单'],['keys','API Key'],['sec','安全与访问'],['usage','使用日志']];
     if(!$('#rtMods').children.length){$('#rtMods').innerHTML=mods.map(function(x){return '<label><input type="checkbox" data-mod="'+x[0]+'" checked><span>'+x[1]+'</span></label>'}).join('');
       $$('#rtMods [data-mod]').forEach(function(c){c.addEventListener('change',function(){var p=c.getAttribute('data-mod');RT_MODS[p]=!c.checked;$$('.bt-nav [data-p="'+p+'"]').forEach(function(b){b.hidden=!c.checked});toast((c.checked?'已显示「':'已隐藏「')+mods.filter(function(x){return x[0]===p})[0][1]+'」。')})})}}
+  $('#rtChF').addEventListener('submit',function(e){e.preventDefault();var f=this,n=f.name.value.trim(),v=f.vendor.value;if(!n){toast('请填写渠道名称。');f.name.focus();return}if(CHANNELS.some(function(c){return c.name===n})){toast('已经有同名渠道。');return}
+    CHANNELS.push({name:n,vendor:v==='other'?n:v,base:f.base.value.trim(),synced:'',up:[],st:'on'});f.reset();rootRender();toast('已新建渠道 '+n+'，定时任务会同步它的上游模型列表。')});
+  $('#rtMdCh').addEventListener('change',function(){var c=CHANNELS.filter(function(x){return x.name===this.value},this)[0]||CHANNELS.filter(function(x){return x.name===$('#rtMdCh').value})[0];$('#rtUpList').innerHTML=((c&&c.up)||[]).map(function(u){return '<option value="'+esc(u)+'">'}).join('')});
+  $('#rtMdF').addEventListener('submit',function(e){e.preventDefault();var f=this,ch=CHANNELS.filter(function(x){return x.name===f.ch.value})[0],up=f.upstream.value.trim(),n=f.name.value.trim(),k=f.key.value;
+    if(!ch){toast('请先选择渠道。');f.ch.focus();return}if(!up){toast('请填写上游模型 ID。');f.upstream.focus();return}if(!n){toast('请填写显示名称。');f.name.focus();return}if(!k){toast('请填写访问密钥。');f.key.focus();return}
+    var id=up.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');if(byId[id]||M.some(function(m){return m.name===n})){toast('这个模型已经在目录里。');return}
+    var m={id:id,name:n,vendor:ch.vendor,ch:ch.name,type:['对话'],ctx:'--',mkt:0,pin:null,pcache:null,seen:today(),desc:'',off:true};M.push(m);byId[id]=m;f.reset();rootRender();toast('已添加 '+n+'，密钥已交平台保存。填好基础价后点「上架」。')});
+  $('#rtPriceX').addEventListener('click',function(){$('#rtPriceF').hidden=true});
+  $('#rtPriceF').addEventListener('submit',function(e){e.preventDefault();var f=this,n=f.getAttribute('data-org'),o={},bad=false,cnt=0;
+    $$('#rtPriceRows [data-op]').forEach(function(inp){var p=inp.getAttribute('data-op').split(':'),v=inp.value.trim();if(!v)return;if(!(+v>=0)){bad=true;return}o[p[1]]=o[p[1]]||{};o[p[1]][p[0]==='in'?'pin':'pout']=+v});
+    if(bad){toast('价格要填数字。');return}Object.keys(o).forEach(function(k){cnt++});ORG_PRICES[n]=o;f.hidden=true;btRender();toast(cnt?'已保存 '+n+' 的企业定价，'+cnt+' 个模型按合同价计费。':'已清空 '+n+' 的企业定价，全部按基础价。')});
   $('#rtQ').addEventListener('input',function(){if(me&&me.role==='root')rootRender()}); $('#rtF').addEventListener('change',function(){if(me&&me.role==='root')rootRender()});
   $('#rtNew').addEventListener('click',function(){$('#rtNewF').hidden=false;$('#rtOn').focus()}); $('#rtNewX').addEventListener('click',function(){$('#rtNewF').hidden=true});
   $('#rtNewF').addEventListener('submit',function(e){e.preventDefault();var f=this,n=f.name.value.trim(),m=f.mail.value.trim().toLowerCase();if(!n){toast('请填写企业名称。');f.name.focus();return}if(!MAIL.test(m)){toast('请输入有效的管理员邮箱。');f.mail.focus();return}
@@ -4549,6 +4585,8 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
   Object.assign(I18N,{"可用额度": "Available allowance", "管理员分配给你的额度；没有设上限时等于组织余额。": "The allowance your admin assigned; with no cap it equals the organization balance.", "在线充值或对公转账后，成员的用量从这里扣。": "Top up online or by bank transfer; members' usage is deducted here.", "没有符合条件的模型": "No models match", "个人钱包": "Personal wallet", "，在线充值后按实际用量扣费。": ", topped up online and charged by actual usage.", "这个钱包属于": "This wallet belongs to", "，成员的用量计入这里；充值、发票和对账由管理员处理。": "; members' usage is charged here, and top-ups, invoices and reconciliation are handled by the admin.", "。款项到账后由运营入账，入账记录显示在上方的充值记录里。": ". Once the money arrives, operations credits it and the entry appears in the top-up history above.", "按成员筛选": "Filter by member", "查找账户": "Find an account", "筛选": "Filter", "公告标题": "Announcement title", "输入单价": "Input price", "输出单价": "Output price", "缓存单价": "Cache price", "月限额": "Monthly limit", "企业账户": "Business account", "沐仞运营": "FathomPeak operations", "已切换到 ": "Switched to "});
   Object.assign(I18N,{"未注册的手机号或邮箱验证后自动创建账户。企业成员用管理员添加的邮箱登录，进入后在左上角切换到企业。": "Unregistered phone numbers and emails get an account after verification. Organization members sign in with the email their admin added, then switch to the organization in the top-left menu.", "企业成员请用管理员添加的工作邮箱。": "Organization members: use the work email your admin added.", "请输入邮箱": "Enter your email", "还没有企业账户？": "No business account yet?", "申请开通 →": "Apply →", "添加同事的邮箱，他们登录后在左上角切换到这个企业。额度和账单由企业账户统一管理；管理员可以管理成员、API Key 和账单，成员可以创建和使用自己的 API Key。": "Add colleagues by email; after signing in they switch to this organization in the top-left menu. Allowance and billing are managed centrally; admins manage members, API keys and billing, members create and use their own API keys.", "同事已有账号的，加入后直接可用；没有账号的会收到邮件，用这个邮箱登录即自动加入。没有邮箱的同事可以用邀请链接。成员被移除后，他创建的 API Key 同时失效。": "Colleagues with an account can use it right away; others get an email and join automatically when they sign in with that address. Colleagues without email can use the invite link. When a member is removed, their API keys are disabled.", "开通后给这个邮箱发通知；对方用邮箱登录，在左上角切换到企业即可。": "We notify this email once the account is open; they sign in with it and switch to the organization in the top-left menu."});
   Object.assign(I18N,{"用密码登录": "Sign in with password", "忘记密码？用验证码登录": "Forgot your password? Sign in with a code"});
+  Object.assign(I18N,{"先建渠道，再在渠道下添加模型并填访问密钥，最后给模型定基础价。官网的产品页、定价页和控制台的模型目录都读这张表。": "Create a channel first, then add models under it with the access key, then set the base price. The website's product and pricing pages and the console's model list all read this table.", "1. 渠道": "1. Channels", "渠道对应上游模型厂商。定时任务会同步每个渠道的上游模型列表，添加模型时从列表里选。": "A channel is an upstream model vendor. A scheduled job syncs each channel's upstream model list; pick from it when adding a model.", "渠道": "Channel", "已接模型": "Models added", "上游模型": "Upstream models", "上次同步": "Last sync", "其他厂商": "Other vendor", "渠道名称": "Channel name", "接口地址（可选）": "Endpoint (optional)", "接口地址": "Endpoint", "新建渠道": "New channel", "同步": "Sync", "启用": "On", "停用": "Off", "选择渠道": "Choose a channel", "2. 模型": "2. Models", "上游模型 ID": "Upstream model ID", "显示名称": "Display name", "访问密钥": "Access key", "添加模型": "Add model", "上游模型列表由渠道同步得到，没同步到的可以手动填模型 ID。访问密钥只在这里填一次，之后不再显示。新添加的模型先下架，填好基础价再上架。": "The upstream list comes from the channel sync; type the model ID by hand if it is not there yet. The access key is entered once here and never shown again. New models start unlisted; set the base price, then list them.", "3. 定价规则": "3. Pricing rules", "上表是基础定价（C 端价），个人和企业默认都按它计费。企业的合同价在「用户与组织」里按企业、按模型单独设置；设了的模型按企业价计费，没设的仍按基础价。": "The table above is the base (consumer) price; individuals and organizations are billed by it by default. Contract prices are set per organization and per model under Users & organizations; models with a contract price are billed by it, the rest by the base price.", "企业定价": "Organization pricing", "留空的模型按基础价计费；填了的模型，这家企业的请求按这里的价计费。": "Models left blank are billed at the base price; for the ones filled in, this organization's requests are billed at these prices.", "基础 输入": "Base input", "基础 输出": "Base output", "企业 输入 ¥/M": "Org input ¥/M", "企业 输出 ¥/M": "Org output ¥/M", "保存企业定价": "Save organization pricing", "定价": "Pricing", "合同价": "Contract price", "基础价": "Base price", "企业输入单价": "Organization input price", "企业输出单价": "Organization output price", "按合同定价": "Contract pricing", "选「按合同定价」的，开通后在列表里点「定价」按模型填企业价。": "For contract pricing, open the account, then click Pricing in the list to set per-model prices."});
+  Object.assign(I18N,{"阿里云百炼": "Alibaba Bailian", "企业定价 ·": "Organization pricing ·"});
   var lang='zh'; try{lang=localStorage.getItem('fp-lang')||'zh'}catch(e){}
   var CJK=/[一-鿿。；]/;
   /* 先查字典与短语；查不到时把「A · B」「A → B」拆开逐段查，价格与示例请求按规则换 */
