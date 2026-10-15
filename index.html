@@ -1703,6 +1703,20 @@ body .tg.acc{background:var(--wash-soft);color:var(--ink)}
 .bt-orgb{border-radius:12px;padding-top:6px;padding-bottom:6px}
 @media (min-width:1001px){.bt[data-role="member"] .bt-check{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
+<style id="console-spacing-css">
+/* 控制台各页的纵向节奏（2026-10-15）：数字卡、工具条、小标题、表格、空状态之间留气；表格没有数据时只显示空状态卡 */
+.bt .cs-p .cs-tiles{margin:0 0 22px}
+.bt .cs-p .cs-bar{margin:0 0 18px;gap:10px 12px}
+.bt .cs-p .cs-bar>.in{flex:1 1 320px;min-width:0}
+.bt .cs-p>.cs-h3,.bt .cs-p>div[data-roles]>.cs-h3{margin:36px 0 10px}
+.bt .cs-p>.cs-hd+.cs-h3,.bt .cs-p>.cs-tiles+.cs-h3{margin-top:28px}
+.bt .cs-p>.cs-help,.bt .cs-p>div[data-roles]>.cs-help{margin:0 0 12px}
+.bt .cs-p .tbl{margin:0 0 14px}
+.bt .cs-p .tbl[hidden]{display:none}
+.bt .cs-p>.cs-empty,.bt .cs-p>div[data-roles]>.cs-empty{margin:0 0 22px}
+.bt .cs-p>.cs-newf,.bt .cs-p>div[data-roles]>.cs-newf{margin:0 0 14px}
+.bt .cs-p>.cs-ntf{margin:0 0 22px}
+</style>
 </head>
 <body>
 
@@ -4434,7 +4448,7 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
     var list=[{name:me.email||'个人账户',role:'personal',sub:'个人账户'}].concat((me.orgs||[]).map(function(o){return {name:o.name,role:o.role,sub:roleName(o.role)}}));
     $('#btOrgs').innerHTML=list.map(function(o,i){var on=o.role===role;return '<button type="button" data-sw="'+i+'" class="'+(on?'on':'')+'" aria-pressed="'+on+'"><i>'+(lang==='en'?(o.role==='personal'?'P':o.role==='root'?'F':'B'):esc(o.name.charAt(0)))+'</i><span><b>'+esc(o.name)+'</b><small>'+esc(o.sub)+(on?' · 当前':'')+'</small></span></button>'}).join('');
     $$('#btOrgs [data-sw]').forEach(function(b){b.addEventListener('click',function(){var o=list[+b.getAttribute('data-sw')];if(o.role===me.role)return;me.role=o.role;me.org=o.role==='personal'?'':o.name;me.type=(o.role==='member'||o.role==='admin')?'company':(me.baseType||'personal');closePops();renderConsole();csTab('home');window.scrollTo(0,0);toast('已切换到 '+o.name)})});
-    var inv=$('#csInvoice');if(inv&&!inv.title.value)inv.title.value=me.org||'';
+    var inv=$('#csInvoice');if(inv&&inv.getAttribute('data-org')!==(me.org||'')){inv.title.value=me.org||'';inv.setAttribute('data-org',me.org||'')}
     if(role==='root')rootRender()}
   /* 超管页：用户与组织、模型与价格、内容。预览账户只在内存里 */
   function rootRender(){var q=($('#rtQ').value||'').trim().toLowerCase(),f=$('#rtF').value;
@@ -4958,6 +4972,10 @@ html[lang="en"] .article.legal:before{content:"English translation of the Chines
     var _pr=platRender; platRender=function(){_pr(); ckCount()};
   })();
   $$('[data-product-target]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();jumpTo(a.getAttribute('data-product-target'))})});
+  /* 表格没有行时只显示它后面的空状态卡，不留一条空表头 */
+  function hideEmptyTables(){$$('.bt .cs-p .tbl').forEach(function(t){var tb=t.querySelector('tbody'),nx=t.nextElementSibling;if(!tb||!nx||!nx.classList.contains('cs-empty'))return;t.hidden=!tb.children.length})}
+  var _rcSp=renderConsole; renderConsole=function(){_rcSp(); hideEmptyTables()};
+  if(typeof rootRender==='function'){var _rrSp=rootRender; rootRender=function(){_rrSp(); hideEmptyTables()}}
   window.addEventListener('hashchange',route); route();
 })();
 </script>
